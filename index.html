@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Local Tech Guy | Computer Repair in Aruba</title>
+  <meta name="description" content="Your Local Tech Guy — reliable computer repair and tech support in Oranjestad, Aruba. Laptops & PCs, fixed pricing, rental devices available." />
+  <meta name="author" content="Your Local Tech Guy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Your Local Tech Guy | Computer Repair in Aruba" />
+  <meta property="og:description" content="Your Local Tech Guy — reliable computer repair and tech support in Oranjestad, Aruba. Laptops & PCs, fixed pricing, rental devices available." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Your Local Tech Guy | Computer Repair in Aruba" />
+  <meta name="twitter:description" content="Your Local Tech Guy — reliable computer repair and tech support in Oranjestad, Aruba. Laptops & PCs, fixed pricing, rental devices available." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #141414;
+      --bg-alt: #1a1a1a;
+      --card: #1f1f1f;
+      --border: #333;
+      --fg: #f2f2f2;
+      --fg-muted: #999;
+      --primary: #7ec832;
+      --primary-fg: #0d0d0d;
+      --radius: 12px;
+      --font: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(20,20,20,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 56px;
+      display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: 960px; width: 100%; margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-size: 1.05rem; font-weight: 800; color: var(--primary); }
+    .nav-links { display: flex; gap: 1.75rem; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: rgba(242,242,242,0.65);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      color: var(--fg-muted); padding: 4px;
+    }
+    .nav-toggle svg { width: 20px; height: 20px; }
+    .nav-mobile {
+      display: none; position: fixed; top: 56px; left: 0; right: 0; z-index: 49;
+      background: rgba(20,20,20,0.97);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a {
+      display: block; padding: 0.6rem 0;
+      font-size: 0.9rem; font-weight: 500;
+      color: rgba(242,242,242,0.65);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover { color: var(--primary); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 5rem 1.5rem 3rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 120% 80% at 50% 60%, rgba(126,200,50,0.08) 0%, transparent 70%),
+                  linear-gradient(180deg, #0d0d0d 0%, #141414 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 680px; margin: 0 auto;
+      animation: fadeUp 0.7s ease-out both;
+    }
+    .hero-logo-wrap {
+      display: inline-flex; margin-bottom: 2rem;
+    }
+    .hero-logo-wrap img {
+      width: 280px; border-radius: 16px;
+      box-shadow: 0 8px 60px rgba(126,200,50,0.18);
+    }
+    .hero-logo-placeholder {
+      width: 280px; height: 130px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #7ec832 0%, #5aa020 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 60px rgba(126,200,50,0.25);
+    }
+    .hero-logo-placeholder span {
+      font-size: 1.5rem; font-weight: 900;
+      color: #0d0d0d; text-align: center; padding: 1rem;
+      line-height: 1.2;
+    }
+    .hero p.sub {
+      font-size: 1.125rem; color: rgba(242,242,242,0.75);
+      margin-bottom: 0.75rem;
+    }
+    .hero p.note { font-size: 0.85rem; color: var(--fg-muted); margin-bottom: 2.5rem; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--primary); color: var(--primary-fg);
+      font-weight: 700; font-size: 0.95rem;
+      padding: 0.75rem 2rem; border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(126,200,50,0.3);
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(242,242,242,0.2); color: var(--fg);
+      font-weight: 600; font-size: 0.95rem;
+      padding: 0.75rem 2rem; border-radius: var(--radius);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: rgba(242,242,242,0.35); }
+    .scroll-arrow {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(126,200,50,0.5); animation: bounce 2s infinite;
+    }
+    .scroll-arrow svg { width: 24px; height: 24px; }
+    .scroll-arrow:hover { color: var(--primary); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; }
+    section.alt { background: var(--bg-alt); }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+    .section-header h2 span { color: var(--primary); }
+    .section-header p { color: var(--fg-muted); max-width: 520px; margin: 0 auto; }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .service-card:hover { border-color: rgba(126,200,50,0.4); }
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(126,200,50,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .service-icon svg { width: 24px; height: 24px; }
+    .service-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .service-card p { font-size: 0.875rem; color: var(--fg-muted); }
+    .services-note { text-align: center; font-size: 0.875rem; color: var(--fg-muted); margin-top: 2rem; }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    @media (max-width: 700px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .price-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .price-card-header {
+      padding: 1.25rem 1.5rem;
+    }
+    .price-card-header.primary { background: var(--primary); }
+    .price-card-header.secondary { background: var(--bg-alt); }
+    .price-card-header h3 {
+      font-size: 1.1rem; font-weight: 700;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .price-card-header.primary h3 { color: var(--primary-fg); }
+    .price-card-header.primary p { font-size: 0.8rem; color: rgba(13,13,13,0.65); }
+    .price-card-header.secondary p { font-size: 0.8rem; color: var(--fg-muted); }
+    .price-card-header svg { width: 18px; height: 18px; }
+    .price-row {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem; padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-row-info .name { font-size: 0.9rem; font-weight: 600; }
+    .price-row-info .desc { font-size: 0.8rem; color: var(--fg-muted); margin-top: 2px; }
+    .price-row .amount {
+      font-size: 1rem; font-weight: 700; color: var(--primary);
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .price-row .amount.neutral { color: var(--fg); }
+    .price-note {
+      background: rgba(126,200,50,0.06); border-top: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex; gap: 0.5rem; align-items: flex-start;
+      font-size: 0.78rem; color: var(--fg-muted);
+    }
+    .price-note svg { width: 14px; height: 14px; color: var(--primary); flex-shrink: 0; margin-top: 1px; }
+    .hourly-note {
+      background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem; font-size: 0.78rem; color: var(--fg-muted);
+    }
+
+    /* ── WARRANTY ── */
+    .warranty-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 3rem 2rem;
+      text-align: center;
+    }
+    .warranty-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(126,200,50,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; color: var(--primary);
+    }
+    .warranty-icon svg { width: 32px; height: 32px; }
+    .warranty-card h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 800; margin-bottom: 1rem; }
+    .warranty-card h2 span { color: var(--primary); }
+    .warranty-card > p { color: var(--fg-muted); max-width: 520px; margin: 0 auto 1.5rem; font-size: 1.05rem; }
+    .warranty-pill {
+      display: inline-block;
+      background: rgba(126,200,50,0.1); border: 1px solid rgba(126,200,50,0.2);
+      border-radius: 8px; padding: 0.75rem 1.5rem;
+      font-size: 0.85rem; color: var(--primary); font-weight: 500;
+    }
+
+    /* ── PAYMENT ── */
+    .payment-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: 540px; margin: 0 auto;
+    }
+    @media (max-width: 480px) { .payment-grid { grid-template-columns: 1fr; } }
+    .payment-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem; text-align: center;
+    }
+    .payment-card svg { width: 40px; height: 40px; color: var(--primary); margin: 0 auto 0.75rem; }
+    .payment-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .payment-card p { font-size: 0.8rem; color: var(--fg-muted); }
+    .no-card {
+      margin-top: 1.5rem; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      color: var(--fg-muted); font-size: 0.875rem;
+    }
+    .no-card svg { width: 18px; height: 18px; color: #e05252; }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      max-width: 560px; margin: 0 auto;
+    }
+    @media (max-width: 480px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-card {
+      display: flex; align-items: center; gap: 0.875rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.25rem;
+      transition: border-color 0.15s;
+    }
+    .contact-card:hover { border-color: rgba(126,200,50,0.4); }
+    .contact-card svg { width: 20px; height: 20px; color: var(--primary); flex-shrink: 0; }
+    .contact-card .label { font-size: 0.72rem; color: var(--fg-muted); margin-bottom: 2px; }
+    .contact-card .value { font-size: 0.875rem; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--card); border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem; text-align: center;
+    }
+    footer .brand { font-weight: 800; color: var(--primary); margin-bottom: 0.25rem; }
+    footer p { font-size: 0.85rem; color: var(--fg-muted); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">YourLocalTechGuy</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <svg id="iconMenu" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg id="iconClose" style="display:none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#services" class="nav-mobile-link">Services</a>
+  <a href="#pricing" class="nav-mobile-link">Pricing</a>
+  <a href="#contact" class="nav-mobile-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-placeholder">
+        <img src="logo.png"
+      </div>
+    </div>
+    <p class="sub">
+      Reliable computer repair &amp; tech support in
+      <strong style="color:var(--primary)">Oranjestad, Aruba</strong>.
+      We specialize in laptops &amp; PCs — no tablets or phones.
+    </p>
+    <p class="note">Rental devices available while yours is being fixed.</p>
+    <div class="hero-cta">
+      <a href="#pricing" class="btn-primary">View Pricing</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <a href="#services" class="scroll-arrow" aria-label="Scroll down">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </a>
+</section>
+
+<!-- SERVICES -->
+<section class="alt" id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>What We <span>Do</span></h2>
+      <p>From quick diagnostics to full custom builds — we've got your tech covered.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+          </svg>
+        </div>
+        <h3>Diagnostics</h3>
+        <p>Full system evaluation to pinpoint the issue.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+          </svg>
+        </div>
+        <h3>System Tune-Up</h3>
+        <p>Physical cleaning, thermal paste &amp; software optimization.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+          </svg>
+        </div>
+        <h3>OS Reinstall</h3>
+        <p>Fresh Windows/macOS install, updates &amp; driver setup.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+          </svg>
+        </div>
+        <h3>Hardware Install</h3>
+        <p>Screen, battery, RAM, HDD, SSD, keyboard swaps.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3>Custom PC Build</h3>
+        <p>Full assembly, cable management &amp; BIOS configuration.</p>
+      </div>
+
+    </div>
+    <p class="services-note">⚠️ We service laptops &amp; PCs only — no tablets or phones.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Transparent <span>Pricing</span></h2>
+      <p>No surprises. Fixed prices for common jobs, fair hourly rates for everything else.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Fixed -->
+      <div class="price-card">
+        <div class="price-card-header primary">
+          <h3>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Fixed Prices
+          </h3>
+          <p>Labor only</p>
+        </div>
+
+        <div class="price-row">
+          <div class="price-row-info">
+            <div class="name">Diagnostic Fee</div>
+            <div class="desc">Full system evaluation</div>
+          </div>
+          <div class="amount">40 fl</div>
+        </div>
+        <div class="price-row">
+          <div class="price-row-info">
+            <div class="name">System Tune-Up</div>
+            <div class="desc">Cleaning, thermal paste &amp; software</div>
+          </div>
+          <div class="amount">85 fl</div>
+        </div>
+        <div class="price-row">
+          <div class="price-row-info">
+            <div class="name">OS Reinstall</div>
+            <div class="desc">Fresh install, updates &amp; drivers</div>
+          </div>
+          <div class="amount">75 fl</div>
+        </div>
+        <div class="price-row">
+          <div class="price-row-info">
+            <div class="name">Hardware Install</div>
+            <div class="desc">Screen, battery, RAM, SSD &amp; more</div>
+          </div>
+          <div class="amount">75 fl</div>
+        </div>
+        <div class="price-row">
+          <div class="price-row-info">
+            <div class="name">Custom PC Build</div>
+            <div class="desc">Assembly, cable mgmt &amp; BIOS</div>
+          </div>
+          <div class="amount">150 fl</div>
+        </div>
+        <div class="price-note">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          The 40 fl diagnostic fee is credited toward all fixed-price services.
+        </div>
+      </div>
+
+      <!-- Hourly -->
+      <div class="price-card">
+        <div class="price-card-header secondary">
+          <h3>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Hourly Rates
+          </h3>
+          <p>1-hour minimum · 65 fl/hr</p>
+        </div>
+        <div class="hourly-note">
+          Applies after diagnostic when the issue requires deeper troubleshooting or isn't covered by a fixed-price service.
+        </div>
+
+        <div class="price-row">
+          <div class="price-row-info">
+            <div class="name">Bracket A <span style="font-weight:400;color:var(--fg-muted)">(1–2 hrs)</span></div>
+            <div class="desc">Minor issues, additional troubleshooting</div>
+          </div>
+          <div class="amount neutral">65 – 130 fl</div>
+        </div>
+        <div class="price-row">
+          <div class="price-row-info">
+            <div class="name">Bracket B <span style="font-weight:400;color:var(--fg-muted)">(3–5 hrs)</span></div>
+            <div class="desc">Time-intensive, multiple steps or testing</div>
+          </div>
+          <div class="amount neutral">195 – 325 fl</div>
+        </div>
+        <div class="price-row">
+          <div class="price-row-info">
+            <div class="name">Bracket C <span style="font-weight:400;color:var(--fg-muted)">(6+ hrs)</span></div>
+            <div class="desc">Complex repairs, major hardware or rebuilds</div>
+          </div>
+          <div class="amount neutral">Custom</div>
+        </div>
+        <div style="flex:1"></div>
+        <div class="price-note">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          The 40 fl diagnostic fee is credited toward all hourly work.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WARRANTY -->
+<section class="alt" id="warranty">
+  <div class="section-inner">
+    <div class="warranty-card">
+      <div class="warranty-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+      </div>
+      <h2>30-Day <span>Warranty</span></h2>
+      <p>Every repair comes with a <strong style="color:var(--fg)">30-day warranty</strong>. If the same issue returns within 30 days of your repair, we'll fix it again at no extra cost.</p>
+      <div class="warranty-pill">
+        Warranty covers labor on the original repair. Parts damage or new issues are excluded.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="payment">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Payment <span>Methods</span></h2>
+      <p>We keep it simple — two ways to pay.</p>
+    </div>
+    <div class="payment-grid">
+      <div class="payment-card">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+        </svg>
+        <h3>Cash</h3>
+        <p>Pay in person when you pick up</p>
+      </div>
+      <div class="payment-card">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+        </svg>
+        <h3>Bank Transfer</h3>
+        <p>Direct transfer to our account</p>
+      </div>
+    </div>
+    <div class="no-card">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      No card swipe — we do not accept card payments.
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="alt" id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Get in <span>Touch</span></h2>
+      <p>Drop us a message or give us a call — we'll get back to you quickly.</p>
+    </div>
+    <div class="contact-grid">
+
+      <a href="mailto:localtechguy.aua@gmail.com" class="contact-card">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <div>
+          <div class="label">Email</div>
+          <div class="value">localtechguy.aua@gmail.com</div>
+        </div>
+      </a>
+
+      <a href="tel:+2975639903" class="contact-card">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        <div>
+          <div class="label">Phone</div>
+          <div class="value">(297) 563-9903</div>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/localtechguy.aua/" target="_blank" rel="noopener noreferrer" class="contact-card">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="label">Instagram</div>
+          <div class="value">@localtechguy.aua</div>
+        </div>
+      </a>
+
+      <div class="contact-card" style="cursor:default">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <div>
+          <div class="label">Location</div>
+          <div class="value">Oranjestad, Aruba</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="brand">Your Local Tech Guy</p>
+  <p>Oranjestad, Aruba &nbsp;·&nbsp; © <span id="year"></span></p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const toggle = document.getElementById('navToggle');
+  const mobile = document.getElementById('navMobile');
+  const iconMenu = document.getElementById('iconMenu');
+  const iconClose = document.getElementById('iconClose');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = mobile.classList.toggle('open');
+    iconMenu.style.display = isOpen ? 'none' : 'block';
+    iconClose.style.display = isOpen ? 'block' : 'none';
+  });
+
+  document.querySelectorAll('.nav-mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobile.classList.remove('open');
+      iconMenu.style.display = 'block';
+      iconClose.style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>
