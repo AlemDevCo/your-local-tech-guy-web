@@ -118,23 +118,14 @@
       animation: fadeUp 0.7s ease-out both;
     }
     .hero-logo-wrap {
-      display: inline-flex; margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     .hero-logo-wrap img {
-      width: 280px; border-radius: 16px;
-      box-shadow: 0 8px 60px rgba(126,200,50,0.18);
-    }
-    .hero-logo-placeholder {
-      width: 280px; height: 130px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #7ec832 0%, #5aa020 100%);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 60px rgba(126,200,50,0.25);
-    }
-    .hero-logo-placeholder span {
-      font-size: 1.5rem; font-weight: 900;
-      color: #0d0d0d; text-align: center; padding: 1rem;
-      line-height: 1.2;
+      width: 280px;
+      height: auto;
+      border-radius: 0; /* removes that rounded box look */
+      box-shadow: none; /* removes glow if you want it clean */
+      box-shadow: 0 10px 40px rgba(126,200,50,0.15);
     }
     .hero p.sub {
       font-size: 1.125rem; color: rgba(242,242,242,0.75);
@@ -322,6 +313,11 @@
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50%       { transform: translateX(-50%) translateY(8px); }
     }
+    .nav-brand img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -329,7 +325,9 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-brand">YourLocalTechGuy</a>
+    <a href="#" class="nav-brand">
+      <img src="logo.png" alt="Logo">
+    </a>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
@@ -357,9 +355,7 @@
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-logo-wrap">
-      <div class="hero-logo-placeholder">
-        <img src="logo.png"
-      </div>
+      <img src="logo.png" alt="Your Local Tech Guy Logo">
     </div>
     <p class="sub">
       Reliable computer repair &amp; tech support in
