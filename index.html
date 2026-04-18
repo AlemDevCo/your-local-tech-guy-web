@@ -111,6 +111,9 @@
   }
   </script>
 
+  <!-- ── TRUSTPILOT SCRIPT ── -->
+  <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+
   <!-- ── FONTS ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -175,7 +178,7 @@
     .hero-logo-wrap img { width: 320px; height: auto; filter: drop-shadow(0 0 25px rgba(126,200,50,0.35)); animation: float 4s ease-in-out infinite; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
     .hero p.sub { font-size: 1.125rem; color: rgba(242,242,242,0.75); margin-bottom: 0.75rem; animation: heroEntrance 0.9s 0.15s cubic-bezier(0.16,1,0.3,1) both; }
-    .hero p.note { font-size: 0.85rem; color: var(--fg-muted); margin-bottom: 2.5rem; animation: heroEntrance 0.9s 0.25s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero p.note { font-size: 0.85rem; color: var(--fg-muted); margin-bottom: 2rem; animation: heroEntrance 0.9s 0.25s cubic-bezier(0.16,1,0.3,1) both; }
     .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; animation: heroEntrance 0.9s 0.35s cubic-bezier(0.16,1,0.3,1) both; }
     .btn-primary { display: inline-flex; align-items: center; justify-content: center; background: var(--primary); color: var(--primary-fg); font-weight: 700; font-size: 0.95rem; padding: 0.75rem 2rem; border-radius: var(--radius); box-shadow: 0 4px 24px rgba(126,200,50,0.3); transition: filter 0.15s, transform 0.1s, box-shadow 0.2s; animation: pulse-glow 3s ease-in-out infinite; }
     @keyframes pulse-glow { 0%, 100% { box-shadow: 0 4px 24px rgba(126,200,50,0.3); } 50% { box-shadow: 0 4px 38px rgba(126,200,50,0.55); } }
@@ -240,6 +243,52 @@
     .warranty-card h2 span { color: var(--primary); }
     .warranty-card > p { color: var(--fg-muted); max-width: 520px; margin: 0 auto 1.5rem; font-size: 1.05rem; }
     .warranty-pill { display: inline-block; background: rgba(126,200,50,0.1); border: 1px solid rgba(126,200,50,0.2); border-radius: 8px; padding: 0.75rem 1.5rem; font-size: 0.85rem; color: var(--primary); font-weight: 500; }
+
+    /* ── TRUSTPILOT SECTION ── */
+    .trustpilot-section { padding: 3.5rem 1.5rem; background: var(--bg); }
+    .trustpilot-section .section-inner { max-width: 960px; margin: 0 auto; }
+    .trustpilot-section-header { text-align: center; margin-bottom: 1.75rem; }
+    .trustpilot-section-header h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; margin-bottom: 0.35rem; }
+    .trustpilot-section-header h2 span { color: var(--primary); }
+    .trustpilot-section-header p { font-size: 0.875rem; color: var(--fg-muted); }
+    .trustpilot-widget-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      max-width: 680px;
+      margin: 0 auto;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .trustpilot-widget-wrap:hover {
+      border-color: rgba(126,200,50,0.35);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .trustpilot-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .trustpilot-label::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    /* The Trustpilot widget renders on a white background internally —
+       we give it just enough room and let it breathe naturally */
+    .trustpilot-widget-wrap .trustpilot-widget {
+      border-radius: 6px;
+      overflow: hidden;
+    }
 
     /* ── FAQ ── */
     .faq-list { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
@@ -432,6 +481,29 @@
   </div>
 </section>
 
+<!-- TRUSTPILOT REVIEWS SECTION -->
+<section class="trustpilot-section" id="reviews" aria-labelledby="reviews-heading">
+  <div class="section-inner">
+    <div class="trustpilot-section-header reveal">
+      <h2 id="reviews-heading">What Our <span>Customers Say</span></h2>
+      <p>Read verified reviews from real customers in Aruba.</p>
+    </div>
+    <div class="trustpilot-widget-wrap reveal">
+      <div class="trustpilot-label">Verified Reviews on Trustpilot</div>
+      <div class="trustpilot-widget"
+           data-locale="en-US"
+           data-template-id="56278e9abfbbba0bdcd568bc"
+           data-businessunit-id="69e3ebfb6ddc87693784d651"
+           data-style-height="52px"
+           data-style-width="100%"
+           data-token="c3a1c78a-30d1-484c-a0ad-f7c1e21e87ab"
+           data-theme="dark">
+        <a href="https://www.trustpilot.com/review/yourlocaltechguyaua.com" target="_blank" rel="noopener">Read our reviews on Trustpilot</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq" aria-labelledby="faq-heading">
   <div class="section-inner">
@@ -568,6 +640,15 @@
       });
       if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
     });
+  });
+
+  /* TRUSTPILOT REINIT — ensure widget loads even if script ran before DOM was ready */
+  window.addEventListener('load', () => {
+    if (window.Trustpilot) {
+      document.querySelectorAll('.trustpilot-widget').forEach(el => {
+        window.Trustpilot.loadFromElement(el, true);
+      });
+    }
   });
 
   /* HERO PARTICLES */
