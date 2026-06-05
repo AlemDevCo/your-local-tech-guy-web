@@ -1046,13 +1046,11 @@
       device:     [document.getElementById('bk-type').value, document.getElementById('bk-brand').value].filter(Boolean).join(' — ') || 'Not specified',
       issue:      document.getElementById('bk-issue').value.trim() || 'Not specified'
     }
-    try {
-      await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-    } catch(e) {}
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(()=>{})
     document.getElementById('bk-ref').textContent = ref
     document.querySelectorAll('.bk-panel').forEach(p=>p.classList.remove('active'))
     document.getElementById('bk-success').classList.add('active')
