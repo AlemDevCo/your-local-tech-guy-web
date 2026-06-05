@@ -1031,27 +1031,31 @@
     document.getElementById('bk-sum-issue').textContent  = issue?(issue.length>80?issue.slice(0,80)+'…':issue):'—'
   }
 
+  // Paste your Google Apps Script web app URL here after deploying it
+  const GAS_ENDPOINT = 'GAS_ENDPOINT_PLACEHOLDER'
+
   async function bkSubmit() {
     const btn = document.getElementById('bk-submit-btn')
     btn.disabled = true; btn.textContent = 'Sending…'
-    const [y,m,d] = BK.date.split('-')
     const ref = 'LTGAUA-' + Math.random().toString(36).substr(2,6).toUpperCase()
     const payload = {
-      ref, service: BK.service, price: BK.price,
-      date: `${d} ${BK_SHORT[parseInt(m)-1]} ${y} at ${BK.time}`,
-      name: `${document.getElementById('bk-fname').value} ${document.getElementById('bk-lname').value}`,
-      phone: document.getElementById('bk-phone').value,
-      email: document.getElementById('bk-email').value||'—',
-      device: [document.getElementById('bk-type').value, document.getElementById('bk-brand').value].filter(Boolean).join(' — '),
-      issue: document.getElementById('bk-issue').value||'Not specified'
+      ref,
+      service: BK.service,
+      price:   BK.price,
+      date:    BK.date,
+      time:    BK.time,
+      fname:   document.getElementById('bk-fname').value.trim(),
+      lname:   document.getElementById('bk-lname').value.trim(),
+      phone:   document.getElementById('bk-phone').value.trim(),
+      email:   document.getElementById('bk-email').value.trim(),
+      device:  [document.getElementById('bk-type').value, document.getElementById('bk-brand').value].filter(Boolean).join(' — '),
+      issue:   document.getElementById('bk-issue').value.trim() || 'Not specified'
     }
-    try {
-      // Sign up at formspree.io → New Form → paste your endpoint URL here
-      await fetch('https://formspree.io/f/REPLACE_THIS', {
-        method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'},
-        body: JSON.stringify(payload)
-      })
-    } catch(e) { /* show success regardless — user gets a reference number */ }
+    // no-cors: browser sends the POST but can't read the response (GAS doesn't support CORS preflight)
+    // The data still arrives at Apps Script and you get the Gmail notification
+    if (GAS_ENDPOINT !== 'GAS_ENDPOINT_PLACEHOLDER') {
+      fetch(GAS_ENDPOINT, { method:'POST', mode:'no-cors', body: JSON.stringify(payload) }).catch(()=>{})
+    }
     document.getElementById('bk-ref').textContent = ref
     document.querySelectorAll('.bk-panel').forEach(p=>p.classList.remove('active'))
     document.getElementById('bk-success').classList.add('active')
