@@ -1028,8 +1028,9 @@
     document.getElementById('bk-sum-issue').textContent  = issue?(issue.length>80?issue.slice(0,80)+'…':issue):'—'
   }
 
-  async function bkSubmit() {
+  function bkSubmit() {
     const btn = document.getElementById('bk-submit-btn')
+    if (btn.disabled) return
     btn.disabled = true; btn.textContent = 'Sending…'
     const ref = 'LTGAUA-' + Math.random().toString(36).substr(2,6).toUpperCase()
     const payload = {
@@ -1046,11 +1047,15 @@
       device:     [document.getElementById('bk-type').value, document.getElementById('bk-brand').value].filter(Boolean).join(' — ') || 'Not specified',
       issue:      document.getElementById('bk-issue').value.trim() || 'Not specified'
     }
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(()=>{})
+    // Fire-and-forget — never block the UI on the network request
+    try {
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(()=>{})
+    } catch(e) {}
+    // Always show success immediately
     document.getElementById('bk-ref').textContent = ref
     document.querySelectorAll('.bk-panel').forEach(p=>p.classList.remove('active'))
     document.getElementById('bk-success').classList.add('active')
