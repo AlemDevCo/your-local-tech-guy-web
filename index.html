@@ -1028,30 +1028,31 @@
     document.getElementById('bk-sum-issue').textContent  = issue?(issue.length>80?issue.slice(0,80)+'…':issue):'—'
   }
 
+  const DASHBOARD_URL = 'https://exhaust-atlantic-neighbors-leaders.trycloudflare.com/api/book';
+
   function bkSubmit() {
     const btn = document.getElementById('bk-submit-btn')
     if (btn.disabled) return
     btn.disabled = true; btn.textContent = 'Sending…'
     const ref = 'LTGAUA-' + Math.random().toString(36).substr(2,6).toUpperCase()
     const payload = {
-      access_key: 'ce014a91-b5e4-46d0-9781-527fbdc1d92f',
-      subject:    'New Booking: ' + ref + ' — ' + BK.service,
-      from_name:  document.getElementById('bk-fname').value.trim() + ' ' + document.getElementById('bk-lname').value.trim(),
-      email:      document.getElementById('bk-email').value.trim() || 'not provided',
       ref,
-      service:    BK.service,
-      price:      BK.price,
-      date:       BK.date,
-      time:       BK.time,
-      phone:      document.getElementById('bk-phone').value.trim(),
-      device:     [document.getElementById('bk-type').value, document.getElementById('bk-brand').value].filter(Boolean).join(' — ') || 'Not specified',
-      issue:      document.getElementById('bk-issue').value.trim() || 'Not specified'
+      fname:   document.getElementById('bk-fname').value.trim(),
+      lname:   document.getElementById('bk-lname').value.trim(),
+      email:   document.getElementById('bk-email').value.trim(),
+      phone:   document.getElementById('bk-phone').value.trim(),
+      service: BK.service,
+      price:   BK.price,
+      date:    BK.date,
+      time:    BK.time,
+      device:  [document.getElementById('bk-type').value, document.getElementById('bk-brand').value].filter(Boolean).join(' — ') || 'Not specified',
+      issue:   document.getElementById('bk-issue').value.trim() || 'Not specified'
     }
-    // Fire-and-forget — never block the UI on the network request
+    // Post directly to dashboard — fire and forget
     try {
-      fetch('https://api.web3forms.com/submit', {
+      fetch(DASHBOARD_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       }).catch(()=>{})
     } catch(e) {}
