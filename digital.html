@@ -4,219 +4,333 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Web Design & Automation — Your Local Tech Guy | Aruba</title>
-  <meta name="description" content="Custom websites, social media automation, and managed platform operations for businesses in Aruba and beyond." />
+  <meta name="description" content="Custom websites, social media automation, and managed platform operations for businesses in Aruba." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,800;0,900;1,800;1,900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #050505; --bg-alt: #0a0a0a; --card: #0f0f0f;
-      --border: #1a1a1a; --border-hi: #2e2e2e;
-      --fg: #f0f0f0; --fg-muted: #5a5a5a; --fg-dim: #2a2a2a;
-      --accent: #7ec832; --accent-dim: rgba(126,200,50,0.12);
+      --accent: #7ed444;
+      --fg: rgba(255,255,255,0.95);
+      --fg-muted: rgba(255,255,255,0.55);
+      --fg-dim: rgba(255,255,255,0.25);
+      --glass: rgba(255,255,255,0.07);
+      --glass-border: rgba(255,255,255,0.16);
+      --glass-top: rgba(255,255,255,0.28);
+      --glass-shadow: rgba(0,0,0,0.35);
+      --r: 22px;
       --font: 'Inter', system-ui, sans-serif;
       --font-d: 'Playfair Display', Georgia, serif;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--fg); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    a { color: inherit; text-decoration: none; }
+    body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: hidden; min-height: 100vh; }
+
+    /* ── FIXED BACKGROUND ── */
+    .bg-wrap {
+      position: fixed; inset: 0; z-index: -2;
+      background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat;
+      transform: scale(1.08);
+      filter: blur(14px) saturate(1.4) brightness(0.72);
+      will-change: transform;
+    }
+    .bg-overlay {
+      position: fixed; inset: 0; z-index: -1;
+      background: linear-gradient(160deg, rgba(5,20,5,0.42) 0%, rgba(8,25,8,0.38) 60%, rgba(2,15,2,0.50) 100%);
+    }
+
+    /* ── FLOATING PARTICLES ── */
+    .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .p {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+      animation: pfloat linear infinite;
+    }
+    @keyframes pfloat {
+      0%   { transform: translateY(110vh) translateX(0) scale(1); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-10vh) translateX(40px) scale(0.4); opacity: 0; }
+    }
+
+    /* ── GLASS UTILITY ── */
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(36px) saturate(200%) brightness(1.06);
+      -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.06);
+      border-radius: var(--r);
+      border: 1px solid var(--glass-border);
+      box-shadow:
+        inset 0 1px 0 var(--glass-top),
+        inset 0 -1px 0 rgba(0,0,0,0.12),
+        0 20px 80px var(--glass-shadow),
+        0 1px 0 rgba(255,255,255,0.04);
+    }
+    .glass-flat {
+      background: var(--glass);
+      backdrop-filter: blur(36px) saturate(200%);
+      -webkit-backdrop-filter: blur(36px) saturate(200%);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
 
     /* ── NAV ── */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; display: flex; align-items: center; padding: 0 2rem; justify-content: space-between; transition: background .4s, border-color .4s; border-bottom: 1px solid transparent; }
-    nav.s { background: rgba(5,5,5,.95); backdrop-filter: blur(20px); border-color: var(--border); }
-    .nl a { font-size: .78rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--fg-muted); margin-left: 2rem; transition: color .2s; }
-    .nl a:hover, .nl a.active { color: var(--fg); }
-    .nlogo { font-size: .82rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
-    .ncta { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .5rem 1.3rem; border: 1px solid var(--accent); color: var(--accent); transition: background .2s, color .2s; }
-    .ncta:hover { background: var(--accent); color: #050505; }
-    @media(max-width:680px){ .nl { display:none; } }
-
-    /* ── HERO ── */
-    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .hero-content { position: relative; z-index: 2; text-align: center; padding: 8rem 2rem 4rem; max-width: 900px; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: .7rem; margin-bottom: 2.5rem;
-      font-size: .68rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent);
+    nav {
+      position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200;
+      width: min(960px, calc(100% - 3rem));
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .75rem 1.5rem;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(36px) saturate(180%);
+      -webkit-backdrop-filter: blur(36px) saturate(180%);
+      border-radius: 50px;
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px rgba(0,0,0,0.25);
     }
-    .hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); opacity: .5; }
-    .hero h1 {
-      font-family: var(--font-d); font-size: clamp(3.5rem, 9vw, 7.5rem);
-      font-weight: 900; line-height: .95; letter-spacing: -.03em;
-      margin-bottom: 2.25rem;
-      /* layered depth text shadow */
-      text-shadow: 0 1px 0 #1a1a1a, 0 2px 0 #181818, 0 3px 0 #151515, 0 4px 0 #131313, 0 8px 30px rgba(0,0,0,.9);
-    }
-    .hero h1 em { font-style: italic; color: var(--accent); }
-    .hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.85; color: var(--fg-muted); max-width: 540px; margin: 0 auto 3rem; letter-spacing: .01em; }
-    .hero-btns { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-    .btn-p { display: inline-flex; align-items: center; gap: .45rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 1rem 2.5rem; background: var(--accent); color: #050505; transition: filter .2s, transform .2s, box-shadow .2s; box-shadow: 0 0 0 rgba(126,200,50,0); }
-    .btn-p:hover { filter: brightness(1.1); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(126,200,50,.25); }
-    .btn-g { font-size: .78rem; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--fg-muted); transition: color .2s; }
-    .btn-g:hover { color: var(--fg); }
-
-    /* ── MARQUEE ── */
-    .mq { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 1rem 0; background: var(--bg-alt); }
-    .mq-track { display: flex; animation: mq 30s linear infinite; white-space: nowrap; }
-    .mq-item { font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-dim); padding: 0 2rem; flex-shrink: 0; }
-    .mq-item .dot { color: var(--accent); margin-right: 2rem; }
-    @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* ── SECTION SHELL ── */
-    .sec { padding: 9rem 2rem; }
-    .sec.alt { background: var(--bg-alt); }
-    .w { max-width: 1120px; margin: 0 auto; }
-    .sec-tag { font-size: .65rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
-    .sec-tag::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .nlogo { font-size: .8rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--fg); }
+    .nl { display: flex; gap: 0; }
+    .nl a { font-size: .75rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-muted); padding: .45rem .9rem; border-radius: 30px; transition: background .2s, color .2s; }
+    .nl a:hover, .nl a.active { background: rgba(255,255,255,0.1); color: var(--fg); }
+    .ncta { font-size: .73rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: .55rem 1.4rem; background: var(--accent); color: #080808; border-radius: 30px; transition: filter .2s, transform .15s; }
+    .ncta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    @media(max-width:640px){ .nl { display: none; } }
 
     /* ── SCROLL REVEAL ── */
-    .sr { opacity: 0; transform: perspective(800px) translateZ(-60px) translateY(30px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
-    .sr.v { opacity: 1; transform: perspective(800px) translateZ(0) translateY(0); }
-    .d1{transition-delay:.1s} .d2{transition-delay:.22s} .d3{transition-delay:.34s} .d4{transition-delay:.46s}
+    .sr { opacity: 0; transform: translateY(50px) scale(0.97); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
+    .sr.v { opacity: 1; transform: translateY(0) scale(1); }
+    .d1{transition-delay:.12s} .d2{transition-delay:.24s} .d3{transition-delay:.36s} .d4{transition-delay:.48s}
 
-    /* ── SERVICES — 3D TILT CARDS ── */
-    .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    /* ── WORD REVEAL ── */
+    .wr .word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+    .wr .word span { display: inline-block; transform: translateY(105%); transition: transform .7s cubic-bezier(.16,1,.3,1); }
+    .wr.wv .word span { transform: translateY(0); }
+
+    /* ═══════════════════════════════════════
+       CHAPTER 0 — HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 7rem 2rem 5rem; text-align: center;
+    }
+    .hero-glass {
+      max-width: 780px; padding: 4rem 3.5rem;
+    }
+    @media(max-width:600px){ .hero-glass { padding: 2.5rem 1.75rem; } }
+    .chapter-tag {
+      display: inline-flex; align-items: center; gap: .65rem; margin-bottom: 2.25rem;
+      font-size: .65rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent);
+    }
+    .chapter-tag::before, .chapter-tag::after { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); opacity: .6; }
+    .hero h1 {
+      font-family: var(--font-d); font-size: clamp(2.75rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.02; letter-spacing: -.03em; margin-bottom: 1.75rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.85; color: var(--fg-muted); max-width: 500px; margin: 0 auto 2.75rem; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-p { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .9rem 2.25rem; background: var(--accent); color: #080808; border-radius: 40px; transition: filter .2s, transform .2s, box-shadow .2s; }
+    .btn-p:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 16px 48px rgba(126,212,68,.3); }
+    .btn-g { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .9rem 1.75rem; color: var(--fg-muted); background: rgba(255,255,255,0.08); border-radius: 40px; border: 1px solid rgba(255,255,255,0.14); transition: background .2s, color .2s; }
+    .btn-g:hover { background: rgba(255,255,255,0.14); color: var(--fg); }
+
+    /* ── MARQUEE ── */
+    .mq { position: relative; z-index: 1; overflow: hidden; padding: 1.1rem 0; }
+    .mq.glass-flat { }
+    .mq-track { display: flex; animation: mqscroll 35s linear infinite; white-space: nowrap; }
+    .mq-item { font-size: .66rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--fg-dim); padding: 0 2.25rem; flex-shrink: 0; }
+    .mq-item .dot { color: var(--accent); margin-right: 2.25rem; }
+    @keyframes mqscroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ═══════════════════════════════════════
+       CHAPTER SECTIONS
+    ═══════════════════════════════════════ */
+    .sec { position: relative; z-index: 1; padding: 8rem 2rem; }
+    .w { max-width: 1120px; margin: 0 auto; }
+
+    /* Chapter label */
+    .ch {
+      display: inline-flex; align-items: center; gap: .75rem;
+      font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 3rem;
+    }
+    .ch::after { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); opacity: .5; }
+
+    /* ═══════════════════════════════════════
+       CHAPTER 1 — THE STATEMENT
+    ═══════════════════════════════════════ */
+    .statement { padding: 10rem 2rem; text-align: center; }
+    .statement-glass { max-width: 900px; margin: 0 auto; padding: 5rem 4rem; }
+    @media(max-width:600px){ .statement-glass { padding: 3rem 2rem; } }
+    .statement h2 {
+      font-family: var(--font-d); font-size: clamp(2rem, 5.5vw, 4.25rem);
+      font-weight: 900; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 2rem;
+    }
+    .statement h2 em { font-style: italic; color: var(--accent); }
+    .statement p { font-size: 1.05rem; color: var(--fg-muted); line-height: 1.9; font-weight: 300; max-width: 640px; margin: 0 auto; }
+
+    /* ═══════════════════════════════════════
+       CHAPTER 2 — SERVICES (GLASS CARDS)
+    ═══════════════════════════════════════ */
+    .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
     @media(max-width:720px){ .svc-grid { grid-template-columns: 1fr; } }
+
     .svc-wrap { perspective: 1200px; }
     .svc-card {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 2.75rem 2.5rem; position: relative; overflow: hidden;
-      transform-style: preserve-3d; transform: rotateX(0) rotateY(0);
-      transition: transform .08s linear, border-color .3s, box-shadow .3s;
-      cursor: default;
+      padding: 2.75rem 2.5rem; cursor: default;
+      transform-style: preserve-3d;
+      transition: transform .08s linear, box-shadow .3s;
+      position: relative; overflow: hidden;
     }
-    .svc-card:hover { border-color: var(--border-hi); box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(126,200,50,.08); }
-    /* gloss light */
-    .svc-gloss { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(circle at 50% 50%, rgba(126,200,50,.08), transparent 65%); }
+    .svc-card:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.12), 0 32px 100px rgba(0,0,0,0.45), 0 0 0 1px rgba(126,212,68,.1); }
+
+    /* Gloss */
+    .svc-gloss { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; transition: opacity .3s; opacity: 0; }
     .svc-card:hover .svc-gloss { opacity: 1; }
-    /* inner layers with depth */
-    .svc-num { font-family: var(--font-d); font-size: .95rem; font-weight: 900; color: var(--fg-dim); margin-bottom: 1.75rem; transform: translateZ(40px); display: block; }
-    .svc-icon { width: 52px; height: 52px; border: 1px solid var(--border-hi); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 1.5rem; transform: translateZ(50px); }
-    .svc-icon svg { width: 24px; height: 24px; }
-    .svc-card h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .75rem; transform: translateZ(45px); line-height: 1.15; }
-    .svc-card p { font-size: .875rem; color: var(--fg-muted); line-height: 1.78; font-weight: 300; margin-bottom: 1.5rem; transform: translateZ(35px); }
-    .svc-pills { display: flex; flex-wrap: wrap; gap: .35rem; transform: translateZ(30px); }
-    .svc-pill { font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--border); padding: .2rem .6rem; color: var(--fg-muted); }
-    /* bottom accent bar */
-    .svc-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.16,1,.3,1); }
+
+    .svc-num { display: block; font-family: var(--font-d); font-size: .88rem; font-weight: 900; color: rgba(255,255,255,.18); margin-bottom: 1.75rem; transform: translateZ(30px); }
+    .svc-icon-wrap { width: 50px; height: 50px; border-radius: 14px; background: rgba(126,212,68,.12); border: 1px solid rgba(126,212,68,.25); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 1.5rem; transform: translateZ(45px); }
+    .svc-icon-wrap svg { width: 22px; height: 22px; }
+    .svc-card h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; margin-bottom: .7rem; transform: translateZ(40px); }
+    .svc-card p { font-size: .875rem; color: var(--fg-muted); line-height: 1.8; font-weight: 300; margin-bottom: 1.5rem; transform: translateZ(30px); }
+    .svc-pills { display: flex; flex-wrap: wrap; gap: .35rem; transform: translateZ(25px); }
+    .svc-pill { font-size: .62rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; padding: .22rem .65rem; border-radius: 30px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: var(--fg-muted); }
+    .svc-bar { position: absolute; bottom: 0; left: 1.5rem; right: 1.5rem; height: 1.5px; background: linear-gradient(90deg, transparent, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.16,1,.3,1); border-radius: 1px; }
     .svc-card:hover .svc-bar { transform: scaleX(1); }
 
-    /* ── MANAGED OPS ── */
-    .ops-head { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; margin-bottom: 4rem; }
+    /* ═══════════════════════════════════════
+       CHAPTER 3 — QUOTE BREAK
+    ═══════════════════════════════════════ */
+    .quote-sec { padding: 8rem 2rem; text-align: center; }
+    .quote-glass { max-width: 760px; margin: 0 auto; padding: 3.5rem; }
+    .quote-text { font-family: var(--font-d); font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.2; letter-spacing: -.025em; font-style: italic; }
+    .quote-text em { color: var(--accent); font-style: normal; }
+    .quote-attr { margin-top: 1.5rem; font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-dim); }
+
+    /* ═══════════════════════════════════════
+       CHAPTER 4 — MANAGED OPS
+    ═══════════════════════════════════════ */
+    .ops-head { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; margin-bottom: 3.5rem; }
     @media(max-width:780px){ .ops-head { grid-template-columns: 1fr; gap: 2rem; } }
-    .ops-hl { font-family: var(--font-d); font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 900; line-height: 1.05; letter-spacing: -.03em; }
+    .ops-hl { font-family: var(--font-d); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -.03em; }
     .ops-hl em { font-style: italic; color: var(--accent); }
-    .ops-intro { font-size: .9rem; color: var(--fg-muted); line-height: 1.85; font-weight: 300; }
-    /* 3D perspective table */
-    .ops-scene { perspective: 1200px; }
-    .ops-table {
-      display: grid; grid-template-columns: 1fr 1fr;
-      background: var(--border); gap: 1px; border: 1px solid var(--border);
-      transform: rotateX(3deg) scale(.99);
-      transition: transform .6s cubic-bezier(.16,1,.3,1);
-    }
-    .ops-scene:hover .ops-table { transform: rotateX(0deg) scale(1); }
-    @media(max-width:760px){ .ops-table { grid-template-columns: 1fr; } }
-    .ops-panel { background: var(--card); padding: 2.75rem; }
-    .ops-panel-lbl { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
-    .tier { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--border); }
+    .ops-body { font-size: .9rem; color: var(--fg-muted); line-height: 1.85; font-weight: 300; }
+    .ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border-radius: var(--r); overflow: hidden; border: 1px solid var(--glass-border); }
+    @media(max-width:760px){ .ops-grid { grid-template-columns: 1fr; } }
+    .ops-panel { padding: 2.75rem; background: rgba(255,255,255,0.05); backdrop-filter: blur(36px); -webkit-backdrop-filter: blur(36px); }
+    .ops-lbl { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+    .tier { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid rgba(255,255,255,.07); }
     .tier:last-child { border-bottom: none; }
     .tier-v { font-size: .82rem; color: var(--fg-muted); font-weight: 300; }
-    .tier-p { font-size: 1.05rem; font-weight: 800; letter-spacing: -.02em; }
+    .tier-p { font-size: 1rem; font-weight: 800; letter-spacing: -.02em; }
     .tier-p.hi { color: var(--accent); }
-    .inc { display: flex; gap: .9rem; align-items: flex-start; padding: .8rem 0; border-bottom: 1px solid var(--border); }
+    .inc { display: flex; gap: .9rem; align-items: flex-start; padding: .8rem 0; border-bottom: 1px solid rgba(255,255,255,.07); }
     .inc:last-child { border-bottom: none; }
-    .inc-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: .6rem; }
+    .inc-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: .58rem; }
     .inc-lbl { font-size: .82rem; font-weight: 600; margin-bottom: .1rem; }
-    .inc-det { font-size: .75rem; color: var(--fg-muted); font-weight: 300; line-height: 1.5; }
-    .ops-fine { margin-top: 1.25rem; font-size: .75rem; color: var(--fg-dim); line-height: 1.7; }
+    .inc-det { font-size: .74rem; color: var(--fg-muted); font-weight: 300; line-height: 1.5; }
+    .ops-fine { margin-top: 1.25rem; font-size: .74rem; color: var(--fg-dim); line-height: 1.7; }
 
-    /* ── PROCESS ── */
-    .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); }
+    /* ═══════════════════════════════════════
+       CHAPTER 5 — PROCESS
+    ═══════════════════════════════════════ */
+    .proc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; border-radius: var(--r); overflow: hidden; border: 1px solid var(--glass-border); }
     @media(max-width:680px){ .proc-grid { grid-template-columns: 1fr 1fr; } }
-    @media(max-width:420px){ .proc-grid { grid-template-columns: 1fr; } }
-    .proc-cell { padding: 3rem 2rem; border-right: 1px solid var(--border); position: relative; transition: background .3s; perspective: 600px; }
-    .proc-cell:last-child { border-right: none; }
-    .proc-cell:hover { background: var(--card); }
-    .proc-cell:hover .proc-n { transform: translateZ(20px) scale(1.05); color: var(--accent); }
-    .proc-n { font-family: var(--font-d); font-size: 3.5rem; font-weight: 900; color: var(--fg-dim); line-height: 1; margin-bottom: 1.5rem; display: block; transition: transform .5s cubic-bezier(.16,1,.3,1), color .3s; transform-style: preserve-3d; }
-    .proc-cell h4 { font-size: .92rem; font-weight: 700; margin-bottom: .5rem; }
-    .proc-cell p { font-size: .8rem; color: var(--fg-muted); line-height: 1.7; font-weight: 300; }
+    .proc-cell { padding: 2.75rem 2rem; background: rgba(255,255,255,0.05); backdrop-filter: blur(36px); -webkit-backdrop-filter: blur(36px); transition: background .3s; }
+    .proc-cell:hover { background: rgba(255,255,255,0.09); }
+    .proc-cell:hover .proc-n { color: var(--accent); transform: translateY(-4px); }
+    .proc-n { font-family: var(--font-d); font-size: 3rem; font-weight: 900; color: rgba(255,255,255,.12); display: block; margin-bottom: 1.5rem; transition: color .3s, transform .4s cubic-bezier(.16,1,.3,1); }
+    .proc-cell h4 { font-size: .9rem; font-weight: 700; margin-bottom: .45rem; }
+    .proc-cell p { font-size: .78rem; color: var(--fg-muted); line-height: 1.7; font-weight: 300; }
 
-    /* ── CASE STUDY ── */
-    .cs { border: 1px solid var(--border); background: var(--card); perspective: 1400px; }
-    .cs-inner { transform-style: preserve-3d; transition: transform .08s linear; }
-    .cs-top { padding: 3.5rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
+    /* ═══════════════════════════════════════
+       CHAPTER 6 — CASE STUDY
+    ═══════════════════════════════════════ */
+    .cs { overflow: hidden; }
+    .cs-top { padding: 3rem 3.5rem; border-bottom: 1px solid rgba(255,255,255,.08); display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
     @media(max-width:680px){ .cs-top { grid-template-columns: 1fr; padding: 2rem; } }
-    .cs-cli { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-    .cs-title { font-family: var(--font-d); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 900; line-height: 1.05; letter-spacing: -.03em; margin-bottom: .85rem; transform: translateZ(20px); }
-    .cs-sub { font-size: .9rem; color: var(--fg-muted); line-height: 1.8; font-weight: 300; max-width: 520px; }
+    .cs-cli { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .9rem; }
+    .cs-title { font-family: var(--font-d); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 900; line-height: 1.05; letter-spacing: -.03em; margin-bottom: .85rem; }
+    .cs-sub { font-size: .88rem; color: var(--fg-muted); line-height: 1.8; font-weight: 300; max-width: 500px; }
     .cs-badges { display: flex; flex-wrap: wrap; gap: .4rem; }
-    .cs-badge { font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--border-hi); padding: .3rem .8rem; color: var(--fg-muted); }
+    .cs-badge { font-size: .6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .28rem .75rem; border-radius: 30px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: var(--fg-muted); }
     .cs-body { display: grid; grid-template-columns: 1fr 1fr; }
     @media(max-width:680px){ .cs-body { grid-template-columns: 1fr; } }
-    .cs-col { padding: 2.5rem 3.5rem; border-right: 1px solid var(--border); }
+    .cs-col { padding: 2.5rem 3.5rem; border-right: 1px solid rgba(255,255,255,.07); }
     .cs-col:last-child { border-right: none; }
-    @media(max-width:680px){ .cs-col { padding: 2rem; border-right: none; border-bottom: 1px solid var(--border); } .cs-col:last-child { border-bottom: none; } }
-    .cs-col-lbl { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
-    .cs-list { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
-    .cs-list li { display: flex; gap: .75rem; font-size: .85rem; color: var(--fg-muted); font-weight: 300; line-height: 1.5; }
-    .cs-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: .55rem; }
-    .cs-foot { padding: 1.75rem 3.5rem; border-top: 1px solid var(--border); font-size: .875rem; color: rgba(240,240,240,.4); font-style: italic; font-weight: 300; }
+    @media(max-width:680px){ .cs-col { padding: 2rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); } }
+    .cs-lbl { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+    .cs-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .cs-list li { display: flex; gap: .7rem; font-size: .84rem; color: var(--fg-muted); font-weight: 300; line-height: 1.55; }
+    .cs-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: .52rem; }
+    .cs-foot { padding: 1.5rem 3.5rem; border-top: 1px solid rgba(255,255,255,.07); font-size: .84rem; color: var(--fg-dim); font-style: italic; font-weight: 300; }
     @media(max-width:680px){ .cs-foot { padding: 1.5rem 2rem; } }
 
-    /* ── INQUIRY ── */
-    .inq-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; }
+    /* ═══════════════════════════════════════
+       CHAPTER 7 — INQUIRY
+    ═══════════════════════════════════════ */
+    .inq-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
     @media(max-width:860px){ .inq-layout { grid-template-columns: 1fr; gap: 3rem; } }
-    .inq-left { position: sticky; top: 5rem; }
-    .inq-bar { display: block; width: 36px; height: 2px; background: var(--accent); margin-bottom: 2rem; }
-    .inq-hl { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 900; line-height: 1.05; letter-spacing: -.03em; margin-bottom: 1.5rem; }
+    .inq-left { position: sticky; top: 6rem; }
+    .inq-bar { display: block; width: 32px; height: 2px; background: var(--accent); border-radius: 2px; margin-bottom: 2rem; }
+    .inq-hl { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; line-height: 1.05; letter-spacing: -.03em; margin-bottom: 1.25rem; }
     .inq-hl em { font-style: italic; color: var(--accent); }
-    .inq-body { font-size: .875rem; color: var(--fg-muted); line-height: 1.85; font-weight: 300; margin-bottom: 2.25rem; }
-    .inq-pts { display: flex; flex-direction: column; gap: .9rem; }
-    .inq-pt { font-size: .8rem; color: var(--fg-muted); display: flex; gap: .6rem; font-weight: 300; }
-    .inq-pt::before { content: '—'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
-    /* form fields */
-    .ff { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.5rem; }
-    .ffrow { display: flex; gap: 1.5rem; }
+    .inq-body { font-size: .875rem; color: var(--fg-muted); line-height: 1.85; font-weight: 300; margin-bottom: 2rem; }
+    .inq-pts { display: flex; flex-direction: column; gap: .8rem; }
+    .inq-pt { font-size: .78rem; color: var(--fg-muted); display: flex; gap: .6rem; font-weight: 300; }
+    .inq-pt::before { content: '—'; color: var(--accent); font-weight: 600; flex-shrink: 0; }
+    /* form */
+    .ff { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.25rem; }
+    .ffrow { display: flex; gap: 1rem; }
     .ffrow .ff { flex: 1; }
-    .flbl { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-dim); }
+    .flbl { font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-dim); }
     .fi, .fs, .ft {
-      background: transparent; border: 0; border-bottom: 1px solid var(--border);
-      color: var(--fg); font-family: var(--font); font-size: .9rem; font-weight: 300;
-      padding: .8rem 0; width: 100%; outline: none; transition: border-color .25s; border-radius: 0; -webkit-appearance: none;
+      background: rgba(255,255,255,0.06); border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--fg); font-family: var(--font); font-size: .875rem; font-weight: 300;
+      padding: .75rem 1rem; width: 100%; outline: none;
+      transition: border-color .2s, background .2s;
+      -webkit-appearance: none;
     }
-    .fi::placeholder, .ft::placeholder { color: var(--fg-dim); }
-    .fi:focus, .fs:focus, .ft:focus { border-color: var(--accent); }
+    .fi::placeholder, .ft::placeholder { color: rgba(255,255,255,.22); }
+    .fi:focus, .fs:focus, .ft:focus { border-color: rgba(126,212,68,.5); background: rgba(255,255,255,.09); }
     .fs { cursor: pointer; }
-    .fs option { background: #111; }
+    .fs option { background: #1a2a1a; color: #f0f0f0; }
     .ft { resize: none; min-height: 90px; }
     .fsubmit {
-      width: 100%; padding: 1.1rem; margin-top: .5rem; border: none; cursor: pointer; border-radius: 0;
-      background: var(--accent); color: #050505; font-family: var(--font); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      transition: filter .2s, transform .15s, box-shadow .2s; box-shadow: 0 0 0 rgba(126,200,50,0);
+      width: 100%; padding: 1rem; border: none; cursor: pointer; border-radius: 40px; margin-top: .5rem;
+      background: var(--accent); color: #080808; font-family: var(--font);
+      font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      transition: filter .2s, transform .15s, box-shadow .2s;
     }
-    .fsubmit:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 15px 40px rgba(126,200,50,.2); }
+    .fsubmit:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(126,212,68,.28); }
     .fsubmit:disabled { opacity: .35; cursor: default; transform: none; }
-    .fsuccess { display: none; padding: 3rem 0; }
+    .fsuccess { display: none; padding: 3rem 1rem; }
     .fsuccess.show { display: block; }
-    .fsuccess h3 { font-family: var(--font-d); font-size: 2rem; font-weight: 900; margin-bottom: .75rem; }
+    .fsuccess h3 { font-family: var(--font-d); font-size: 1.85rem; font-weight: 900; margin-bottom: .6rem; }
     .fsuccess h3 em { font-style: italic; color: var(--accent); }
-    .fsuccess p { font-size: .875rem; color: var(--fg-muted); font-weight: 300; line-height: 1.7; }
+    .fsuccess p { font-size: .875rem; color: var(--fg-muted); font-weight: 300; line-height: 1.7; margin-top: .5rem; }
 
     /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 2.5rem 2rem; }
+    footer { position: relative; z-index: 1; padding: 2.5rem 2rem; }
     .ft-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .ft-brand { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); }
+    .ft-brand { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); }
     .ft-links { display: flex; gap: 2rem; }
-    .ft-links a { font-size: .76rem; color: var(--fg-dim); transition: color .2s; }
+    .ft-links a { font-size: .74rem; color: var(--fg-dim); transition: color .2s; }
     .ft-links a:hover { color: var(--fg); }
   </style>
 </head>
 <body>
 
-<nav id="nav">
+<!-- BACKGROUND -->
+<div class="bg-wrap" id="bg"></div>
+<div class="bg-overlay"></div>
+
+<!-- FLOATING PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- NAV -->
+<nav>
   <a href="/" class="nlogo">Your Local Tech Guy</a>
   <div class="nl">
     <a href="/">Computer Repair</a>
@@ -226,22 +340,23 @@
   <a href="#inquire" class="ncta">Get a Quote</a>
 </nav>
 
-<!-- ── HERO with THREE.JS ── -->
+<!-- ═══════════════════════════════════════
+     CHAPTER 0 — HERO
+═══════════════════════════════════════ -->
 <section class="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Web Design &amp; Automation</div>
-    <h1>The digital<br />infrastructure<br />your business <em>deserves.</em></h1>
+  <div class="hero-glass glass sr">
+    <div class="chapter-tag">Web Design & Automation</div>
+    <h1 class="wr">The digital infrastructure your business <em>deserves.</em></h1>
     <p class="hero-sub">Custom websites, automated publishing systems, and fully managed platforms — built around how your business actually works. No templates. No packages. Every project is yours alone.</p>
     <div class="hero-btns">
       <a href="#inquire" class="btn-p">Start a Conversation →</a>
-      <a href="#services" class="btn-g">Explore services ↓</a>
+      <a href="#chapter1" class="btn-g">Read the story ↓</a>
     </div>
   </div>
 </section>
 
-<!-- ── MARQUEE ── -->
-<div class="mq">
+<!-- MARQUEE -->
+<div class="mq glass-flat">
   <div class="mq-track">
     <span class="mq-item"><span class="dot">●</span>Website Design & Development</span>
     <span class="mq-item"><span class="dot">●</span>Social Media Automation</span>
@@ -262,17 +377,30 @@
   </div>
 </div>
 
-<!-- ── SERVICES ── -->
+<!-- ═══════════════════════════════════════
+     CHAPTER 1 — THE PROBLEM
+═══════════════════════════════════════ -->
+<section class="statement" id="chapter1">
+  <div class="statement-glass glass sr">
+    <div class="ch">Chapter 01 — The Gap</div>
+    <h2 class="wr">Most businesses run on tools that were never <em>built for them.</em></h2>
+    <p>Spreadsheets instead of systems. Email chains instead of automation. WhatsApp threads instead of CRMs. Your team is spending hours doing what software should do in seconds. We change that — one project at a time, built entirely around how your business actually works.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 2 — WHAT WE BUILD
+═══════════════════════════════════════ -->
 <section class="sec" id="services">
   <div class="w">
-    <div class="sec-tag sr">What We Build</div>
+    <div class="ch sr">Chapter 02 — What We Build</div>
     <div class="svc-grid">
 
       <div class="svc-wrap sr d1">
-        <div class="svc-card" data-tilt>
+        <div class="svc-card glass" data-tilt>
           <div class="svc-gloss"></div>
           <span class="svc-num">01</span>
-          <div class="svc-icon">
+          <div class="svc-icon-wrap">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
           </div>
           <h3>Website Design &amp; Development</h3>
@@ -289,14 +417,14 @@
       </div>
 
       <div class="svc-wrap sr d2">
-        <div class="svc-card" data-tilt>
+        <div class="svc-card glass" data-tilt>
           <div class="svc-gloss"></div>
           <span class="svc-num">02</span>
-          <div class="svc-icon">
+          <div class="svc-icon-wrap">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
           </div>
           <h3>Social Media Automation</h3>
-          <p>An RSS watcher triggers n8n workflows that distribute your content to Facebook, Instagram &amp; WhatsApp via Meta Graph API — throttled, deduplicated, and monitored 24/7 with alerting on failures or token expiry. Your team changes nothing.</p>
+          <p>An RSS watcher triggers n8n workflows that push your content to Facebook, Instagram &amp; WhatsApp via Meta Graph API — throttled, deduplicated, and monitored 24/7. Your team publishes once. The platform handles the rest.</p>
           <div class="svc-pills">
             <span class="svc-pill">RSS → n8n → Meta API</span>
             <span class="svc-pill">Facebook</span>
@@ -309,14 +437,14 @@
       </div>
 
       <div class="svc-wrap sr d2">
-        <div class="svc-card" data-tilt>
+        <div class="svc-card glass" data-tilt>
           <div class="svc-gloss"></div>
           <span class="svc-num">03</span>
-          <div class="svc-icon">
+          <div class="svc-icon-wrap">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
           </div>
           <h3>Managed Platform Operations</h3>
-          <p>Full operational responsibility for every system we build. Uptime monitoring, bug fixes within 24 hours, server patching, Meta token renewals, API change management — all under a single monthly retainer tiered to your traffic volume.</p>
+          <p>We take full operational responsibility for every system we build. Uptime, bug fixes within 24 hours, server patching, Meta token renewals — all under a single monthly retainer. You never have to think about it.</p>
           <div class="svc-pills">
             <span class="svc-pill">24/7 Monitoring</span>
             <span class="svc-pill">Incident Response</span>
@@ -328,14 +456,14 @@
       </div>
 
       <div class="svc-wrap sr d3">
-        <div class="svc-card" data-tilt>
+        <div class="svc-card glass" data-tilt>
           <div class="svc-gloss"></div>
           <span class="svc-num">04</span>
-          <div class="svc-icon">
+          <div class="svc-icon-wrap">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
           </div>
           <h3>Custom Dashboards &amp; Internal Tools</h3>
-          <p>Replace spreadsheets and disconnected apps with a single tool built for how your business actually runs. Bookings, finance, CRM, inventory, Google Calendar — integrated, automated, and yours.</p>
+          <p>Replace spreadsheets and disconnected apps with a single tool built for how your business actually runs. Bookings, finance, CRM, inventory, Google Calendar — integrated, automated, and entirely yours.</p>
           <div class="svc-pills">
             <span class="svc-pill">Booking Systems</span>
             <span class="svc-pill">CRM</span>
@@ -350,123 +478,138 @@
   </div>
 </section>
 
-<!-- ── MANAGED OPS PRICING ── -->
-<section class="sec alt" id="managed-ops">
-  <div class="w">
-    <div class="ops-head">
-      <div class="sr">
-        <div class="sec-tag" style="margin-bottom:1.5rem">Managed Ops Retainer</div>
-        <div class="ops-hl">Always-on.<br /><em>No exceptions.</em></div>
-      </div>
-      <p class="ops-intro sr d1">Operational responsibility based on your traffic tier. Monitoring, patches, API changes, bug fixes — handled before you notice. Pricing reviewed monthly; adjustments apply the following month. Minimum 3-month commitment after project launch.</p>
-    </div>
-    <div class="ops-scene sr">
-      <div class="ops-table">
-        <div class="ops-panel">
-          <div class="ops-panel-lbl">Monthly Rate by Traffic Volume</div>
-          <div class="tier"><span class="tier-v">0 – 10,000 visits / mo</span><span class="tier-p">$500<span style="font-size:.7rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
-          <div class="tier"><span class="tier-v">10,001 – 50,000 visits / mo</span><span class="tier-p">$650<span style="font-size:.7rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
-          <div class="tier"><span class="tier-v">50,001 – 150,000 visits / mo</span><span class="tier-p hi">$850<span style="font-size:.7rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
-          <div class="tier"><span class="tier-v">150,001 – 500,000 visits / mo</span><span class="tier-p">$1,100<span style="font-size:.7rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
-          <div class="tier"><span class="tier-v">500,000+ visits / mo</span><span class="tier-p">Custom</span></div>
-        </div>
-        <div class="ops-panel">
-          <div class="ops-panel-lbl">Included in Every Tier — No Exceptions</div>
-          <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Uptime & workflow monitoring</div><div class="inc-det">24/7 automated checks, human-reviewed daily</div></div></div>
-          <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Meta token renewals</div><div class="inc-det">Facebook & Instagram tokens managed proactively</div></div></div>
-          <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Bug fixes & minor issues</div><div class="inc-det">Resolved within 24 hours of detection</div></div></div>
-          <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Server & platform patching</div><div class="inc-det">Hosting + Vercel kept up to date</div></div></div>
-          <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Monthly performance report</div><div class="inc-det">Uptime, post success rate, traffic summary</div></div></div>
-          <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">API change management</div><div class="inc-det">Meta API updates handled — never billed as extras</div></div></div>
-        </div>
-      </div>
-    </div>
-    <p class="ops-fine sr">New features and integrations beyond scope are quoted separately. 30-day written notice required to cancel. Target availability: 99.5%+ excluding third-party outages.</p>
+<!-- ═══════════════════════════════════════
+     QUOTE BREAK
+═══════════════════════════════════════ -->
+<section class="quote-sec">
+  <div class="quote-glass glass sr">
+    <div class="quote-text">"Your team publishes once.<br />The platform reaches <em>everyone.</em>"</div>
+    <div class="quote-attr">Social Media Automation — How it works</div>
   </div>
 </section>
 
-<!-- ── PROCESS ── -->
+<!-- ═══════════════════════════════════════
+     CHAPTER 3 — MANAGED OPS PRICING
+═══════════════════════════════════════ -->
+<section class="sec" id="managed-ops">
+  <div class="w">
+    <div class="ops-head">
+      <div class="sr">
+        <div class="ch" style="margin-bottom:1.5rem">Chapter 03 — Always-On Retainer</div>
+        <div class="ops-hl">What we build,<br />we <em>keep.</em></div>
+      </div>
+      <p class="ops-body sr d1">Full operational responsibility based on your traffic tier. Monitoring, patches, API changes, bug fixes — handled before you notice. Traffic-based tiers reviewed monthly. Minimum 3-month commitment after project launch.</p>
+    </div>
+    <div class="ops-grid sr glass" style="border-radius:var(--r)">
+      <div class="ops-panel">
+        <div class="ops-lbl">Monthly Rate by Traffic Volume</div>
+        <div class="tier"><span class="tier-v">0 – 10,000 visits / mo</span><span class="tier-p">$500<span style="font-size:.68rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
+        <div class="tier"><span class="tier-v">10,001 – 50,000 visits / mo</span><span class="tier-p">$650<span style="font-size:.68rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
+        <div class="tier"><span class="tier-v">50,001 – 150,000 visits / mo</span><span class="tier-p hi">$850<span style="font-size:.68rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
+        <div class="tier"><span class="tier-v">150,001 – 500,000 visits / mo</span><span class="tier-p">$1,100<span style="font-size:.68rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
+        <div class="tier"><span class="tier-v">500,000+ visits / mo</span><span class="tier-p">Custom</span></div>
+      </div>
+      <div class="ops-panel" style="border-left:1px solid rgba(255,255,255,.08)">
+        <div class="ops-lbl">Included in Every Tier — No Exceptions</div>
+        <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Uptime & workflow monitoring</div><div class="inc-det">24/7 automated checks, human-reviewed daily</div></div></div>
+        <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Meta token renewals</div><div class="inc-det">Facebook & Instagram tokens managed proactively</div></div></div>
+        <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Bug fixes & minor issues</div><div class="inc-det">Resolved within 24 hours of detection</div></div></div>
+        <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Server & platform patching</div><div class="inc-det">Hosting + Vercel kept up to date</div></div></div>
+        <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">Monthly performance report</div><div class="inc-det">Uptime, post success rate, traffic summary</div></div></div>
+        <div class="inc"><div class="inc-dot"></div><div><div class="inc-lbl">API change management</div><div class="inc-det">Meta API updates handled — never billed as extras</div></div></div>
+      </div>
+    </div>
+    <p class="ops-fine sr">New features and integrations beyond scope are quoted separately. 30-day written notice to cancel. Target availability: 99.5%+ excluding third-party outages.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CHAPTER 4 — PROCESS
+═══════════════════════════════════════ -->
 <section class="sec">
   <div class="w">
-    <div class="sec-tag sr">The Process</div>
+    <div class="ch sr">Chapter 04 — How It Works</div>
     <div class="proc-grid sr">
       <div class="proc-cell">
         <span class="proc-n">01</span>
         <h4>Tell us what you need</h4>
-        <p>Fill out the inquiry form. No jargon required — describe your business and your goal and we'll take it from there.</p>
+        <p>No jargon required — describe your business and your goal. We'll take it from there.</p>
       </div>
       <div class="proc-cell">
         <span class="proc-n">02</span>
         <h4>We scope &amp; propose</h4>
-        <p>A clear, tailored proposal. No generic packages, no ballpark estimates — a precise scope for your exact situation.</p>
+        <p>A clear, tailored proposal. No generic packages — a precise scope for your exact situation.</p>
       </div>
       <div class="proc-cell">
         <span class="proc-n">03</span>
         <h4>We build it</h4>
-        <p>Regular updates throughout. You stay informed at every stage. No disappearing acts — consistent delivery until it's live.</p>
+        <p>Regular updates throughout. You stay informed at every stage until it's live.</p>
       </div>
       <div class="proc-cell">
         <span class="proc-n">04</span>
         <h4>We keep it running</h4>
-        <p>Optionally, full operational responsibility under a managed retainer so it never becomes your problem.</p>
+        <p>Optionally, full operational responsibility under a managed retainer. Permanently off your plate.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CASE STUDY ── -->
-<section class="sec alt" id="work">
+<!-- ═══════════════════════════════════════
+     CHAPTER 5 — CASE STUDY
+═══════════════════════════════════════ -->
+<section class="sec" id="work">
   <div class="w">
-    <div class="sec-tag sr">Our Work</div>
-    <div class="cs sr" id="cs-card">
-      <div class="cs-inner">
-        <div class="cs-top">
-          <div>
-            <div class="cs-cli">Your Local Tech Guy — Internal</div>
-            <div class="cs-title">Custom Business<br />Operations Dashboard</div>
-            <p class="cs-sub">A full-featured desktop application replacing spreadsheets and disconnected tools — bookings, finance, CRM, inventory, email, and Google Calendar all unified in a single place.</p>
-          </div>
-          <div class="cs-badges">
-            <span class="cs-badge">Custom Dashboard</span>
-            <span class="cs-badge">Booking System</span>
-            <span class="cs-badge">CRM</span>
-            <span class="cs-badge">Integrations</span>
-          </div>
+    <div class="ch sr">Chapter 05 — We Built Our Own First</div>
+    <div class="cs glass sr">
+      <div class="cs-top">
+        <div>
+          <div class="cs-cli">Your Local Tech Guy — Internal</div>
+          <div class="cs-title">Custom Business<br />Operations Dashboard</div>
+          <p class="cs-sub">A full-featured desktop application replacing spreadsheets and disconnected tools — bookings, finance, CRM, inventory, email, and Google Calendar all unified in one place.</p>
         </div>
-        <div class="cs-body">
-          <div class="cs-col">
-            <div class="cs-col-lbl">Core Features</div>
-            <ul class="cs-list">
-              <li>Client booking system with Google Calendar sync</li>
-              <li>Financial tracking, invoicing & revenue reporting</li>
-              <li>Inventory management for parts and devices</li>
-              <li>Time logging with profitability analysis</li>
-            </ul>
-          </div>
-          <div class="cs-col">
-            <div class="cs-col-lbl">Connected &amp; Automated</div>
-            <ul class="cs-list">
-              <li>Website booking form feeds directly into the dashboard</li>
-              <li>Gmail integration for client communication</li>
-              <li>Google Calendar two-way sync</li>
-              <li>Automated appointment confirmation emails to clients</li>
-            </ul>
-          </div>
+        <div class="cs-badges">
+          <span class="cs-badge">Custom Dashboard</span>
+          <span class="cs-badge">Booking System</span>
+          <span class="cs-badge">CRM</span>
+          <span class="cs-badge">Integrations</span>
         </div>
-        <div class="cs-foot">One app that runs the entire business. No tab-switching, no data entry twice, no dropped balls.</div>
       </div>
+      <div class="cs-body">
+        <div class="cs-col">
+          <div class="cs-lbl">Core Features</div>
+          <ul class="cs-list">
+            <li>Client booking system with Google Calendar sync</li>
+            <li>Financial tracking, invoicing & revenue reporting</li>
+            <li>Inventory management for parts and devices</li>
+            <li>Time logging with profitability analysis</li>
+          </ul>
+        </div>
+        <div class="cs-col">
+          <div class="cs-lbl">Connected &amp; Automated</div>
+          <ul class="cs-list">
+            <li>Website booking form feeds directly into the dashboard</li>
+            <li>Gmail integration for client communication</li>
+            <li>Google Calendar two-way sync</li>
+            <li>Automated appointment confirmation emails</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs-foot">One app that runs the entire business. No tab-switching, no data entry twice, no dropped balls.</div>
     </div>
   </div>
 </section>
 
-<!-- ── INQUIRY ── -->
+<!-- ═══════════════════════════════════════
+     CHAPTER 6 — INQUIRY
+═══════════════════════════════════════ -->
 <section class="sec" id="inquire">
   <div class="w">
     <div class="inq-layout">
       <div class="inq-left sr">
         <span class="inq-bar"></span>
-        <div class="inq-hl">Let's talk about your <em>project.</em></div>
-        <p class="inq-body">No pricing lists — every project is scoped to fit your exact situation. Fill in the form and we'll get back to you within 24 hours with questions, not a sales pitch.</p>
+        <div class="ch" style="margin-bottom:1.25rem">Chapter 06 — Your Chapter</div>
+        <div class="inq-hl">Every great platform begins with a <em>conversation.</em></div>
+        <p class="inq-body">No pricing lists — every project is scoped to fit your exact situation. Fill in the form and we'll get back to you within 24 hours with real questions, not a sales pitch.</p>
         <div class="inq-pts">
           <div class="inq-pt">Response within 24 hours</div>
           <div class="inq-pt">No generic packages or pre-set pricing</div>
@@ -508,15 +651,16 @@
         </div>
         <div class="fsuccess" id="form-success">
           <h3>We've received your <em>inquiry.</em></h3>
-          <p style="margin-top:.5rem">We'll review your project and follow up within 24 hours.</p>
-          <p style="margin-top:.5rem;color:var(--fg-dim)">localtechguy.aua@gmail.com</p>
+          <p>We'll review your project and follow up within 24 hours.</p>
+          <p style="color:rgba(255,255,255,.35)">localtechguy.aua@gmail.com</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>
+<!-- FOOTER -->
+<footer class="glass-flat">
   <div class="ft-in">
     <div class="ft-brand">Your Local Tech Guy · Oranjestad, Aruba</div>
     <div class="ft-links">
@@ -527,193 +671,88 @@
   </div>
 </footer>
 
-<!-- THREE.JS -->
-<script src="https://unpkg.com/three@0.134.0/build/three.min.js"></script>
 <script>
-(function() {
-  const canvas = document.getElementById('hero-canvas');
-  const W = () => window.innerWidth, H = () => window.innerHeight;
-
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.setSize(W(), H());
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, W() / H(), 0.1, 1000);
-  camera.position.z = 55;
-
-  // ── Particles ──
-  const isMobile = W() < 768;
-  const N = isMobile ? 90 : 200;
-  const pos = new Float32Array(N * 3);
-  const vel = [];
-  for (let i = 0; i < N; i++) {
-    const r = 45;
-    pos[i*3]   = (Math.random() - .5) * r * 2;
-    pos[i*3+1] = (Math.random() - .5) * r;
-    pos[i*3+2] = (Math.random() - .5) * r;
-    vel.push({ x: (Math.random()-.5)*.018, y: (Math.random()-.5)*.012, z: (Math.random()-.5)*.008 });
+/* ── PARTICLES ── */
+(function(){
+  const container = document.getElementById('particles');
+  const count = window.innerWidth < 600 ? 14 : 28;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'p';
+    const size = Math.random() * 3.5 + 1;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 18 + 12;
+    const delay = Math.random() * 20;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${left}%;animation-duration:${duration}s;animation-delay:-${delay}s;opacity:${Math.random()*.5+.2}`;
+    container.appendChild(p);
   }
-  const pGeo = new THREE.BufferGeometry();
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  const pMat = new THREE.PointsMaterial({ color: 0x7ec832, size: .35, transparent: true, opacity: .55, sizeAttenuation: true });
-  scene.add(new THREE.Points(pGeo, pMat));
-
-  // ── Connection lines ──
-  const maxLines = 180;
-  const lPos = new Float32Array(maxLines * 6);
-  const lGeo = new THREE.BufferGeometry();
-  lGeo.setAttribute('position', new THREE.BufferAttribute(lPos, 3));
-  lGeo.setDrawRange(0, 0);
-  const lMat = new THREE.LineBasicMaterial({ color: 0x7ec832, transparent: true, opacity: .12 });
-  scene.add(new THREE.LineSegments(lGeo, lMat));
-
-  // ── Wireframe icosahedron ──
-  const icoGeo = new THREE.IcosahedronGeometry(14, 1);
-  const edges = new THREE.EdgesGeometry(icoGeo);
-  const icoMat = new THREE.LineBasicMaterial({ color: 0x7ec832, transparent: true, opacity: .22 });
-  const ico = new THREE.LineSegments(edges, icoMat);
-  scene.add(ico);
-
-  // Inner glow mesh
-  const glowMesh = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(13.5, 1),
-    new THREE.MeshBasicMaterial({ color: 0x7ec832, transparent: true, opacity: .04, side: THREE.BackSide })
-  );
-  scene.add(glowMesh);
-
-  // ── Second smaller rotating shape (offset) ──
-  const tet = new THREE.LineSegments(
-    new THREE.EdgesGeometry(new THREE.OctahedronGeometry(5, 0)),
-    new THREE.LineBasicMaterial({ color: 0x7ec832, transparent: true, opacity: .18 })
-  );
-  tet.position.set(22, -8, -10);
-  scene.add(tet);
-
-  // ── Mouse ──
-  const mouse = { x: 0, y: 0 };
-  const camTarget = { x: 0, y: 0 };
-  document.addEventListener('mousemove', e => {
-    mouse.x = (e.clientX / W() - .5) * 2;
-    mouse.y = -(e.clientY / H() - .5) * 2;
-  });
-
-  // ── Resize ──
-  window.addEventListener('resize', () => {
-    renderer.setSize(W(), H());
-    camera.aspect = W() / H();
-    camera.updateProjectionMatrix();
-  });
-
-  // ── Animate ──
-  let frame = 0;
-  function tick() {
-    requestAnimationFrame(tick);
-    frame++;
-
-    // Float particles
-    for (let i = 0; i < N; i++) {
-      pos[i*3]   += vel[i].x;
-      pos[i*3+1] += vel[i].y;
-      pos[i*3+2] += vel[i].z;
-      if (Math.abs(pos[i*3])   > 48) vel[i].x *= -1;
-      if (Math.abs(pos[i*3+1]) > 26) vel[i].y *= -1;
-      if (Math.abs(pos[i*3+2]) > 26) vel[i].z *= -1;
-    }
-    pGeo.attributes.position.needsUpdate = true;
-
-    // Update connections every 2 frames
-    if (frame % 2 === 0) {
-      let idx = 0;
-      const maxD = 18;
-      outer: for (let i = 0; i < N; i++) {
-        for (let j = i + 1; j < N; j++) {
-          const dx = pos[i*3] - pos[j*3], dy = pos[i*3+1] - pos[j*3+1], dz = pos[i*3+2] - pos[j*3+2];
-          if (dx*dx + dy*dy + dz*dz < maxD*maxD) {
-            lPos[idx*6]   = pos[i*3];   lPos[idx*6+1] = pos[i*3+1]; lPos[idx*6+2] = pos[i*3+2];
-            lPos[idx*6+3] = pos[j*3];   lPos[idx*6+4] = pos[j*3+1]; lPos[idx*6+5] = pos[j*3+2];
-            if (++idx >= maxLines) break outer;
-          }
-        }
-      }
-      lGeo.attributes.position.needsUpdate = true;
-      lGeo.setDrawRange(0, idx * 2);
-    }
-
-    // Rotate shapes
-    ico.rotation.x += .0012; ico.rotation.y += .0018;
-    glowMesh.rotation.copy(ico.rotation);
-    tet.rotation.x -= .002; tet.rotation.z += .003;
-
-    // Camera parallax (smooth)
-    camTarget.x += (mouse.x * 6 - camTarget.x) * .04;
-    camTarget.y += (mouse.y * 4 - camTarget.y) * .04;
-    camera.position.x = camTarget.x;
-    camera.position.y = camTarget.y;
-    camera.lookAt(0, 0, 0);
-
-    renderer.render(scene, camera);
-  }
-  tick();
 })();
 
-// ── Nav scroll class ──
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('s', scrollY > 40));
+/* ── BACKGROUND PARALLAX ── */
+(function(){
+  const bg = document.getElementById('bg');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY * 0.18;
+        bg.style.transform = `scale(1.08) translateY(${y}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
 
-// ── Scroll reveal ──
+/* ── SCROLL REVEAL ── */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); io.unobserve(e.target); } });
 }, { threshold: 0.07 });
 document.querySelectorAll('.sr').forEach(el => io.observe(el));
 
-// ── 3D card tilt ──
+/* ── WORD REVEAL on big headlines ── */
+document.querySelectorAll('.wr').forEach(el => {
+  const words = el.innerHTML.split(/(\s+)/);
+  el.innerHTML = words.map(w => w.trim() ? `<span class="word"><span>${w}</span></span>` : w).join('');
+});
+const wrIO = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      const spans = e.target.querySelectorAll('.word span');
+      spans.forEach((s, idx) => {
+        setTimeout(() => s.style.transform = 'translateY(0)', idx * 55);
+      });
+      wrIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.wr').forEach(el => {
+  el.querySelectorAll('.word span').forEach(s => s.style.transition = 'transform .65s cubic-bezier(.16,1,.3,1)');
+  wrIO.observe(el);
+});
+
+/* ── 3D CARD TILT ── */
 document.querySelectorAll('[data-tilt]').forEach(card => {
   const wrap = card.parentElement;
   const gloss = card.querySelector('.svc-gloss');
-
   wrap.addEventListener('mousemove', e => {
     const r = wrap.getBoundingClientRect();
     const x = e.clientX - r.left, y = e.clientY - r.top;
     const cx = r.width / 2, cy = r.height / 2;
-    const rx = ((y - cy) / cy) * -14;
-    const ry = ((x - cx) / cx) * 14;
-
-    card.style.transition = 'box-shadow .3s, border-color .3s';
-    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px)`;
-
-    // Gloss follows cursor
-    const gx = (x / r.width) * 100;
-    const gy = (y / r.height) * 100;
-    gloss.style.background = `radial-gradient(circle at ${gx}% ${gy}%, rgba(126,200,50,.14), transparent 60%)`;
+    const rx = ((y - cy) / cy) * -13;
+    const ry = ((x - cx) / cx) * 13;
+    card.style.transition = 'box-shadow .3s';
+    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(10px)`;
+    gloss.style.background = `radial-gradient(circle at ${(x/r.width)*100}% ${(y/r.height)*100}%, rgba(255,255,255,.1), transparent 62%)`;
   });
-
   wrap.addEventListener('mouseleave', () => {
-    card.style.transition = 'transform .7s cubic-bezier(.23,1,.32,1), box-shadow .3s, border-color .3s';
+    card.style.transition = 'transform .7s cubic-bezier(.23,1,.32,1), box-shadow .3s';
     card.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
     gloss.style.background = '';
   });
 });
 
-// ── Case study subtle tilt ──
-const csCard = document.getElementById('cs-card');
-if (csCard) {
-  const inner = csCard.querySelector('.cs-inner');
-  csCard.addEventListener('mousemove', e => {
-    const r = csCard.getBoundingClientRect();
-    const x = e.clientX - r.left, y = e.clientY - r.top;
-    const rx = ((y / r.height) - .5) * -4;
-    const ry = ((x / r.width) - .5) * 5;
-    inner.style.transition = 'none';
-    inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-  });
-  csCard.addEventListener('mouseleave', () => {
-    inner.style.transition = 'transform .7s cubic-bezier(.23,1,.32,1)';
-    inner.style.transform = 'rotateX(0) rotateY(0)';
-  });
-}
-
-// ── Form submit ──
+/* ── FORM ── */
 function submitInquiry() {
   const biz = document.getElementById('iq-biz').value.trim();
   const name = document.getElementById('iq-name').value.trim();
