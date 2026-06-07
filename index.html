@@ -98,7 +98,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Rubik+Mono+One&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -113,7 +113,7 @@
       --glass-shadow: rgba(0,0,0,0.35);
       --r: 22px;
       --font: 'Inter', system-ui, sans-serif;
-      --font-d: 'Syne', system-ui, sans-serif;
+      --font-d: 'Rubik Mono One', system-ui, sans-serif;
       --bg-brightness: 0.72; --bg-sat: 1.4;
       --ov-a: 0.42; --ov-b: 0.38; --ov-c: 0.50;
     }
@@ -183,7 +183,7 @@
     .sec-head { text-align: center; margin-bottom: 3.5rem; }
     .sec-label { font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: .75rem; }
     .sec-label::before, .sec-label::after { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); opacity: .5; }
-    .sec-head h2 { font-family: var(--font-d); font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; letter-spacing: -.03em; margin-bottom: .6rem; }
+    .sec-head h2 { font-family: var(--font-d); font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 400; letter-spacing: 0; margin-bottom: .6rem; }
     .sec-head h2 em { font-style: normal; color: var(--accent); }
     .sec-head p { font-size: .9rem; color: var(--fg-muted); font-weight: 300; max-width: 480px; margin: 0 auto; line-height: 1.8; }
 
@@ -194,7 +194,7 @@
     .hero-logo { margin-bottom: 2.25rem; }
     .hero-logo img { width: 260px; height: auto; filter: drop-shadow(0 0 28px rgba(126,212,68,.3)); animation: float 4.5s ease-in-out infinite; }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-    .hero h1 { font-family: var(--font-d); font-size: clamp(1.9rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.08; letter-spacing: -.03em; margin-bottom: 1.1rem; }
+    .hero h1 { font-family: var(--font-d); font-size: clamp(1.6rem, 4.5vw, 2.8rem); font-weight: 400; line-height: 1.15; letter-spacing: 0; margin-bottom: 1.1rem; }
     .hero h1 em { font-style: normal; color: var(--accent); }
     .hero-sub { font-size: .95rem; font-weight: 300; line-height: 1.85; color: var(--fg-muted); max-width: 460px; margin: 0 auto 1rem; }
     .hero-note { font-size: .78rem; color: var(--fg-dim); margin-bottom: 2.25rem; }
@@ -259,7 +259,7 @@
     .bk-panel { display: none; animation: fadeIn .3s ease; }
     .bk-panel.active { display: block; }
     @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-    .bk-panel-title { font-family: var(--font-d); font-size: 1.05rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -.01em; }
+    .bk-panel-title { font-family: var(--font-d); font-size: 1rem; font-weight: 400; margin-bottom: 1.5rem; letter-spacing: 0; }
     .bk-svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px,1fr)); gap: .75rem; }
     .bk-svc-card { background: rgba(255,255,255,.05); border: 1px solid var(--glass-border); border-radius: 14px; padding: 1.1rem; cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
     .bk-svc-card:hover { border-color: rgba(126,212,68,.4); transform: translateY(-2px); background: rgba(255,255,255,.08); }
@@ -318,7 +318,7 @@
     .bk-success-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(126,212,68,.1); border: 1px solid rgba(126,212,68,.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: var(--accent); animation: ring-pulse 3s ease-in-out infinite; }
     @keyframes ring-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(126,212,68,0)} 50%{box-shadow:0 0 0 10px rgba(126,212,68,.07)} }
     .bk-success-icon svg { width: 30px; height: 30px; }
-    .bk-success h3 { font-family: var(--font-d); font-size: 1.6rem; font-weight: 800; margin-bottom: .5rem; letter-spacing: -.02em; }
+    .bk-success h3 { font-family: var(--font-d); font-size: 1.5rem; font-weight: 400; margin-bottom: .5rem; letter-spacing: 0; }
     .bk-success h3 em { font-style: normal; color: var(--accent); }
     .bk-success p { color: var(--fg-muted); font-size: .875rem; max-width: 360px; margin: 0 auto .4rem; font-weight: 300; }
     .bk-ref { display: inline-block; background: rgba(126,212,68,.08); border: 1px solid rgba(126,212,68,.2); border-radius: 10px; padding: .45rem 1.25rem; font-size: .95rem; color: var(--accent); margin: .875rem 0; letter-spacing: .12em; font-family: monospace; }
@@ -327,7 +327,7 @@
     .warranty-inner { max-width: 680px; margin: 0 auto; text-align: center; padding: 3.5rem; }
     .warranty-icon { width: 60px; height: 60px; border-radius: 50%; background: rgba(126,212,68,.1); border: 1px solid rgba(126,212,68,.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.75rem; color: var(--accent); animation: ring-pulse 3s ease-in-out infinite; }
     .warranty-icon svg { width: 28px; height: 28px; }
-    .warranty-inner h2 { font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -.03em; margin-bottom: 1rem; }
+    .warranty-inner h2 { font-family: var(--font-d); font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 400; letter-spacing: 0; margin-bottom: 1rem; }
     .warranty-inner h2 em { font-style: normal; color: var(--accent); }
     .warranty-inner > p { color: var(--fg-muted); max-width: 480px; margin: 0 auto 1.75rem; font-size: .95rem; font-weight: 300; line-height: 1.8; }
     .warranty-pill { display: inline-block; background: rgba(126,212,68,.07); border: 1px solid rgba(126,212,68,.18); border-radius: 30px; padding: .65rem 1.5rem; font-size: .8rem; color: var(--fg-muted); font-weight: 300; }
@@ -366,7 +366,7 @@
     .ewaste-icon svg { width: 26px; height: 26px; }
     .ewaste-badge { display: inline-flex; align-items: center; gap: .4rem; background: var(--accent); color: #080808; font-size: .72rem; font-weight: 800; padding: .3rem .9rem; border-radius: 20px; text-transform: uppercase; letter-spacing: .08em; }
     .ewaste-badge svg { width: 12px; height: 12px; }
-    .ewaste-card h2 { font-family: var(--font-d); font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+    .ewaste-card h2 { font-family: var(--font-d); font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 400; letter-spacing: 0; line-height: 1.2; }
     .ewaste-card h2 em { font-style: normal; color: var(--accent); }
     .ewaste-card > p { color: var(--fg-muted); max-width: 480px; font-size: .9rem; line-height: 1.75; font-weight: 300; }
     .ewaste-tags { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
