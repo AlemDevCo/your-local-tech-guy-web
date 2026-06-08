@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service | Your Local Tech Guy — Oranjestad, Aruba</title>
+  <meta name="description" content="Terms of Service for Your Local Tech Guy. Covering service scope, maintenance retainers, payment terms, liability, and data processing." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://localtechguy.aua/terms-of-service.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #7ed444;
+      --fg: rgba(255,255,255,0.95);
+      --fg-muted: rgba(255,255,255,0.55);
+      --fg-dim: rgba(255,255,255,0.22);
+      --glass: rgba(255,255,255,0.07);
+      --glass-border: rgba(255,255,255,0.16);
+      --glass-top: rgba(255,255,255,0.28);
+      --glass-shadow: rgba(0,0,0,0.35);
+      --r: 22px;
+      --font: 'Inter', system-ui, sans-serif;
+      --font-d: 'Space Grotesk', system-ui, sans-serif;
+      --bg-brightness: 0.60; --bg-sat: 2.2;
+      --ov-a: 0.50; --ov-b: 0.56; --ov-c: 0.68;
+    }
+    html.dark {
+      --glass: rgba(6,6,6,0.62);
+      --glass-border: rgba(255,255,255,0.09);
+      --glass-top: rgba(255,255,255,0.13);
+      --glass-shadow: rgba(0,0,0,0.70);
+      --fg-muted: rgba(255,255,255,0.45);
+      --fg-dim: rgba(255,255,255,0.16);
+      --bg-brightness: 0.28; --bg-sat: 1.1;
+      --ov-a: 0.76; --ov-b: 0.80; --ov-c: 0.88;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: hidden; min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+
+    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat; transform: scale(1.08); filter: blur(44px) saturate(var(--bg-sat)) brightness(var(--bg-brightness)); will-change: transform; transition: filter .6s ease; }
+    .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5,20,5,var(--ov-a)) 0%, rgba(6,18,6,var(--ov-b)) 45%, rgba(2,12,2,var(--ov-c)) 100%); transition: background .6s ease; }
+
+    .glass { background: var(--glass); backdrop-filter: blur(36px) saturate(200%) brightness(1.00); -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.00); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 rgba(0,0,0,.12), 0 20px 80px var(--glass-shadow), 0 1px 0 rgba(255,255,255,.04); }
+    .glass-flat { background: var(--glass); backdrop-filter: blur(36px) saturate(200%); -webkit-backdrop-filter: blur(36px) saturate(200%); border-top: 1px solid var(--glass-border); border-bottom: 1px solid rgba(255,255,255,.06); }
+
+    nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; width: min(1020px, calc(100% - 3rem)); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .55rem 1rem; background: rgba(255,255,255,.08); backdrop-filter: blur(36px) saturate(180%); -webkit-backdrop-filter: blur(36px) saturate(180%); border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px rgba(0,0,0,.25); }
+    .nlogo img { height: 40px; width: auto; border-radius: 8px; display: block; }
+    .nl { display: flex; flex-wrap: nowrap; overflow: hidden; }
+    .nl a { font-size: .73rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--fg-muted); padding: .45rem .75rem; border-radius: 30px; transition: background .2s, color .2s; white-space: nowrap; }
+    .nl a:hover { background: rgba(255,255,255,.1); color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
+    .ncta { font-size: .72rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: .5rem 1.2rem; background: var(--accent); color: #080808; border-radius: 30px; transition: filter .2s, transform .15s; white-space: nowrap; }
+    .ncta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .theme-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--glass-border); background: rgba(255,255,255,.08); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--fg-muted); transition: background .2s, color .2s; flex-shrink: 0; }
+    .theme-btn:hover { background: rgba(255,255,255,.16); color: var(--fg); }
+    .theme-btn svg { width: 15px; height: 15px; }
+    .icon-sun { display: block; } .icon-moon { display: none; }
+    html.dark .icon-sun { display: none; } html.dark .icon-moon { display: block; }
+    @media(max-width:780px){ .nl { display: none; } }
+
+    .sr { opacity: 0; transform: translateY(40px) scale(.97); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .sr.v { opacity: 1; transform: none; }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+
+    .hero { position: relative; z-index: 1; min-height: 44vh; display: flex; align-items: flex-end; justify-content: center; padding: 9rem 2rem 3rem; text-align: center; }
+    .hero-panel { max-width: 720px; padding: 3rem 3.5rem; }
+    @media(max-width:580px){ .hero-panel { padding: 2rem 1.75rem; } }
+    .hero-back { display: inline-flex; align-items: center; gap: .4rem; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-dim); margin-bottom: 1.5rem; transition: color .2s; }
+    .hero-back:hover { color: var(--fg-muted); }
+    .hero-back svg { width: 13px; height: 13px; }
+    .hero-label { font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: .75rem; }
+    .hero-label::before, .hero-label::after { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); opacity: .5; }
+    .hero h1 { font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin-bottom: .75rem; }
+    .hero-sub { font-size: .9rem; font-weight: 300; color: var(--fg-muted); line-height: 1.8; }
+    .hero-meta { font-size: .74rem; color: var(--fg-dim); margin-top: .75rem; }
+
+    .content { position: relative; z-index: 1; padding: 2rem 2rem 6rem; }
+    .w { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .section { padding: 2.25rem 2.5rem; }
+    @media(max-width:560px){ .section { padding: 1.75rem 1.5rem; } }
+    .sec-label { font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; }
+    .sec-label::before { content: ''; width: 18px; height: 1px; background: var(--accent); opacity: .5; }
+    .section h2 { font-family: var(--font-d); font-size: 1.2rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 1.1rem; }
+    .section p { font-size: .875rem; color: var(--fg-muted); line-height: 1.8; font-weight: 300; margin-bottom: .85rem; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .4rem; margin-bottom: .85rem; }
+    .section ul li { font-size: .875rem; color: var(--fg-muted); line-height: 1.7; font-weight: 300; }
+    .section ul li strong { color: var(--fg); font-weight: 600; }
+    .section a { color: var(--accent); transition: opacity .2s; }
+    .section a:hover { opacity: .75; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: .75rem; }
+    @media(max-width:560px){ .two-col { grid-template-columns: 1fr; } }
+    .mini-card { background: rgba(255,255,255,.04); border: 1px solid var(--glass-border); border-radius: 14px; padding: 1rem 1.25rem; }
+    .mini-card-label { font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+    .mini-card ul { padding-left: 1rem; margin: 0; }
+    .mini-card ul li { font-size: .8rem; color: var(--fg-muted); line-height: 1.65; font-weight: 300; }
+    .highlight { background: rgba(126,212,68,.05); border: 1px solid rgba(126,212,68,.15); border-radius: 12px; padding: 1rem 1.25rem; margin-top: .5rem; font-size: .84rem; color: var(--fg-muted); font-weight: 300; line-height: 1.75; }
+    .highlight strong { color: var(--accent); font-weight: 600; }
+    .warn { background: rgba(220,80,80,.05); border: 1px solid rgba(220,80,80,.18); border-radius: 12px; padding: 1rem 1.25rem; margin-top: .5rem; font-size: .84rem; color: rgba(255,255,255,.5); font-weight: 300; line-height: 1.75; }
+
+    footer { position: relative; z-index: 1; padding: 2.5rem 2rem; }
+    .ft-in { max-width: 760px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .ft-brand { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); }
+    .ft-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .ft-links a { font-size: .74rem; color: var(--fg-dim); transition: color .2s; }
+    .ft-links a:hover { color: var(--fg); }
+  </style>
+</head>
+<body>
+
+<div class="bg-wrap" id="bg"></div>
+<div class="bg-overlay"></div>
+
+<nav>
+  <a href="/" class="nlogo"><img src="logo.png" alt="Your Local Tech Guy" /></a>
+  <div class="nl">
+    <a href="/#services">Services</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#contact">Contact</a>
+    <a href="/digital.html">Web &amp; Auto</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+    <a href="/#booking" class="ncta">Book a Service</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-panel glass sr">
+    <a href="/" class="hero-back">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      Back to home
+    </a>
+    <div class="hero-label">Legal</div>
+    <h1>Terms of Service</h1>
+    <p class="hero-sub">What we do, what we don't do, how payment works, and what you can expect from us.</p>
+    <p class="hero-meta">Your Local Tech Guy &middot; Last updated June 2026</p>
+  </div>
+</section>
+
+<div class="content">
+  <div class="w">
+
+    <div class="section glass sr d1">
+      <div class="sec-label">01 — Agreement</div>
+      <h2>Accepting These Terms</h2>
+      <p>By booking a service, signing a project agreement, or entering a maintenance retainer with Your Local Tech Guy (Caleb de Palm, Oranjestad, Aruba), you agree to these Terms of Service. These terms govern all repair, web design, automation, and maintenance work we perform.</p>
+      <p>If you have a separate written agreement with us, that agreement takes precedence over these terms where they conflict.</p>
+    </div>
+
+    <div class="section glass sr d2">
+      <div class="sec-label">02 — What we do</div>
+      <h2>Scope of Services</h2>
+      <p>Our services include:</p>
+      <ul>
+        <li><strong>Computer repair</strong> — laptops and desktop PCs only. We do not service tablets or mobile phones.</li>
+        <li><strong>Website design &amp; development</strong> — building, designing, and deploying websites and landing pages.</li>
+        <li><strong>Automation &amp; setup</strong> — configuring tools, workflows, and business systems.</li>
+        <li><strong>Maintenance retainer</strong> — ongoing monitoring, updates, and support (see §4).</li>
+      </ul>
+      <p>Services are performed by us or under our direct supervision. We will communicate clearly before starting any work and will not undertake tasks outside the agreed scope without your approval.</p>
+    </div>
+
+    <div class="section glass sr d1">
+      <div class="sec-label">03 — What we do not do</div>
+      <h2>Outside Our Scope</h2>
+      <p>Unless explicitly agreed in writing, we do not:</p>
+      <ul>
+        <li>Manage, store, or process your customer's personal data</li>
+        <li>Act as your hosting provider or domain registrar</li>
+        <li>Provide legal, accounting, or compliance advice</li>
+        <li>Guarantee outcomes dependent on third-party services (payment processors, social media platforms, etc.)</li>
+        <li>Service tablets, phones, printers, or non-PC devices</li>
+      </ul>
+    </div>
+
+    <div class="section glass sr d2">
+      <div class="sec-label">04 — Maintenance retainer</div>
+      <h2>What Maintenance Covers</h2>
+      <div class="two-col">
+        <div class="mini-card">
+          <div class="mini-card-label">Included</div>
+          <ul>
+            <li>Uptime monitoring (daily automated checks)</li>
+            <li>Security patches &amp; CMS/plugin updates</li>
+            <li>SSL certificate monitoring</li>
+            <li>Bug fixes for issues we introduced</li>
+            <li>Minor content updates (under 30 min/month)</li>
+            <li>Monthly security scan summary</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-label">Not included</div>
+          <ul>
+            <li>Major redesigns or new features</li>
+            <li>Your hosting or domain costs</li>
+            <li>Third-party service outages</li>
+            <li>Content strategy or copywriting</li>
+            <li>Managing your customer data</li>
+            <li>Issues caused by your own changes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section glass sr d1">
+      <div class="sec-label">05 — Payment</div>
+      <h2>Payment Terms</h2>
+      <p><strong style="color:var(--fg)">Accepted payment:</strong> Cash and bank transfer only. We do not accept card payments.</p>
+      <p><strong style="color:var(--fg)">One-off projects:</strong> Invoiced upon completion of the agreed deliverable, or at each agreed milestone for larger projects. Payment is due within 7 days of invoice.</p>
+      <p><strong style="color:var(--fg)">Monthly retainer:</strong> Billed at the start of each calendar month. Payment is due within 7 days of invoice.</p>
+      <p><strong style="color:var(--fg)">Late payment:</strong> Services may be paused if payment is more than 14 days overdue. A late fee of 5% per month may apply to outstanding balances.</p>
+      <p><strong style="color:var(--fg)">Deposits:</strong> For projects over fl 500, a 50% deposit may be required before work begins.</p>
+    </div>
+
+    <div class="section glass sr d2">
+      <div class="sec-label">06 — Cancellation</div>
+      <h2>Ending the Retainer</h2>
+      <p>Either party may cancel a maintenance retainer with <strong style="color:var(--fg)">30 days' written notice</strong> via email to <a href="mailto:localtechguy.aua@gmail.com">localtechguy.aua@gmail.com</a>.</p>
+      <p>The current billing month is non-refundable. We will continue providing service until the end of the notice period.</p>
+      <p>Upon cancellation, we will provide you with access to all deliverables and files produced during the engagement, contingent on all outstanding invoices being settled.</p>
+    </div>
+
+    <div class="section glass sr d1">
+      <div class="sec-label">07 — Intellectual property</div>
+      <h2>Ownership of Work</h2>
+      <p>Once final payment is received, all custom code, designs, and assets created specifically for your project become your property.</p>
+      <p>We retain the right to display the work in our portfolio unless you request otherwise in writing before the project begins.</p>
+      <p>Third-party tools, libraries, fonts, and platforms used in the work remain subject to their own licenses — ownership of those elements cannot be transferred.</p>
+    </div>
+
+    <div class="section glass sr d2">
+      <div class="sec-label">08 — Data processing</div>
+      <h2>How We Handle Your Data</h2>
+      <p>During setup, troubleshooting, or maintenance, we may access your systems, accounts, or files. This access is governed as follows:</p>
+      <ul>
+        <li><strong>Temporary:</strong> Access is limited to the duration of the active work session only.</li>
+        <li><strong>Purpose-limited:</strong> We access only what is necessary to complete the agreed task.</li>
+        <li><strong>Non-retentive:</strong> No copies of your business data, client data, or files are stored on our systems after the work session ends.</li>
+        <li><strong>Controller vs processor:</strong> You are the data controller for any personal data in your systems. We act as a data processor only during active work sessions and only on your instruction.</li>
+      </ul>
+      <p><strong style="color:var(--fg)">Your GDPR/data compliance is your responsibility.</strong> We do not advise on data protection law. If your business handles personal data, you are responsible for ensuring your own compliance with applicable regulations.</p>
+      <div class="highlight">
+        <strong>Breach notification:</strong> If our access to your systems is ever involved in a data breach or security incident, we will notify you within 24 hours of becoming aware of it so you can take appropriate action.
+      </div>
+    </div>
+
+    <div class="section glass sr d1">
+      <div class="sec-label">09 — Warranty</div>
+      <h2>Repair Warranty</h2>
+      <p>Every hardware repair includes a <strong style="color:var(--fg)">30-day labor warranty</strong>. If the same issue returns within 30 days of the repair, we will fix it at no additional charge.</p>
+      <p>The warranty does not cover:</p>
+      <ul>
+        <li>New damage or issues unrelated to the original repair</li>
+        <li>Physical damage, liquid damage, or misuse after the repair</li>
+        <li>Parts that fail due to manufacturer defect (parts are subject to their own warranties)</li>
+        <li>Software issues arising after an OS reinstall if the client modified the system</li>
+      </ul>
+    </div>
+
+    <div class="section glass sr d2">
+      <div class="sec-label">10 — Liability</div>
+      <h2>Limitation of Liability</h2>
+      <p>Our total liability to you in connection with any services provided is limited to the total amount you paid us in the three calendar months immediately preceding the claim.</p>
+      <p>We are not liable for:</p>
+      <ul>
+        <li>Loss of data (always back up your data before bringing in a device)</li>
+        <li>Business interruption, lost revenue, or indirect losses</li>
+        <li>Outages or failures of third-party services (hosting, DNS, payment processors, etc.)</li>
+        <li>Issues caused by changes you made to your systems after we completed our work</li>
+      </ul>
+      <div class="warn">
+        We strongly recommend backing up all data before handing in any device for repair. We take reasonable care, but we cannot be held responsible for data loss during hardware repair procedures.
+      </div>
+    </div>
+
+    <div class="section glass sr d1">
+      <div class="sec-label">11 — Governing law</div>
+      <h2>Jurisdiction</h2>
+      <p>These terms are governed by the laws of Aruba. Any disputes that cannot be resolved between the parties will be subject to the jurisdiction of the courts of Aruba.</p>
+      <p>For any questions about these terms, contact <a href="mailto:localtechguy.aua@gmail.com">localtechguy.aua@gmail.com</a> or call <a href="tel:+2975639903">(297) 563-9903</a>.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer class="glass-flat">
+  <div class="ft-in">
+    <div class="ft-brand">Your Local Tech Guy &middot; Oranjestad, Aruba</div>
+    <div class="ft-links">
+      <a href="/">Home</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/sla.html">SLA</a>
+      <span style="color:var(--fg-dim)">&copy; <span id="year"></span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  function toggleTheme(){const h=document.documentElement;const d=h.classList.toggle('dark');localStorage.setItem('theme',d?'dark':'light');}
+  const t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');
+  const bg=document.getElementById('bg');
+  window.addEventListener('scroll',()=>{bg.style.transform=`scale(1.08) translateY(${window.scrollY*0.18}px)`;},{passive:true});
+  const obs=new IntersectionObserver(e=>e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('v');obs.unobserve(i.target);}}),{threshold:.08});
+  document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Level Agreement | Your Local Tech Guy — Oranjestad, Aruba</title>
+  <meta name="description" content="SLA for Your Local Tech Guy maintenance retainer clients. Uptime monitoring, response times, security monitoring scope, and exclusions." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://localtechguy.aua/sla.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #7ed444;
+      --fg: rgba(255,255,255,0.95);
+      --fg-muted: rgba(255,255,255,0.55);
+      --fg-dim: rgba(255,255,255,0.22);
+      --glass: rgba(255,255,255,0.07);
+      --glass-border: rgba(255,255,255,0.16);
+      --glass-top: rgba(255,255,255,0.28);
+      --glass-shadow: rgba(0,0,0,0.35);
+      --r: 22px;
+      --font: 'Inter', system-ui, sans-serif;
+      --font-d: 'Space Grotesk', system-ui, sans-serif;
+      --bg-brightness: 0.60; --bg-sat: 2.2;
+      --ov-a: 0.50; --ov-b: 0.56; --ov-c: 0.68;
+    }
+    html.dark {
+      --glass: rgba(6,6,6,0.62);
+      --glass-border: rgba(255,255,255,0.09);
+      --glass-top: rgba(255,255,255,0.13);
+      --glass-shadow: rgba(0,0,0,0.70);
+      --fg-muted: rgba(255,255,255,0.45);
+      --fg-dim: rgba(255,255,255,0.16);
+      --bg-brightness: 0.28; --bg-sat: 1.1;
+      --ov-a: 0.76; --ov-b: 0.80; --ov-c: 0.88;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: hidden; min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+
+    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat; transform: scale(1.08); filter: blur(44px) saturate(var(--bg-sat)) brightness(var(--bg-brightness)); will-change: transform; transition: filter .6s ease; }
+    .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5,20,5,var(--ov-a)) 0%, rgba(6,18,6,var(--ov-b)) 45%, rgba(2,12,2,var(--ov-c)) 100%); transition: background .6s ease; }
+
+    .glass { background: var(--glass); backdrop-filter: blur(36px) saturate(200%) brightness(1.00); -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.00); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 rgba(0,0,0,.12), 0 20px 80px var(--glass-shadow), 0 1px 0 rgba(255,255,255,.04); }
+    .glass-flat { background: var(--glass); backdrop-filter: blur(36px) saturate(200%); -webkit-backdrop-filter: blur(36px) saturate(200%); border-top: 1px solid var(--glass-border); border-bottom: 1px solid rgba(255,255,255,.06); }
+
+    nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; width: min(1020px, calc(100% - 3rem)); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .55rem 1rem; background: rgba(255,255,255,.08); backdrop-filter: blur(36px) saturate(180%); -webkit-backdrop-filter: blur(36px) saturate(180%); border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px rgba(0,0,0,.25); }
+    .nlogo img { height: 40px; width: auto; border-radius: 8px; display: block; }
+    .nl { display: flex; flex-wrap: nowrap; overflow: hidden; }
+    .nl a { font-size: .73rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--fg-muted); padding: .45rem .75rem; border-radius: 30px; transition: background .2s, color .2s; white-space: nowrap; }
+    .nl a:hover { background: rgba(255,255,255,.1); color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
+    .ncta { font-size: .72rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: .5rem 1.2rem; background: var(--accent); color: #080808; border-radius: 30px; transition: filter .2s, transform .15s; white-space: nowrap; }
+    .ncta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .theme-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--glass-border); background: rgba(255,255,255,.08); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--fg-muted); transition: background .2s, color .2s; flex-shrink: 0; }
+    .theme-btn:hover { background: rgba(255,255,255,.16); color: var(--fg); }
+    .theme-btn svg { width: 15px; height: 15px; }
+    .icon-sun { display: block; } .icon-moon { display: none; }
+    html.dark .icon-sun { display: none; } html.dark .icon-moon { display: block; }
+    @media(max-width:780px){ .nl { display: none; } }
+
+    .sr { opacity: 0; transform: translateY(40px) scale(.97); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .sr.v { opacity: 1; transform: none; }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+
+    .hero { position: relative; z-index: 1; min-height: 44vh; display: flex; align-items: flex-end; justify-content: center; padding: 9rem 2rem 3rem; text-align: center; }
+    .hero-panel { max-width: 720px; padding: 3rem 3.5rem; }
+    @media(max-width:580px){ .hero-panel { padding: 2rem 1.75rem; } }
+    .hero-back { display: inline-flex; align-items: center; gap: .4rem; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-dim); margin-bottom: 1.5rem; transition: color .2s; }
+    .hero-back:hover { color: var(--fg-muted); }
+    .hero-back svg { width: 13px; height: 13px; }
+    .hero-label { font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: .75rem; }
+    .hero-label::before, .hero-label::after { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); opacity: .5; }
+    .hero h1 { font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin-bottom: .75rem; }
+    .hero-sub { font-size: .9rem; font-weight: 300; color: var(--fg-muted); line-height: 1.8; }
+    .hero-meta { font-size: .74rem; color: var(--fg-dim); margin-top: .75rem; }
+
+    .content { position: relative; z-index: 1; padding: 2rem 2rem 6rem; }
+    .w { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .section { padding: 2.25rem 2.5rem; }
+    @media(max-width:560px){ .section { padding: 1.75rem 1.5rem; } }
+    .sec-label { font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; }
+    .sec-label::before { content: ''; width: 18px; height: 1px; background: var(--accent); opacity: .5; }
+    .section h2 { font-family: var(--font-d); font-size: 1.2rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 1.1rem; }
+    .section p { font-size: .875rem; color: var(--fg-muted); line-height: 1.8; font-weight: 300; margin-bottom: .85rem; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .4rem; margin-bottom: .85rem; }
+    .section ul li { font-size: .875rem; color: var(--fg-muted); line-height: 1.7; font-weight: 300; }
+    .section ul li strong { color: var(--fg); font-weight: 600; }
+    .section a { color: var(--accent); transition: opacity .2s; }
+    .section a:hover { opacity: .75; }
+
+    .response-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: .75rem; }
+    @media(max-width:520px){ .response-grid { grid-template-columns: 1fr; } }
+    .response-card { background: rgba(255,255,255,.04); border: 1px solid var(--glass-border); border-radius: 14px; padding: 1.1rem 1.25rem; }
+    .response-card.critical { border-color: rgba(220,80,80,.3); background: rgba(220,80,80,.04); }
+    .response-card.critical .rc-badge { color: rgba(255,100,100,.9); }
+    .rc-badge { font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .4rem; }
+    .rc-time { font-family: var(--font-d); font-size: 1.5rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .3rem; }
+    .rc-desc { font-size: .78rem; color: var(--fg-muted); font-weight: 300; line-height: 1.6; }
+    .rc-note { font-size: .7rem; color: var(--fg-dim); margin-top: .4rem; }
+
+    .monitor-list { display: flex; flex-direction: column; gap: .5rem; margin-top: .75rem; }
+    .monitor-item { display: flex; align-items: center; gap: .75rem; background: rgba(255,255,255,.04); border: 1px solid var(--glass-border); border-radius: 10px; padding: .8rem 1rem; }
+    .monitor-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; box-shadow: 0 0 8px rgba(126,212,68,.5); }
+    .monitor-text { font-size: .84rem; color: var(--fg-muted); font-weight: 300; }
+    .monitor-text strong { color: var(--fg); font-weight: 600; }
+
+    .contact-card { display: flex; flex-direction: column; gap: .75rem; margin-top: .75rem; }
+    .contact-row { display: flex; align-items: center; gap: .875rem; padding: .9rem 1.1rem; background: rgba(255,255,255,.04); border: 1px solid var(--glass-border); border-radius: 12px; }
+    .contact-row svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+    .contact-row-label { font-size: .6rem; font-weight: 700; color: var(--fg-dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .1rem; }
+    .contact-row-value { font-size: .84rem; font-weight: 400; color: var(--fg); }
+
+    footer { position: relative; z-index: 1; padding: 2.5rem 2rem; }
+    .ft-in { max-width: 760px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .ft-brand { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); }
+    .ft-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .ft-links a { font-size: .74rem; color: var(--fg-dim); transition: color .2s; }
+    .ft-links a:hover { color: var(--fg); }
+  </style>
+</head>
+<body>
+
+<div class="bg-wrap" id="bg"></div>
+<div class="bg-overlay"></div>
+
+<nav>
+  <a href="/" class="nlogo"><img src="logo.png" alt="Your Local Tech Guy" /></a>
+  <div class="nl">
+    <a href="/#services">Services</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#contact">Contact</a>
+    <a href="/digital.html">Web &amp; Auto</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+    <a href="/#booking" class="ncta">Book a Service</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-panel glass sr">
+    <a href="/" class="hero-back">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      Back to home
+    </a>
+    <div class="hero-label">Legal</div>
+    <h1>Service Level Agreement</h1>
+    <p class="hero-sub">Response commitments, what we monitor, and what falls inside or outside the retainer.</p>
+    <p class="hero-meta">Your Local Tech Guy &middot; Applies to active maintenance retainer clients &middot; June 2026</p>
+  </div>
+</section>
+
+<div class="content">
+  <div class="w">
+
+    <div class="section glass sr d1">
+      <div class="sec-label">01 — Scope</div>
+      <h2>Who This Applies To</h2>
+      <p>This SLA applies to clients with an active monthly maintenance retainer. It defines the standards you can expect from us and clarifies what is and is not included in the retainer scope.</p>
+      <p>For one-off project clients, response times are handled on a best-effort basis as agreed during the project engagement.</p>
+    </div>
+
+    <div class="section glass sr d2">
+      <div class="sec-label">02 — What we monitor</div>
+      <h2>Monitoring Coverage</h2>
+      <div class="monitor-list">
+        <div class="monitor-item">
+          <div class="monitor-dot"></div>
+          <div class="monitor-text"><strong>Website uptime</strong> — automated daily checks to confirm your site is reachable and returning a valid response</div>
+        </div>
+        <div class="monitor-item">
+          <div class="monitor-dot"></div>
+          <div class="monitor-text"><strong>SSL certificate</strong> — monitored for validity and expiry; we alert and action renewal before expiry</div>
+        </div>
+        <div class="monitor-item">
+          <div class="monitor-dot"></div>
+          <div class="monitor-text"><strong>Security vulnerabilities</strong> — CMS and plugin versions checked against known CVE databases monthly</div>
+        </div>
+        <div class="monitor-item">
+          <div class="monitor-dot"></div>
+          <div class="monitor-text"><strong>Core Web Vitals</strong> — monthly page speed and performance review flagging significant regressions</div>
+        </div>
+        <div class="monitor-item">
+          <div class="monitor-dot"></div>
+          <div class="monitor-text"><strong>Security scan</strong> — monthly automated scan for malware, suspicious files, and misconfigurations</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section glass sr d1">
+      <div class="sec-label">03 — Response times</div>
+      <h2>When You Can Expect to Hear Back</h2>
+      <p>Business hours: <strong style="color:var(--fg)">Monday – Friday, 9:00 am – 5:00 pm AST</strong></p>
+      <div class="response-grid">
+        <div class="response-card critical">
+          <div class="rc-badge">Critical — Site down</div>
+          <div class="rc-time">4 hours</div>
+          <div class="rc-desc">Site is completely unreachable or returning 5xx errors across all pages</div>
+          <div class="rc-note">7 days a week for confirmed outages</div>
+        </div>
+        <div class="response-card critical">
+          <div class="rc-badge">Critical — Security breach</div>
+          <div class="rc-time">4 hours</div>
+          <div class="rc-desc">Active malware, unauthorized access, or confirmed data breach involving our work</div>
+          <div class="rc-note">7 days a week</div>
+        </div>
+        <div class="response-card">
+          <div class="rc-badge">High — Major function broken</div>
+          <div class="rc-time">24 hours</div>
+          <div class="rc-desc">Key functionality (booking, contact form, checkout) is broken or inaccessible</div>
+          <div class="rc-note">Business hours only</div>
+        </div>
+        <div class="response-card">
+          <div class="rc-badge">Standard — Minor issues</div>
+          <div class="rc-time">48 hours</div>
+          <div class="rc-desc">Visual bugs, minor errors, small content update requests, general questions</div>
+          <div class="rc-note">Business hours only</div>
+        </div>
+      </div>
+      <p style="margin-top:1rem">Response time means initial acknowledgment and triage, not necessarily resolution. Resolution time depends on the complexity of the issue.</p>
+    </div>
+
+    <div class="section glass sr d2">
+      <div class="sec-label">04 — Security monitoring</div>
+      <h2>What Security Coverage Includes</h2>
+      <ul>
+        <li><strong>Monthly security scan</strong> — automated scan of your site and codebase for malware, suspicious scripts, and known attack signatures</li>
+        <li><strong>Vulnerability alerts</strong> — notification within 48 hours if a known CVE affects software we installed or manage for you</li>
+        <li><strong>Plugin / dependency updates</strong> — patches applied within 7 days of release for non-breaking updates; breaking updates discussed with you before applying</li>
+        <li><strong>SSL/TLS configuration</strong> — annual review to ensure your site is using current cipher suites and HSTS is properly configured</li>
+        <li><strong>Breach notification</strong> — if our access or managed systems are involved in an incident, we notify you within 24 hours</li>
+      </ul>
+    </div>
+
+    <div class="section glass sr d1">
+      <div class="sec-label">05 — What's not covered</div>
+      <h2>Outside the SLA</h2>
+      <p>The following are outside our monitoring and response commitments under the retainer:</p>
+      <ul>
+        <li><strong>Your hosting platform outages</strong> — e.g. GitHub Pages, Netlify, Vercel going down. These are outside our control.</li>
+        <li><strong>Domain registrar issues</strong> — DNS propagation problems, expired domains, or issues with your registrar account.</li>
+        <li><strong>Third-party service failures</strong> — payment processors, social media platforms, email providers, CDNs we did not set up.</li>
+        <li><strong>Content beyond the monthly allowance</strong> — content updates exceeding 30 minutes per month are billed at our standard hourly rate.</li>
+        <li><strong>Issues caused by your changes</strong> — any breakage resulting from modifications made by you or another party to code or systems we manage.</li>
+        <li><strong>Your customers' data</strong> — we do not monitor, manage, or take responsibility for your end-users' personal data or how it is handled by your systems.</li>
+        <li><strong>Force majeure</strong> — outages caused by natural disasters, telecommunications failures, government action, or events outside our reasonable control.</li>
+      </ul>
+    </div>
+
+    <div class="section glass sr d2">
+      <div class="sec-label">06 — Reporting &amp; contact</div>
+      <h2>How to Reach Us</h2>
+      <p>For all support requests, use the channels below. For critical issues (site down, security breach), calling is fastest.</p>
+      <div class="contact-card">
+        <div class="contact-row">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <div>
+            <div class="contact-row-label">Phone (fastest for critical issues)</div>
+            <div class="contact-row-value"><a href="tel:+2975639903" style="color:var(--fg)">(297) 563-9903</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <div>
+            <div class="contact-row-label">Email (standard &amp; high priority)</div>
+            <div class="contact-row-value"><a href="mailto:localtechguy.aua@gmail.com" style="color:var(--fg)">localtechguy.aua@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div>
+            <div class="contact-row-label">Business hours</div>
+            <div class="contact-row-value">Monday – Friday, 9:00 am – 5:00 pm AST</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section glass sr d1">
+      <div class="sec-label">07 — SLA changes</div>
+      <h2>Updates to This Agreement</h2>
+      <p>We may update this SLA from time to time to reflect changes in our service offering. We will notify active retainer clients at least 14 days before any material changes take effect.</p>
+      <p>Continued use of the retainer after the effective date of a change constitutes acceptance of the updated SLA.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer class="glass-flat">
+  <div class="ft-in">
+    <div class="ft-brand">Your Local Tech Guy &middot; Oranjestad, Aruba</div>
+    <div class="ft-links">
+      <a href="/">Home</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-service.html">Terms of Service</a>
+      <span style="color:var(--fg-dim)">&copy; <span id="year"></span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  function toggleTheme(){const h=document.documentElement;const d=h.classList.toggle('dark');localStorage.setItem('theme',d?'dark':'light');}
+  const t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');
+  const bg=document.getElementById('bg');
+  window.addEventListener('scroll',()=>{bg.style.transform=`scale(1.08) translateY(${window.scrollY*0.18}px)`;},{passive:true});
+  const obs=new IntersectionObserver(e=>e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('v');obs.unobserve(i.target);}}),{threshold:.08});
+  document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
