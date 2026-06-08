@@ -114,7 +114,7 @@
       --r: 22px;
       --font: 'Inter', system-ui, sans-serif;
       --font-d: 'Space Grotesk', system-ui, sans-serif;
-      --bg-brightness: 0.55; --bg-sat: 3.0;
+      --bg-brightness: 0.72; --bg-sat: 1.4;
       --ov-a: 0.50; --ov-b: 0.56; --ov-c: 0.68;
     }
     html.dark {
@@ -133,21 +133,21 @@
     img { display: block; max-width: 100%; }
 
     /* ── BACKGROUND ── */
-    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat; transform: scale(1.08); filter: blur(8px) saturate(var(--bg-sat)) brightness(var(--bg-brightness)) hue-rotate(-18deg); will-change: transform; transition: filter .6s ease; }
+    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat; transform: scale(1.08); filter: blur(80px) saturate(var(--bg-sat)) brightness(var(--bg-brightness)); will-change: transform; transition: filter .6s ease; }
     .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5,20,5,var(--ov-a)) 0%, rgba(6,18,6,var(--ov-b)) 45%, rgba(2,12,2,var(--ov-c)) 100%); transition: background .6s ease; }
     .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .p { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.55); animation: pfloat linear infinite; }
     @keyframes pfloat { 0%{transform:translateY(110vh) scale(1);opacity:0} 10%{opacity:1} 90%{opacity:.6} 100%{transform:translateY(-10vh) translateX(40px) scale(.4);opacity:0} }
 
     /* ── GLASS ── */
-    .glass { background: var(--glass); backdrop-filter: blur(14px) saturate(200%) brightness(1.00); -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.00); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 rgba(0,0,0,.12), 0 20px 80px var(--glass-shadow), 0 1px 0 rgba(255,255,255,.04); transition: background .5s, border-color .5s, box-shadow .5s; }
-    .glass-flat { background: var(--glass); backdrop-filter: blur(14px) saturate(200%); -webkit-backdrop-filter: blur(14px) saturate(200%); border-top: 1px solid var(--glass-border); border-bottom: 1px solid rgba(255,255,255,.06); transition: background .5s, border-color .5s; }
-    .glass-card { background: var(--glass); backdrop-filter: blur(14px) saturate(200%) brightness(1.00); -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.00); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px var(--glass-shadow); transition: background .3s, border-color .3s, transform .3s, box-shadow .3s; }
+    .glass { background: var(--glass); backdrop-filter: blur(36px) saturate(200%) brightness(1.06); -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.06); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 rgba(0,0,0,.12), 0 20px 80px var(--glass-shadow), 0 1px 0 rgba(255,255,255,.04); transition: background .5s, border-color .5s, box-shadow .5s; }
+    .glass-flat { background: var(--glass); backdrop-filter: blur(36px) saturate(200%); -webkit-backdrop-filter: blur(36px) saturate(200%); border-top: 1px solid var(--glass-border); border-bottom: 1px solid rgba(255,255,255,.06); transition: background .5s, border-color .5s; }
+    .glass-card { background: var(--glass); backdrop-filter: blur(36px) saturate(200%) brightness(1.06); -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.06); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px var(--glass-shadow); transition: background .3s, border-color .3s, transform .3s, box-shadow .3s; }
     .glass-card:hover { background: rgba(255,255,255,.1); transform: translateY(-4px); box-shadow: inset 0 1px 0 var(--glass-top), 0 20px 56px var(--glass-shadow); }
     html.dark .glass-card:hover { background: rgba(255,255,255,.06); }
 
     /* ── NAV ── */
-    nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; width: min(1020px, calc(100% - 3rem)); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .55rem 1rem; background: rgba(255,255,255,.08); backdrop-filter: blur(14px) saturate(180%); -webkit-backdrop-filter: blur(14px) saturate(180%); border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px rgba(0,0,0,.25); transition: background .5s, border-color .5s; }
+    nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; width: min(1020px, calc(100% - 3rem)); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .55rem 1rem; background: rgba(255,255,255,.08); backdrop-filter: blur(36px) saturate(180%); -webkit-backdrop-filter: blur(36px) saturate(180%); border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px rgba(0,0,0,.25); transition: background .5s, border-color .5s; }
     .nlogo img { height: 40px; width: auto; border-radius: 8px; display: block; }
     .nl { display: flex; flex-wrap: nowrap; overflow: hidden; }
     .nl a { font-size: .73rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--fg-muted); padding: .45rem .75rem; border-radius: 30px; transition: background .2s, color .2s; white-space: nowrap; }
@@ -339,7 +339,7 @@
 
     /* ── FAQ ── */
     .faq-list { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: .75rem; }
-    .faq-item { border-radius: 14px; overflow: hidden; border: 1px solid var(--glass-border); background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: border-color .2s; }
+    .faq-item { border-radius: 14px; overflow: hidden; border: 1px solid var(--glass-border); background: var(--glass); backdrop-filter: blur(36px); -webkit-backdrop-filter: blur(36px); transition: border-color .2s; }
     .faq-item:hover { border-color: rgba(126,212,68,.3); }
     .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; background: none; border: none; cursor: pointer; color: var(--fg); font-family: var(--font); font-size: .9rem; font-weight: 600; text-align: left; }
     .faq-arrow { color: var(--accent); flex-shrink: 0; transition: transform .25s; }
