@@ -499,12 +499,17 @@
     <div class="ft-links">
       <a href="tel:+2975639903">(297) 563-9903</a>
       <a href="mailto:localtechguy.aua@gmail.com">localtechguy.aua@gmail.com</a>
-      <a href="digital.html">&#8592; Web &amp; Automation</a>
+      <a href="/digital.html">Web &amp; Automation</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-service.html">Terms of Service</a>
+      <a href="/sla.html">SLA</a>
+      <span style="color:var(--fg-dim)">&copy; <span id="year"></span></span>
     </div>
   </div>
 </footer>
 
 <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 (function(){ const s=localStorage.getItem('theme'); if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark'); })();
 function toggleTheme(){ const d=document.documentElement.classList.toggle('dark'); localStorage.setItem('theme',d?'dark':'light'); }
 (function(){const c=document.getElementById('particles'),n=window.innerWidth<600?14:28,syms=['{}','</>','01','10','//','#!','[ ]','&&','||','!=','>>','ssh','0x','git','npm','sys','if()','int','hex','eth0','>_','...',';','::'],cols=['rgba(126,212,68,ALPHA)','rgba(68,180,212,ALPHA)','rgba(160,220,80,ALPHA)'];for(let i=0;i<n;i++){const p=document.createElement('div');p.className='p';p.textContent=syms[Math.floor(Math.random()*syms.length)];const col=cols[Math.floor(Math.random()*cols.length)];const alpha=(Math.random()*.22+.06).toFixed(2);const sz=Math.floor(Math.random()*7+8);p.style.cssText=`left:${Math.random()*100}%;font-size:${sz}px;color:${col.replace('ALPHA',alpha)};animation-duration:${Math.random()*22+14}s;animation-delay:-${Math.random()*28}s;`;c.appendChild(p);}})();
