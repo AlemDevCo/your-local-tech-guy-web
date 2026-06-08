@@ -40,20 +40,7 @@
     body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: hidden; min-height: 100vh; background: #020910; }
     a { text-decoration: none; color: inherit; }
 
-    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: #020910; overflow: hidden; }
-    .aur { position: absolute; inset: -20%; width: 140%; height: 140%; filter: blur(48px) saturate(2); animation: aur-hue 28s ease-in-out infinite alternate; }
-    @keyframes aur-hue { 0% { filter: blur(48px) saturate(2) hue-rotate(-15deg); } 100% { filter: blur(48px) saturate(2) hue-rotate(25deg); } }
-    .aob { position: absolute; border-radius: 45% 55% 60% 40% / 55% 45% 65% 35%; }
-    .ao1 { width: 30%; height: 85%; background: radial-gradient(ellipse at 50% 30%, rgba(126,212,68,0.9) 0%, transparent 65%); left: 5%; top: -5%; animation: adrift1 24s ease-in-out infinite alternate; }
-    .ao2 { width: 25%; height: 90%; background: radial-gradient(ellipse at 50% 35%, rgba(68,180,212,0.85) 0%, transparent 65%); left: 28%; top: -10%; animation: adrift2 30s ease-in-out infinite alternate; }
-    .ao3 { width: 35%; height: 75%; background: radial-gradient(ellipse at 50% 40%, rgba(46,140,90,0.8) 0%, transparent 65%); left: 48%; top: 5%; animation: adrift3 22s ease-in-out infinite alternate; }
-    .ao4 { width: 22%; height: 95%; background: radial-gradient(ellipse at 50% 25%, rgba(30,100,180,0.75) 0%, transparent 65%); left: 72%; top: -15%; animation: adrift4 26s ease-in-out infinite alternate; }
-    .ao5 { width: 38%; height: 65%; background: radial-gradient(ellipse at 50% 50%, rgba(100,190,80,0.7) 0%, transparent 65%); left: 18%; top: 38%; animation: adrift5 34s ease-in-out infinite alternate; }
-    @keyframes adrift1 { 0% { transform: translate(0,0) scaleY(1); } 100% { transform: translate(6%,18%) scaleY(1.25); } }
-    @keyframes adrift2 { 0% { transform: translate(0,0) scaleX(1); } 100% { transform: translate(-5%,-12%) scaleX(1.2); } }
-    @keyframes adrift3 { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-7%,14%) scale(1.15); } }
-    @keyframes adrift4 { 0% { transform: translate(0,0) scaleY(0.9); } 100% { transform: translate(4%,10%) scaleY(1.35); } }
-    @keyframes adrift5 { 0% { transform: translate(0,0) scaleX(0.85); } 100% { transform: translate(9%,-15%) scaleX(1.25); } }
+    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: radial-gradient(ellipse 20% 80% at 10% 30%, rgba(126,212,68,0.65) 0%, transparent 55%), radial-gradient(ellipse 16% 85% at 30% 20%, rgba(68,180,212,0.60) 0%, transparent 55%), radial-gradient(ellipse 18% 80% at 52% 35%, rgba(46,140,90,0.60) 0%, transparent 55%), radial-gradient(ellipse 14% 85% at 72% 25%, rgba(30,100,180,0.58) 0%, transparent 55%), radial-gradient(ellipse 18% 80% at 90% 30%, rgba(100,190,80,0.62) 0%, transparent 55%), #020910; }
     .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(2,8,18,0.10) 0%, rgba(3,10,20,0.15) 50%, rgba(2,6,14,0.22) 100%); }
     .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .p { position: absolute; font-family: 'JetBrains Mono','Courier New',monospace; pointer-events: none; animation: pfloat linear infinite; user-select: none; line-height: 1; }
@@ -154,7 +141,7 @@
   </style>
 </head>
 <body>
-<div class="bg-wrap" id="bg"><div class="aur"><div class="aob ao1"></div><div class="aob ao2"></div><div class="aob ao3"></div><div class="aob ao4"></div><div class="aob ao5"></div></div></div>
+<div class="bg-wrap" id="bg"></div>
 <div class="bg-overlay"></div>
 <div class="particles" id="particles"></div>
 
