@@ -41,8 +41,8 @@
     body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: hidden; min-height: 100vh; background: transparent; }
     a { text-decoration: none; color: inherit; }
 
-    .bg-wrap { position: fixed; inset: 0; z-index: -2; --bx: 65%; --by: 44%; background: repeating-linear-gradient(90deg,rgba(2,6,12,0.55) 0px,rgba(2,6,12,0.55) 1px,transparent 1px,transparent 8px),repeating-linear-gradient(90deg,rgba(2,6,12,0.28) 0px,rgba(2,6,12,0.28) 1px,transparent 1px,transparent 21px),radial-gradient(ellipse 52% 78% at var(--bx) var(--by),rgba(68,180,212,0.95) 0%,rgba(80,190,100,0.75) 35%,rgba(126,212,68,0.50) 55%,transparent 70%),radial-gradient(ellipse 38% 52% at 78% 60%,rgba(18,72,130,0.80) 0%,rgba(68,180,212,0.50) 45%,transparent 68%),#020910; animation: blob-float 16s ease-in-out infinite alternate; }
-    .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(2,8,18,0.04) 0%, rgba(3,10,20,0.22) 55%, rgba(2,6,14,0.58) 100%); }
+    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: #020910; }
+    .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 0%, rgba(2,6,14,0.22) 100%); }
 
     .glass { background: var(--glass); -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.00); backdrop-filter: blur(36px) saturate(200%) brightness(1.00); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 rgba(0,0,0,.12), 0 20px 80px var(--glass-shadow), 0 1px 0 rgba(255,255,255,.04); transition: background .5s, border-color .5s, box-shadow .5s; }
     .glass-flat { background: var(--glass); -webkit-backdrop-filter: blur(36px) saturate(200%); backdrop-filter: blur(36px) saturate(200%); border-top: 1px solid var(--glass-border); border-bottom: 1px solid rgba(255,255,255,.06); transition: background .5s, border-color .5s; }
@@ -261,5 +261,6 @@
   const obs=new IntersectionObserver(e=>e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('v');obs.unobserve(i.target);}}),{threshold:.08});
   document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
 </script>
+  <script src="bg-animation.js"></script>
 </body>
 </html>
