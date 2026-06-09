@@ -321,6 +321,5 @@
   const obs=new IntersectionObserver(e=>e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('v');obs.unobserve(i.target);}}),{threshold:.08});
   document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
 </script>
-  <script src="bg-animation.js"></script>
 </body>
 </html>
