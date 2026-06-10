@@ -128,6 +128,8 @@
     .pkg:hover { transform: translateY(-5px); box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 28px 72px rgba(0,0,0,.45), 0 0 0 1px rgba(68,180,212,.15); }
     .pkg-tag { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
     .pkg-name { font-family: var(--font-d); font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .6rem; line-height: 1.15; }
+    .pkg-price { font-family: var(--font-d); font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; color: var(--accent); margin-bottom: 1.25rem; display: flex; align-items: baseline; gap: .35rem; }
+    .pkg-price .pkg-period { font-size: .65rem; font-weight: 400; color: var(--fg-muted); text-transform: uppercase; letter-spacing: .1em; }
     .pkg-desc { font-size: .83rem; color: var(--fg-muted); font-weight: 300; line-height: 1.75; margin-bottom: 1.5rem; }
     .pkg-includes { list-style: none; display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1.75rem; }
     .pkg-includes li { display: flex; gap: .6rem; font-size: .8rem; color: var(--fg-muted); font-weight: 300; line-height: 1.5; }
@@ -140,7 +142,15 @@
     .maint { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; padding: 2.25rem 2.75rem; }
     .maint-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .6rem; }
     .maint-title { font-family: var(--font-d); font-size: 1.15rem; font-weight: 600; letter-spacing: -.015em; margin-bottom: .4rem; }
+    .maint-price { font-family: var(--font-d); font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; color: var(--accent); margin-bottom: .6rem; display: flex; align-items: baseline; gap: .35rem; }
+    .maint-price .pkg-period { font-size: .65rem; font-weight: 400; color: var(--fg-muted); text-transform: uppercase; letter-spacing: .1em; }
     .maint-body { font-size: .83rem; color: var(--fg-muted); font-weight: 300; line-height: 1.7; max-width: 500px; }
+    .cur-toggle { display: inline-flex; gap: .35rem; }
+    .cur-btn { font-family: var(--font-d); font-size: .95rem; font-weight: 800; line-height: 1; width: 2.1rem; height: 2.1rem; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--glass-border); background: rgba(255,255,255,.04); color: var(--fg-dim); cursor: pointer; opacity: .55; transition: opacity .2s, background .2s, border-color .2s, color .2s; }
+    .cur-btn:hover { opacity: .85; }
+    .cur-btn.active { opacity: 1; }
+    .cur-btn[data-cur="USD"].active { background: rgba(126,212,68,.14); border-color: rgba(126,212,68,.4); color: var(--accent); }
+    .cur-btn[data-cur="AWG"].active { background: rgba(245,166,35,.14); border-color: rgba(245,166,35,.4); color: #f5a623; }
 
     /* CONDITIONS TABLE */
     .cond-table { border: 1px solid var(--glass-border); border-radius: var(--r); overflow: hidden; }
@@ -321,13 +331,20 @@
 <!-- PACKAGES -->
 <section class="sec" style="padding-top:0" id="packages">
   <div class="w">
-    <div class="ch sr">What We Build</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div class="ch sr">What We Build</div>
+      <span class="cur-toggle sr">
+        <button type="button" class="cur-btn active" data-cur="AWG" aria-label="Show prices in Aruban Florin" title="Aruban Florin">ƒ</button>
+        <button type="button" class="cur-btn" data-cur="USD" aria-label="Show prices in US Dollars" title="US Dollars">$</button>
+      </span>
+    </div>
     <p class="sr" style="font-size:.9rem;color:var(--fg-muted);font-weight:300;max-width:560px;margin-bottom:3rem;line-height:1.8">Every project is scoped individually — no fixed packages with features you don't need. These are the types of work we do most for independent professionals.</p>
     <div class="pkg-grid">
 
       <div class="pkg glass sr d1">
         <div class="pkg-tag">Most Popular</div>
         <div class="pkg-name">Portfolio Site</div>
+        <div class="pkg-price"><span class="cur-amt" data-awg="550">ƒ550</span></div>
         <p class="pkg-desc">A clean, professional multi-page site to showcase your work and convert visitors into clients.</p>
         <ul class="pkg-includes">
           <li>Up to 5 pages (Home, About, Work, Services, Contact)</li>
@@ -344,6 +361,7 @@
       <div class="pkg glass sr d2">
         <div class="pkg-tag">High Conversion</div>
         <div class="pkg-name">Service Landing Page</div>
+        <div class="pkg-price"><span class="cur-amt" data-awg="820">ƒ820</span></div>
         <p class="pkg-desc">A focused, single-page site built to convert — one message, one offer, one clear action for the visitor to take.</p>
         <ul class="pkg-includes">
           <li>Single-page with full scroll flow</li>
@@ -360,6 +378,7 @@
       <div class="pkg glass sr d3">
         <div class="pkg-tag">Sell Online</div>
         <div class="pkg-name">Simple Online Store</div>
+        <div class="pkg-price"><span class="cur-amt" data-awg="950">ƒ950</span></div>
         <p class="pkg-desc">Sell your products or services online with a custom-coded storefront. No Shopify subscription, no theme you share with thousands of other stores.</p>
         <ul class="pkg-includes">
           <li>Product catalog (up to 20 items)</li>
@@ -379,7 +398,8 @@
       <div>
         <div class="maint-label">Optional Add-on</div>
         <div class="maint-title">Lightweight Maintenance Plan</div>
-        <p class="maint-body">Monthly check-ins, content updates, uptime monitoring, and minor fixes. Cancel any time with 30 days notice. No long-term lock-in.</p>
+        <div class="maint-price"><span class="cur-amt" data-awg="165">ƒ165</span><span class="pkg-period"> /mo</span></div>
+        <p class="maint-body">Monthly check-ins, content updates, uptime monitoring, and minor fixes. Cancel any time with 30 days notice. No long-term lock-in. Available with the Service Landing Page or Simple Online Store.</p>
       </div>
       <a href="#inquire" class="btn-p" style="flex-shrink:0;white-space:nowrap">Add to your project</a>
     </div>
@@ -516,6 +536,8 @@ function toggleTheme(){ const d=document.documentElement.classList.toggle('dark'
 (function(){const c=document.getElementById('particles'),n=window.innerWidth<600?14:28,syms=['{}','</>','01','10','//','#!','[ ]','&&','||','!=','>>','ssh','0x','git','npm','sys','if()','int','hex','eth0','>_','...',';','::'],cols=['rgba(126,212,68,ALPHA)','rgba(68,180,212,ALPHA)','rgba(160,220,80,ALPHA)'];for(let i=0;i<n;i++){const p=document.createElement('div');p.className='p';p.textContent=syms[Math.floor(Math.random()*syms.length)];const col=cols[Math.floor(Math.random()*cols.length)];const alpha=(Math.random()*.22+.06).toFixed(2);const sz=Math.floor(Math.random()*7+8);p.style.cssText=`left:${Math.random()*100}%;font-size:${sz}px;color:${col.replace('ALPHA',alpha)};animation-duration:${Math.random()*22+14}s;animation-delay:-${Math.random()*28}s;`;c.appendChild(p);}})();
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');io.unobserve(x.target);}});},{threshold:.07}); document.querySelectorAll('.sr').forEach(el=>io.observe(el));
 document.querySelectorAll('.wr').forEach(el=>{ el.innerHTML=el.innerHTML.split(/(\s+)/).map(w=>w.trim()?`<span class="word"><span>${w}</span></span>`:w).join(''); }); const wrIO=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.querySelectorAll('.word span').forEach((s,i)=>setTimeout(()=>s.style.transform='translateY(0)',i*55));wrIO.unobserve(el.target);}});},{threshold:.2}); document.querySelectorAll('.wr').forEach(el=>wrIO.observe(el));
+const AWG_RATE = 1.79; // fixed peg, USD to AWG
+document.querySelectorAll('.cur-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ const cur=btn.dataset.cur; document.querySelectorAll('.cur-btn').forEach(b=>b.classList.toggle('active',b.dataset.cur===cur)); document.querySelectorAll('.cur-amt').forEach(el=>{ const awg=parseFloat(el.dataset.awg); el.textContent = cur==='USD' ? '$'+Math.round(awg/AWG_RATE).toLocaleString('en-US') : 'ƒ'+awg.toLocaleString('en-US'); }); }); });
 function submitInquiry(){ const n=document.getElementById('iq-name').value.trim(), e=document.getElementById('iq-email').value.trim(), s=document.getElementById('iq-service').value, d=document.getElementById('iq-desc').value.trim(); if(!n||!e||!s||!d){ alert('Please fill in all required fields.'); return; } const btn=document.getElementById('iq-submit'); btn.disabled=true; btn.textContent='Sending…'; fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:'ce014a91-b5e4-46d0-9781-527fbdc1d92f',subject:'Freelancer Inquiry: '+n+' — '+s,from_name:n,email:e,trade:document.getElementById('iq-trade').value.trim()||'Not specified',phone:document.getElementById('iq-phone').value.trim()||'Not provided',service:s,timeline:document.getElementById('iq-timeline').value||'Not specified',message:d})}).catch(()=>{}); document.getElementById('form-fields').style.display='none'; document.getElementById('form-success').classList.add('show'); }
 </script>
 </body>
