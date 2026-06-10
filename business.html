@@ -148,9 +148,11 @@
     .tier-p { font-size: 1rem; font-weight: 800; letter-spacing: -.02em; }
     .tier-p.hi { color: var(--accent); }
     .cur-toggle { display: inline-flex; gap: .35rem; }
-    .cur-btn { font-size: 1rem; line-height: 1; padding: .3rem .5rem; border-radius: 6px; border: 1px solid var(--glass-border); background: rgba(255,255,255,.04); cursor: pointer; opacity: .4; filter: grayscale(1); transition: opacity .2s, background .2s, filter .2s; }
-    .cur-btn:hover { opacity: .75; }
-    .cur-btn.active { opacity: 1; filter: grayscale(0); background: rgba(126,212,68,.12); border-color: rgba(126,212,68,.3); }
+    .cur-btn { font-family: var(--font-d); font-size: .95rem; font-weight: 800; line-height: 1; width: 2.1rem; height: 2.1rem; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--glass-border); background: rgba(255,255,255,.04); color: var(--fg-dim); cursor: pointer; opacity: .55; transition: opacity .2s, background .2s, border-color .2s, color .2s; }
+    .cur-btn:hover { opacity: .85; }
+    .cur-btn.active { opacity: 1; }
+    .cur-btn[data-cur="USD"].active { background: rgba(126,212,68,.14); border-color: rgba(126,212,68,.4); color: var(--accent); }
+    .cur-btn[data-cur="AWG"].active { background: rgba(245,166,35,.14); border-color: rgba(245,166,35,.4); color: #f5a623; }
     .inc { display: flex; gap: .9rem; align-items: flex-start; padding: .8rem 0; border-bottom: 1px solid rgba(255,255,255,.07); }
     .inc:last-child { border-bottom: none; }
     .inc-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: .6rem; }
@@ -410,8 +412,8 @@
         <div class="ops-lbl" style="display:flex;align-items:center;justify-content:space-between;gap:1rem">
           <span>Monthly Rate by Traffic</span>
           <span class="cur-toggle">
-            <button type="button" class="cur-btn active" data-cur="USD" aria-label="Show prices in US Dollars" title="US Dollars">🇺🇸</button>
-            <button type="button" class="cur-btn" data-cur="AWG" aria-label="Show prices in Aruban Florin" title="Aruban Florin">🇦🇼</button>
+            <button type="button" class="cur-btn active" data-cur="USD" aria-label="Show prices in US Dollars" title="US Dollars">$</button>
+            <button type="button" class="cur-btn" data-cur="AWG" aria-label="Show prices in Aruban Florin" title="Aruban Florin">ƒ</button>
           </span>
         </div>
         <div class="tier"><span class="tier-v">0 – 10,000 visits / mo</span><span class="tier-p"><span class="cur-amt" data-usd="500">$500</span><span style="font-size:.68rem;color:var(--fg-muted);font-weight:400"> /mo</span></span></div>
