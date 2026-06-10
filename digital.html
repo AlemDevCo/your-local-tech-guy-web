@@ -98,6 +98,15 @@
     .path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 960px; margin: 0 auto; }
     @media(max-width:700px){ .path-grid { grid-template-columns: 1fr; } }
 
+    .stack-sec { position: relative; z-index: 1; padding: 0 2rem 7rem; }
+    .stack-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2.75rem 3.25rem; max-width: 880px; margin: 0 auto; padding: 2.75rem 2rem; border-radius: 20px; }
+    .stack-item { display: flex; flex-direction: column; align-items: center; gap: .65rem; }
+    .stack-item img { width: 34px; height: 34px; filter: grayscale(1) opacity(.45); transition: filter .3s ease, transform .3s ease; }
+    .stack-item span { font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-dim); transition: color .3s; }
+    .stack-item:hover img { filter: grayscale(0) opacity(1); transform: translateY(-3px); }
+    .stack-item:hover span { color: var(--fg-muted); }
+    @media(max-width:700px){ .stack-grid { gap: 2rem 2.25rem; padding: 2.25rem 1.5rem; } .stack-item img { width: 28px; height: 28px; } }
+
     .path-card { display: flex; flex-direction: column; padding: 3rem 2.75rem; color: var(--fg); position: relative; overflow: hidden; transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s; }
     .path-card:hover { transform: translateY(-7px); }
     .path-card.biz:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.32), 0 36px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(126,212,68,.2); }
@@ -245,6 +254,25 @@
       <div class="pc-bar"></div>
     </a>
 
+  </div>
+</section>
+
+<section class="stack-sec">
+  <div class="path-head sr">
+    <p class="path-overline">Under The Hood</p>
+    <h2>Built with the same tools powering enterprise platforms.</h2>
+    <p>Every site, dashboard, and automation we ship runs on modern, battle-tested technology &mdash; fast, secure, and easy to maintain.</p>
+  </div>
+  <div class="stack-grid glass-flat sr">
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/html5/ffffff" alt="HTML5" loading="lazy"><span>HTML5</span></div>
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/css3/ffffff" alt="CSS3" loading="lazy"><span>CSS3</span></div>
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/javascript/ffffff" alt="JavaScript" loading="lazy"><span>JavaScript</span></div>
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/react/ffffff" alt="React" loading="lazy"><span>React</span></div>
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/nextdotjs/ffffff" alt="Next.js" loading="lazy"><span>Next.js</span></div>
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/nodedotjs/ffffff" alt="Node.js" loading="lazy"><span>Node.js</span></div>
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/python/ffffff" alt="Python" loading="lazy"><span>Python</span></div>
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/docker/ffffff" alt="Docker" loading="lazy"><span>Docker</span></div>
+    <div class="stack-item"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" loading="lazy"><span>GitHub</span></div>
   </div>
 </section>
 
