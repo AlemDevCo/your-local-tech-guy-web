@@ -154,7 +154,8 @@
     .sb-card.auto { cursor: default; opacity: .7; }
     .sb-card-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: .6; }
     .sb-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem; }
-    .sb-icon { font-size: 1.2rem; }
+    .sb-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sb-icon svg { width: 18px; height: 18px; }
     .sb-check { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--glass-border); display: flex; align-items: center; justify-content: center; transition: all .15s; }
     .sb-check svg { width: 11px; height: 11px; }
     .sb-badge { font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .18rem .5rem; border-radius: 4px; }
@@ -632,18 +633,18 @@ const SB_CATEGORIES = [
   { id:'security', label:'Security', color:'#a78bfa' },
 ];
 const SB_SERVICES = [
-  { id:'hosting', cat:'foundation', icon:'🖥️', label:'Hosting & Server Management', desc:'Hosting, deployment, and platform kept current and patched.', price:145, requires:[] },
-  { id:'uptime', cat:'foundation', icon:'📡', label:'Uptime & Workflow Monitoring', desc:'24/7 automated checks, human-reviewed daily.', price:40, requires:['hosting'] },
-  { id:'sla', cat:'foundation', icon:'⏱️', label:'Priority SLA Response', desc:'4h critical / 24h major issue response, per our published SLA.', price:80, requires:['uptime'] },
-  { id:'backup', cat:'foundation', icon:'💾', label:'Automated Backups', desc:'Scheduled backups with quick restore.', price:35, requires:['hosting'] },
-  { id:'cms', cat:'content', icon:'📝', label:'CMS & Content Management', desc:'Content updates, edits, and publishing handled for you.', price:70, requires:['hosting'] },
-  { id:'perf_report', cat:'content', icon:'📊', label:'Monthly Performance Report', desc:'Uptime, traffic, and engagement summary every month.', price:30, requires:['uptime'] },
-  { id:'meta_tokens', cat:'api', icon:'🔑', label:'Meta Token Management', desc:'Facebook & Instagram tokens renewed proactively.', price:50, requires:['hosting'] },
-  { id:'api_mgmt', cat:'api', icon:'🔌', label:'API Change Management', desc:'Meta API updates handled — never billed as extras.', price:60, requires:['meta_tokens'] },
-  { id:'webhooks', cat:'api', icon:'🔗', label:'Webhook Integrations', desc:'Real-time data sync between your platform and other tools.', price:45, requires:['api_mgmt'] },
-  { id:'social_automation', cat:'social', icon:'🤖', label:'Social Media Automation', desc:'Scheduled posts and automated publishing workflows.', price:90, requires:['meta_tokens'] },
-  { id:'social_analytics', cat:'social', icon:'📈', label:'Social Analytics', desc:'Engagement tracking across connected accounts.', price:50, requires:['social_automation'] },
-  { id:'sec_scan', cat:'security', icon:'🛡️', label:'Security Scanning', desc:'Recurring vulnerability and malware scans.', price:70, requires:['hosting'] },
+  { id:'hosting', cat:'foundation', icon:'M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7l1.05-1.4a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l1.05 1.4a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z', label:'Hosting & Server Management', desc:'Hosting, deployment, and platform kept current and patched.', price:145, requires:[] },
+  { id:'uptime', cat:'foundation', icon:'M9.348 14.652a3.75 3.75 0 010-5.304m5.304 0a3.75 3.75 0 010 5.304m-7.425 2.121a6.75 6.75 0 010-9.546m9.546 0a6.75 6.75 0 010 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79', label:'Uptime & Workflow Monitoring', desc:'24/7 automated checks, human-reviewed daily.', price:40, requires:['hosting'] },
+  { id:'sla', cat:'foundation', icon:'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z', label:'Priority SLA Response', desc:'4h critical / 24h major issue response, per our published SLA.', price:80, requires:['uptime'] },
+  { id:'backup', cat:'foundation', icon:'M20.25 6.375c0 2.07-3.694 3.75-8.25 3.75S3.75 8.445 3.75 6.375m16.5 0c0-2.07-3.694-3.75-8.25-3.75S3.75 4.305 3.75 6.375m16.5 0v11.25c0 2.07-3.694 3.75-8.25 3.75s-8.25-1.68-8.25-3.75V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75c0 2.07-3.694 3.75-8.25 3.75s-8.25-1.68-8.25-3.75v-3.75m16.5 0c0 2.07-3.694 3.75-8.25 3.75s-8.25-1.68-8.25-3.75', label:'Automated Backups', desc:'Scheduled backups with quick restore.', price:35, requires:['hosting'] },
+  { id:'cms', cat:'content', icon:'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12l-3-3m0 0l-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z', label:'CMS & Content Management', desc:'Content updates, edits, and publishing handled for you.', price:70, requires:['hosting'] },
+  { id:'perf_report', cat:'content', icon:'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z', label:'Monthly Performance Report', desc:'Uptime, traffic, and engagement summary every month.', price:30, requires:['uptime'] },
+  { id:'meta_tokens', cat:'api', icon:'M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z', label:'Meta Token Management', desc:'Facebook & Instagram tokens renewed proactively.', price:50, requires:['hosting'] },
+  { id:'api_mgmt', cat:'api', icon:'M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75', label:'API Change Management', desc:'Meta API updates handled — never billed as extras.', price:60, requires:['meta_tokens'] },
+  { id:'webhooks', cat:'api', icon:'M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244', label:'Webhook Integrations', desc:'Real-time data sync between your platform and other tools.', price:45, requires:['api_mgmt'] },
+  { id:'social_automation', cat:'social', icon:'M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535', label:'Social Media Automation', desc:'Scheduled posts and automated publishing workflows.', price:90, requires:['meta_tokens'] },
+  { id:'social_analytics', cat:'social', icon:'M2.25 18L9 11.25l4.306 4.306a11.95 11.95 0 015.814-5.518l2.74-1.22m0 0l-5.94-2.281m5.94 2.28l-2.28 5.941', label:'Social Analytics', desc:'Engagement tracking across connected accounts.', price:50, requires:['social_automation'] },
+  { id:'sec_scan', cat:'security', icon:'M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z', label:'Security Scanning', desc:'Recurring vulnerability and malware scans.', price:70, requires:['hosting'] },
 ];
 let sbSelected = new Set(['hosting','uptime']);
 let sbCurrency = 'USD';
@@ -665,7 +666,7 @@ function sbRender(){
       : `<span class="sb-check" style="${isSelected?`background:${color};border-color:${color}`:''}">${isSelected?'<svg viewBox="0 0 24 24" fill="none" stroke="#080808" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>':''}</span>`;
     return `<div class="sb-card${isAuto?' auto':''}" data-id="${svc.id}" style="${isSelected?`border-color:rgba(${rgb},.5);background:rgba(${rgb},.07)`:''}">
       <div class="sb-card-bar" style="background:${color}"></div>
-      <div class="sb-card-top"><span class="sb-icon">${svc.icon}</span>${check}</div>
+      <div class="sb-card-top"><span class="sb-icon" style="background:rgba(${rgb},.1);border:1px solid rgba(${rgb},.22);color:${color}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="${svc.icon}"/></svg></span>${check}</div>
       <div class="sb-label">${svc.label}</div>
       <div class="sb-desc">${svc.desc}</div>
       ${deps}
