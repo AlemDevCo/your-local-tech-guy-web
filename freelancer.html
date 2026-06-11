@@ -226,6 +226,14 @@
     footer { position: relative; z-index: 1; padding: 2.5rem 2rem; }
     .ft-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
     .ft-brand { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); }
+    .ft-left { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+    .ft-badge { display: flex; align-items: center; gap: .65rem; }
+    .ft-badge img { width: 42px; height: 42px; border-radius: 8px; flex-shrink: 0; }
+    .ft-badge-text { display: flex; flex-direction: column; gap: 1px; }
+    .ft-badge-text strong { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); transition: color .2s; }
+    .ft-badge-text span { font-size: .65rem; color: var(--fg-dim); }
+    .ft-badge:hover .ft-badge-text strong { color: var(--accent-light); }
+    html.dark .ft-badge:hover .ft-badge-text strong { color: var(--accent); }
     .ft-links { display: flex; gap: 2rem; }
     .ft-links a { font-size: .74rem; color: var(--fg-dim); transition: color .2s; }
     .ft-links a:hover { color: var(--fg); }
@@ -529,7 +537,13 @@
 
 <footer class="glass-flat">
   <div class="ft-in">
-    <div class="ft-brand">Your Local Tech Guy &middot; Oranjestad, Aruba</div>
+    <div class="ft-left">
+      <a href="/verified.html" class="ft-badge" title="Scan or click to verify this build">
+        <img src="/verified-badge.png" alt="Verified build QR code" width="42" height="42" />
+        <div class="ft-badge-text"><strong>Verified Build</strong><span>Scan to confirm</span></div>
+      </a>
+      <div class="ft-brand">Your Local Tech Guy &middot; Oranjestad, Aruba</div>
+    </div>
     <div class="ft-links">
       <a href="tel:+2975639903">(297) 563-9903</a>
       <a href="mailto:localtechguy.aua@gmail.com">localtechguy.aua@gmail.com</a>
