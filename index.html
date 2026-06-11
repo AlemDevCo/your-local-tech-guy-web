@@ -104,22 +104,24 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --accent: #7ed444;
+      --accent-light: #1f4d28;
       --fg-rgb: 10 28 18;
       --fg: rgb(var(--fg-rgb) / .92);
       --fg-muted: rgb(var(--fg-rgb) / .58);
       --fg-dim: rgb(var(--fg-rgb) / .32);
-      --glass: rgba(255,255,255,.55);
+      --glass: rgba(255,255,255,.88);
       --glass-border: rgb(var(--fg-rgb) / .10);
-      --glass-top: rgba(255,255,255,.7);
+      --glass-top: rgba(255,255,255,.92);
       --glass-shadow: rgb(var(--fg-rgb) / .10);
       --r: 22px;
       --font: 'Inter', system-ui, sans-serif;
       --font-d: 'Space Grotesk', system-ui, sans-serif;
-      --bg-top: #020910;
-      --bg-bottom: #eef7e8;
-      --bg-overlay-c: rgba(2,6,14,.05);
+      --bg-top: #2d5016;
+      --bg-bottom: #b8d54a;
+      --bg-overlay-c: rgba(4,16,8,.08);
     }
     html.dark {
+      --accent-light: var(--accent);
       --fg-rgb: 255 255 255;
       --fg: rgb(var(--fg-rgb) / .95);
       --fg-muted: rgb(var(--fg-rgb) / .45);
@@ -138,7 +140,7 @@
     img { display: block; max-width: 100%; }
 
     /* ── BACKGROUND ── */
-    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%); transition: background .6s; }
+    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 35%, var(--bg-bottom) 100%); transition: background .6s; }
     .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 0%, var(--bg-overlay-c) 100%); transition: background .6s; }
     .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .p { position: absolute; font-family: 'JetBrains Mono','Courier New',monospace; pointer-events: none; animation: pfloat linear infinite; -webkit-user-select: none; user-select: none; line-height: 1; }
@@ -186,10 +188,10 @@
     .sec { position: relative; z-index: 1; padding: 7rem 2rem; }
     .w { max-width: 1060px; margin: 0 auto; }
     .sec-head { text-align: center; margin-bottom: 3.5rem; }
-    .sec-label { font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: .75rem; }
+    .sec-label { font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: .75rem; }
     .sec-label::before, .sec-label::after { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); opacity: .5; }
     .sec-head h2 { font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: .6rem; }
-    .sec-head h2 em { font-style: normal; color: var(--accent); }
+    .sec-head h2 em { font-style: normal; color: var(--accent-light); }
     .sec-head p { font-size: .9rem; color: var(--fg-muted); font-weight: 300; max-width: 480px; margin: 0 auto; line-height: 1.8; }
 
     /* ── HERO ── */
@@ -215,7 +217,7 @@
     .mq { position: relative; z-index: 1; overflow: hidden; padding: 1.1rem 0; }
     .mq-track { display: flex; animation: mqs 40s linear infinite; white-space: nowrap; }
     .mq-item { font-size: .64rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--fg-dim); padding: 0 2rem; flex-shrink: 0; }
-    .mq-dot { color: var(--accent); margin-right: 2rem; }
+    .mq-dot { color: var(--accent-light); margin-right: 2rem; }
     @keyframes mqs { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ── SERVICES ── */
