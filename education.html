@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schools &amp; Education — Web Design &amp; Managed IT | Your Local Tech Guy</title>
+  <meta name="description" content="Reduced-rate websites and fully managed IT for schools and educational institutions in Aruba — flat ƒ900/mo maintenance, minimum 10% off project pricing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #f0b429;
+      --accent-light: #7a4f05;
+      --accent-warm: #7ed444;
+      --fg-rgb: 30 24 10;
+      --fg: rgb(var(--fg-rgb) / .92);
+      --fg-muted: rgb(var(--fg-rgb) / .58);
+      --fg-dim: rgb(var(--fg-rgb) / .32);
+      --glass: rgba(255,255,255,.88);
+      --glass-border: rgb(var(--fg-rgb) / .10);
+      --glass-top: rgba(255,255,255,.92);
+      --glass-shadow: rgb(var(--fg-rgb) / .10);
+      --r: 22px;
+      --font: 'Inter', system-ui, sans-serif;
+      --font-d: 'Space Grotesk', system-ui, sans-serif;
+      --bg-top: #ffffff;
+      --bg-bottom: #ffffff;
+      --bg-overlay-c: rgba(0,0,0,0);
+      --particle-1: 138 90 6;
+      --particle-2: 110 70 5;
+      --particle-3: 30 24 10;
+    }
+    html.dark {
+      --accent-light: var(--accent);
+      --particle-1: 126 212 68;
+      --particle-2: 68 180 212;
+      --particle-3: 160 220 80;
+      --fg-rgb: 255 255 255;
+      --fg: rgb(var(--fg-rgb) / .95);
+      --fg-muted: rgb(var(--fg-rgb) / .45);
+      --fg-dim: rgb(var(--fg-rgb) / .16);
+      --glass: rgba(6,6,6,.62);
+      --glass-border: rgb(var(--fg-rgb) / .09);
+      --glass-top: rgb(var(--fg-rgb) / .13);
+      --glass-shadow: rgba(0,0,0,.70);
+      --bg-top: #020910;
+      --bg-bottom: #020910;
+      --bg-overlay-c: rgba(2,6,14,.22);
+    }
+    html { scroll-behavior: smooth; background: var(--bg-bottom); transition: background .6s; }
+    body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: hidden; min-height: 100vh; background: transparent; transition: color .6s; }
+    a { text-decoration: none; color: inherit; }
+
+    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 35%, var(--bg-bottom) 100%); transition: background .6s; }
+    .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 0%, var(--bg-overlay-c) 100%); transition: background .6s; }
+    .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .p { position: absolute; font-family: 'JetBrains Mono','Courier New',monospace; pointer-events: none; animation: pfloat linear infinite; -webkit-user-select: none; user-select: none; line-height: 1; }
+    @keyframes pfloat { 0%{transform:translateY(110vh);opacity:0} 8%{opacity:1} 92%{opacity:.8} 100%{transform:translateY(-10vh) translateX(25px);opacity:0} }
+
+    .glass { background: var(--glass); -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.06); backdrop-filter: blur(36px) saturate(200%) brightness(1.06); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 rgba(0,0,0,.12), 0 20px 80px var(--glass-shadow), 0 1px 0 rgb(var(--fg-rgb) / .04); transition: background .5s, border-color .5s, box-shadow .5s; }
+    .glass-flat { background: var(--glass); -webkit-backdrop-filter: blur(36px) saturate(200%); backdrop-filter: blur(36px) saturate(200%); border-top: 1px solid var(--glass-border); border-bottom: 1px solid rgb(var(--fg-rgb) / .06); transition: background .5s, border-color .5s; }
+
+    nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; width: min(1020px, calc(100% - 3rem)); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .55rem 1rem; background: rgb(var(--fg-rgb) / .08); -webkit-backdrop-filter: blur(36px) saturate(180%); backdrop-filter: blur(36px) saturate(180%); border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px rgba(0,0,0,.25); transition: background .5s, border-color .5s; }
+    .nlogo img { height: 40px; width: auto; border-radius: 8px; display: block; }
+    .nl { display: flex; }
+    .nl a { font-size: .75rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-muted); padding: .45rem .9rem; border-radius: 30px; transition: background .2s, color .2s; white-space: nowrap; }
+    .nl a:hover, .nl a.active { background: rgb(var(--fg-rgb) / .1); color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
+    .ncta { font-size: .73rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: .55rem 1.4rem; background: var(--accent); color: #080808; border-radius: 30px; transition: filter .2s, transform .15s; white-space: nowrap; }
+    .ncta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .theme-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--glass-border); background: rgb(var(--fg-rgb) / .08); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--fg-muted); transition: background .2s, color .2s; flex-shrink: 0; }
+    .theme-btn:hover { background: rgb(var(--fg-rgb) / .16); color: var(--fg); }
+    .theme-btn svg { width: 16px; height: 16px; }
+    .icon-sun { display: block; } .icon-moon { display: none; }
+    html.dark .icon-sun { display: none; } html.dark .icon-moon { display: block; }
+    @media(max-width:640px){ .nl { display: none; } }
+
+    .sr { opacity: 0; transform: translateY(40px) scale(.97); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .sr.v { opacity: 1; transform: none; }
+    .d1{transition-delay:.12s} .d2{transition-delay:.24s} .d3{transition-delay:.36s}
+
+    .wr .word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .18em; margin-bottom: -.18em; }
+    .wr .word span { display: inline-block; transform: translateY(110%); transition: transform .7s cubic-bezier(.16,1,.3,1); }
+
+    /* HERO */
+    .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; }
+    .hero-inner { max-width: 1120px; margin: 0 auto; width: 100%; }
+    .breadcrumb { display: inline-flex; align-items: center; gap: .5rem; font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-dim); margin-bottom: 3rem; }
+    .breadcrumb a { color: var(--fg-dim); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--fg-muted); }
+    .breadcrumb-sep { opacity: .4; }
+    .hero-label { font-size: .64rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.5rem; display: flex; align-items: center; gap: .75rem; }
+    .hero-label::after { content: ''; display: block; width: 36px; height: 1px; background: var(--accent); opacity: .5; }
+    .hero h1 { font-family: var(--font-d); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.06; letter-spacing: -.03em; margin-bottom: 2rem; max-width: 820px; }
+    .hero h1 em { font-style: normal; color: var(--accent-light); }
+    .hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.9; color: var(--fg-muted); max-width: 540px; margin-bottom: 3rem; }
+    .btn-p { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .95rem 2.5rem; background: var(--accent); color: #080808; border-radius: 40px; transition: filter .2s, transform .2s, box-shadow .2s; }
+    .btn-p:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 16px 48px rgba(240,180,41,.35); }
+    .btn-g { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .95rem 2.5rem; background: rgb(var(--fg-rgb) / .08); color: var(--fg-muted); border-radius: 40px; border: 1px solid var(--glass-border); transition: background .2s, color .2s; }
+    .btn-g:hover { background: rgb(var(--fg-rgb) / .14); color: var(--fg); }
+    .btn-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgb(var(--fg-rgb) / .08); flex-wrap: wrap; }
+    .stat-n { font-family: var(--font-d); font-size: 2.2rem; font-weight: 700; letter-spacing: -.025em; line-height: 1; color: var(--accent-light); margin-bottom: .3rem; }
+    .stat-l { font-size: .72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-dim); }
+
+    /* LAYOUT */
+    .sec { position: relative; z-index: 1; padding: 7rem 2rem; }
+    .w { max-width: 1120px; margin: 0 auto; }
+    .ch { display: inline-flex; align-items: center; gap: .75rem; font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 3rem; }
+    .ch::after { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); opacity: .5; }
+    .sec-hl { font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.08; letter-spacing: -.025em; margin-bottom: 1.25rem; }
+    .sec-hl em { font-style: normal; color: var(--accent-light); }
+    .sec-body { font-size: .9rem; color: var(--fg-muted); line-height: 1.85; font-weight: 300; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    @media(max-width:860px){ .two-col { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* MARQUEE */
+    .mq { position: relative; z-index: 1; overflow: hidden; padding: 1.1rem 0; }
+    .mq-track { display: flex; animation: mqs 38s linear infinite; white-space: nowrap; }
+    .mq-item { font-size: .64rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--fg-dim); padding: 0 2rem; flex-shrink: 0; }
+    .mq-dot { color: var(--accent-light); margin-right: 2rem; }
+    @keyframes mqs { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* DIFFERENCE */
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border-radius: var(--r); overflow: hidden; border: 1px solid var(--glass-border); }
+    @media(max-width:560px){ .diff-grid { grid-template-columns: 1fr; } }
+    .diff { padding: 1.75rem; background: var(--glass); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); transition: background .3s; }
+    .diff:hover { background: rgb(var(--fg-rgb) / .1); }
+    .diff-icon { width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: rgba(240,180,41,.1); border: 1px solid rgba(240,180,41,.22); color: var(--accent); }
+    .diff-icon svg { width: 17px; height: 17px; }
+    .diff h5 { font-size: .85rem; font-weight: 700; margin-bottom: .3rem; }
+    .diff p { font-size: .76rem; color: var(--fg-muted); font-weight: 300; line-height: 1.6; }
+
+    /* PACKAGES */
+    .pkg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    @media(max-width:860px){ .pkg-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:560px){ .pkg-grid { grid-template-columns: 1fr; } }
+    .edu-pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media(max-width:760px){ .edu-pkg-grid { grid-template-columns: 1fr; } }
+    .pkg { padding: 2.5rem; position: relative; overflow: hidden; transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; }
+    .pkg:hover { transform: translateY(-5px); box-shadow: inset 0 1px 0 rgb(var(--fg-rgb) / .28), 0 28px 72px rgba(0,0,0,.45), 0 0 0 1px rgba(240,180,41,.15); }
+    .pkg-tag { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+    .pkg-name { font-family: var(--font-d); font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .6rem; line-height: 1.15; }
+    .pkg-price { font-family: var(--font-d); font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; color: var(--accent); margin-bottom: .5rem; display: flex; align-items: baseline; gap: .35rem; }
+    .pkg-price .pkg-period { font-size: .65rem; font-weight: 400; color: var(--fg-muted); text-transform: uppercase; letter-spacing: .1em; }
+    .pkg-was { font-size: .72rem; color: var(--fg-dim); font-weight: 300; margin-bottom: 1.25rem; }
+    .pkg-was s { color: var(--fg-dim); }
+    .pkg-desc { font-size: .83rem; color: var(--fg-muted); font-weight: 300; line-height: 1.75; margin-bottom: 1.5rem; }
+    .pkg-includes { list-style: none; display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1.75rem; }
+    .pkg-includes li { display: flex; gap: .6rem; font-size: .8rem; color: var(--fg-muted); font-weight: 300; line-height: 1.5; }
+    .pkg-includes li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: .42rem; }
+    .pkg-cond { font-size: .7rem; color: var(--fg-dim); font-style: italic; border-top: 1px solid rgb(var(--fg-rgb) / .07); padding-top: 1rem; line-height: 1.5; }
+    .pkg-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg,transparent,var(--accent),transparent); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .pkg:hover .pkg-bar { transform: scaleX(1); }
+
+    /* MAINTENANCE */
+    .maint { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; padding: 2.25rem 2.75rem; }
+    .maint-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .6rem; }
+    .maint-title { font-family: var(--font-d); font-size: 1.15rem; font-weight: 600; letter-spacing: -.015em; margin-bottom: .4rem; }
+    .maint-price { font-family: var(--font-d); font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; color: var(--accent); margin-bottom: .6rem; display: flex; align-items: baseline; gap: .35rem; }
+    .maint-price .pkg-period { font-size: .65rem; font-weight: 400; color: var(--fg-muted); text-transform: uppercase; letter-spacing: .1em; }
+    .maint-body { font-size: .83rem; color: var(--fg-muted); font-weight: 300; line-height: 1.7; max-width: 500px; }
+    .cur-toggle { display: inline-flex; gap: .35rem; }
+    .cur-btn { font-family: var(--font-d); font-size: .95rem; font-weight: 800; line-height: 1; width: 2.1rem; height: 2.1rem; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--glass-border); background: rgb(var(--fg-rgb) / .04); color: var(--fg-dim); cursor: pointer; opacity: .55; transition: opacity .2s, background .2s, border-color .2s, color .2s; }
+    .cur-btn:hover { opacity: .85; }
+    .cur-btn.active { opacity: 1; }
+    .cur-btn[data-cur="USD"].active { background: rgba(126,212,68,.14); border-color: rgba(126,212,68,.4); color: #7ed444; }
+    .cur-btn[data-cur="AWG"].active { background: rgba(245,166,35,.14); border-color: rgba(245,166,35,.4); color: #f5a623; }
+
+    /* CONDITIONS TABLE */
+    .cond-table { border: 1px solid var(--glass-border); border-radius: var(--r); overflow: hidden; }
+    .cond-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid rgb(var(--fg-rgb) / .07); }
+    .cond-row:last-child { border-bottom: none; }
+    .cond-cell { padding: 1.1rem 1.75rem; background: rgb(var(--fg-rgb) / .04); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+    .cond-cell:first-child { border-right: 1px solid rgb(var(--fg-rgb) / .07); }
+    .cond-key { font-size: .64rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-dim); margin-bottom: .3rem; }
+    .cond-val { font-size: .85rem; font-weight: 400; }
+    @media(max-width:560px){ .cond-row { grid-template-columns: 1fr; } .cond-cell:first-child { border-right: none; border-bottom: 1px solid rgb(var(--fg-rgb) / .07); } }
+
+    /* PROCESS */
+    .proc-grid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--glass-border); border-radius: var(--r); overflow: hidden; }
+    @media(max-width:680px){ .proc-grid { grid-template-columns: 1fr 1fr; } }
+    .proc-cell { padding: 2.75rem 2rem; background: var(--glass); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-right: 1px solid var(--glass-border); transition: background .3s; }
+    .proc-cell:last-child { border-right: none; }
+    .proc-cell:hover { background: rgb(var(--fg-rgb) / .1); }
+    .proc-cell:hover .proc-n { color: var(--accent-light); transform: translateY(-4px); }
+    .proc-n { font-family: var(--font-d); font-size: 3rem; font-weight: 700; color: rgb(var(--fg-rgb) / .08); display: block; margin-bottom: 1.5rem; transition: color .3s, transform .4s cubic-bezier(.16,1,.3,1); }
+    .proc-cell h4 { font-size: .9rem; font-weight: 700; margin-bottom: .45rem; }
+    .proc-cell p { font-size: .78rem; color: var(--fg-muted); line-height: 1.7; font-weight: 300; }
+
+    /* QUOTE */
+    .quote-sec { position: relative; z-index: 1; padding: 7rem 2rem; text-align: center; }
+    .quote-glass { max-width: 760px; margin: 0 auto; padding: 3.5rem; }
+    .quote-text { font-family: var(--font-d); font-size: clamp(1.3rem, 3.5vw, 2.2rem); font-weight: 600; line-height: 1.25; letter-spacing: -.015em; }
+    .quote-text em { font-style: normal; color: var(--accent-light); }
+    .quote-attr { margin-top: 1.5rem; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-dim); }
+
+    /* INQUIRY */
+    .inq-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+    @media(max-width:860px){ .inq-layout { grid-template-columns: 1fr; gap: 3rem; } }
+    .inq-left { position: sticky; top: 5.5rem; }
+    .inq-bar { display: block; width: 32px; height: 2px; background: var(--accent); border-radius: 2px; margin-bottom: 2rem; }
+    .inq-hl { font-family: var(--font-d); font-size: clamp(1.7rem, 3.8vw, 2.6rem); font-weight: 700; line-height: 1.08; letter-spacing: -.025em; margin-bottom: 1.25rem; }
+    .inq-hl em { font-style: normal; color: var(--accent-light); }
+    .inq-body { font-size: .875rem; color: var(--fg-muted); line-height: 1.85; font-weight: 300; margin-bottom: 2rem; }
+    .inq-pts { display: flex; flex-direction: column; gap: .8rem; }
+    .inq-pt { font-size: .78rem; color: var(--fg-muted); display: flex; gap: .6rem; font-weight: 300; }
+    .inq-pt::before { content: '—'; color: var(--accent-light); font-weight: 600; flex-shrink: 0; }
+    .ff { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.25rem; }
+    .ffrow { display: flex; gap: 1rem; }
+    .ffrow .ff { flex: 1; }
+    .flbl { font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-dim); }
+    .fi, .fs, .ft { background: rgb(var(--fg-rgb) / .06); border-radius: 10px; border: 1px solid rgb(var(--fg-rgb) / .1); color: var(--fg); font-family: var(--font); font-size: .875rem; font-weight: 300; padding: .75rem 1rem; width: 100%; outline: none; transition: border-color .2s, background .2s; -webkit-appearance: none; }
+    .fi::placeholder, .ft::placeholder { color: rgb(var(--fg-rgb) / .22); }
+    .fi:focus, .fs:focus, .ft:focus { border-color: rgba(240,180,41,.5); background: rgb(var(--fg-rgb) / .09); }
+    .fs { cursor: pointer; }
+    .fs option { background: #1f1606; color: #f0f0f0; }
+    .ft { resize: none; min-height: 90px; }
+    .fsubmit { width: 100%; padding: 1rem; border: none; cursor: pointer; border-radius: 40px; margin-top: .5rem; background: var(--accent); color: #080808; font-family: var(--font); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: filter .2s, transform .15s, box-shadow .2s; }
+    .fsubmit:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(240,180,41,.3); }
+    .fsubmit:disabled { opacity: .35; cursor: default; transform: none; }
+    .fsuccess { display: none; padding: 3rem 0; }
+    .fsuccess.show { display: block; }
+    .fsuccess h3 { font-family: var(--font-d); font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .6rem; }
+    .fsuccess h3 em { font-style: normal; color: var(--accent-light); }
+    .fsuccess p { font-size: .875rem; color: var(--fg-muted); font-weight: 300; line-height: 1.7; margin-top: .5rem; }
+
+    footer { position: relative; z-index: 1; padding: 2.5rem 2rem; }
+    .ft-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .ft-brand { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); }
+    .ft-left { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+    .ft-badge { display: flex; align-items: center; gap: .65rem; }
+    .ft-badge img { width: 42px; height: 42px; border-radius: 8px; flex-shrink: 0; }
+    .ft-badge-text { display: flex; flex-direction: column; gap: 1px; }
+    .ft-badge-text strong { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); transition: color .2s; }
+    .ft-badge-text span { font-size: .65rem; color: var(--fg-dim); }
+    .ft-badge:hover .ft-badge-text strong { color: var(--accent-light); }
+    html.dark .ft-badge:hover .ft-badge-text strong { color: var(--accent); }
+    .ft-links { display: flex; gap: 2rem; }
+    .ft-links a { font-size: .74rem; color: var(--fg-dim); transition: color .2s; }
+    .ft-links a:hover { color: var(--fg); }
+  </style>
+</head>
+<body>
+<div class="bg-wrap" id="bg"></div>
+<div class="bg-overlay"></div>
+<div class="particles" id="particles"></div>
+
+<nav>
+  <a href="/" class="nlogo"><img src="logo.png" alt="Your Local Tech Guy" /></a>
+  <div class="nl">
+    <a href="/">Computer Repair</a>
+    <a href="digital.html">Web &amp; Automation</a>
+    <a href="#inquire" class="active">Education</a>
+    <a href="/legal.html">Legal</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+    <a href="#inquire" class="ncta">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb sr">
+      <a href="digital.html">Web &amp; Automation</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Schools &amp; Education</span>
+    </div>
+    <div class="hero-label sr">Schools &amp; Educational Institutions</div>
+    <h1 class="sr d1 wr">Built for the people teaching <em>Aruba's next generation.</em></h1>
+    <p class="hero-sub sr d2">A flat-rate maintenance package and discounted project pricing for schools and educational institutions in Aruba — the same standard of care as our enterprise clients, at a rate built for education budgets.</p>
+    <div class="btn-row sr d3">
+      <a href="#pricing" class="btn-p">See pricing</a>
+      <a href="#inquire" class="btn-g">Get a quote</a>
+    </div>
+    <div class="hero-stats sr">
+      <div><div class="stat-n">ƒ900/mo</div><div class="stat-l">Flat school maintenance rate</div></div>
+      <div><div class="stat-n">ƒ469</div><div class="stat-l">Saved every month vs. standard</div></div>
+      <div><div class="stat-n">10%+</div><div class="stat-l">Off website &amp; project builds</div></div>
+      <div><div class="stat-n">24mo</div><div class="stat-l">Minimum engagement term</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq glass-flat">
+  <div class="mq-track">
+    <span class="mq-item"><span class="mq-dot">—</span>Reduced Educational Rates</span>
+    <span class="mq-item"><span class="mq-dot">—</span>24/7 Monitoring</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Meta Token Renewals</span>
+    <span class="mq-item"><span class="mq-dot">—</span>API Change Management</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Multilingual Sites</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Mobile-First Design</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Built From Scratch</span>
+    <span class="mq-item"><span class="mq-dot">—</span>No Hidden Fees</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Reduced Educational Rates</span>
+    <span class="mq-item"><span class="mq-dot">—</span>24/7 Monitoring</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Meta Token Renewals</span>
+    <span class="mq-item"><span class="mq-dot">—</span>API Change Management</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Multilingual Sites</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Mobile-First Design</span>
+    <span class="mq-item"><span class="mq-dot">—</span>Built From Scratch</span>
+    <span class="mq-item"><span class="mq-dot">—</span>No Hidden Fees</span>
+  </div>
+</div>
+
+<!-- WHY SCHOOLS CHOOSE US -->
+<section class="sec">
+  <div class="w">
+    <div class="two-col">
+      <div class="sr">
+        <div class="ch">Why Schools Choose Us</div>
+        <div class="sec-hl">The same standard of care. <em>A rate built for education.</em></div>
+        <p class="sec-body" style="margin-bottom:1.5rem">Schools and educational institutions across Aruba — from SPO to university level, public or private — get every service in our standard maintenance package at a flat ƒ900/mo, instead of the usual ƒ1,369/mo. Nothing is removed or downgraded to hit that price.</p>
+        <p class="sec-body">New websites and project work start at a minimum 10% reduction off our standard pricing, with further discounts assessed case-by-case based on your institution's situation.</p>
+      </div>
+      <div class="diff-grid sr d1">
+        <div class="diff">
+          <div class="diff-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.169.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3zM6 6h.008v.008H6V6z"/></svg></div>
+          <h5>Reduced Rates, Same Standard</h5><p>ƒ900/mo flat — every service in our standard ƒ1,369/mo package, with nothing removed or deprioritized.</p>
+        </div>
+        <div class="diff">
+          <div class="diff-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          <h5>24/7 Monitoring &amp; Support</h5><p>Automated uptime &amp; workflow monitoring, human-reviewed daily, with 24h response on major issues and 4h on critical/site-down.</p>
+        </div>
+        <div class="diff">
+          <div class="diff-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992V4.356M2.985 19.644v-4.99m0 0h4.99m-4.99 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg></div>
+          <h5>Meta Token Renewals Included</h5><p>Facebook &amp; Instagram tokens renewed proactively — never an extra line item on your bill.</p>
+        </div>
+        <div class="diff">
+          <div class="diff-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg></div>
+          <h5>API Change Management</h5><p>When Meta changes its APIs, we handle it — included in your maintenance package, never billed as an extra.</p>
+        </div>
+        <div class="diff">
+          <div class="diff-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg></div>
+          <h5>Multilingual Ready</h5><p>Papiamento, Dutch, Spanish &amp; English — built for Aruba's classrooms, parents, and staff.</p>
+        </div>
+        <div class="diff">
+          <div class="diff-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25M6.75 6.75L1.5 12l5.25 5.25m7.5-13.5l-4.5 16.5"/></svg></div>
+          <h5>Built From Scratch</h5><p>No templates, no page builders — a fast, accessible site your staff can actually maintain.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" style="padding-top:0" id="pricing">
+  <div class="w">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div class="ch sr">Educational Pricing</div>
+      <span class="cur-toggle sr">
+        <button type="button" class="cur-btn active" data-cur="AWG" aria-label="Show prices in Aruban Florin" title="Aruban Florin">ƒ</button>
+        <button type="button" class="cur-btn" data-cur="USD" aria-label="Show prices in US Dollars" title="US Dollars">$</button>
+      </span>
+    </div>
+    <p class="sr" style="font-size:.9rem;color:var(--fg-muted);font-weight:300;max-width:560px;margin-bottom:3rem;line-height:1.8">Pricing for schools and educational institutions follows our published Educational Institution Pricing Policy. Two ways to engage — pick one, or both.</p>
+    <div class="edu-pkg-grid">
+
+      <div class="pkg glass sr d1">
+        <div class="pkg-tag">Most Common</div>
+        <div class="pkg-name">Full Maintenance Package — School Rate</div>
+        <div class="pkg-price"><span class="cur-amt" data-awg="900">ƒ900</span><span class="pkg-period"> /mo</span></div>
+        <div class="pkg-was">Standard rate <s class="cur-amt" data-awg="1369">ƒ1,369</s>/mo &middot; save <span class="cur-amt" data-awg="469">ƒ469</span>/mo</div>
+        <p class="pkg-desc">A fixed flat rate that includes every service in our standard maintenance package — no downgrades, no reduced response times, nothing removed.</p>
+        <ul class="pkg-includes">
+          <li>Uptime &amp; workflow monitoring — 24/7 automated, human-reviewed daily</li>
+          <li>Meta token renewals (Facebook &amp; Instagram)</li>
+          <li>24-hour response on major issues, 4-hour on critical / site-down</li>
+          <li>Server &amp; platform patching (hosting + Vercel)</li>
+          <li>Monthly performance report — uptime, traffic, post success rate</li>
+          <li>API change management — never billed as an extra</li>
+        </ul>
+        <div class="pkg-cond">Minimum 24-month engagement. Available to schools &amp; educational institutions in Aruba — public or private, SPO through university level.</div>
+        <div class="pkg-bar"></div>
+      </div>
+
+      <div class="pkg glass sr d2">
+        <div class="pkg-tag">New Build or Rebuild</div>
+        <div class="pkg-name">Website &amp; Project Builds</div>
+        <div class="pkg-price"><span>10%+</span><span class="pkg-period">off standard pricing</span></div>
+        <div class="pkg-was">&nbsp;</div>
+        <p class="pkg-desc">Whether it's a brand-new school website or a rebuild of an existing one, every educational project starts with at least a 10% reduction off our standard rates — quoted upfront and scoped to your institution.</p>
+        <ul class="pkg-includes">
+          <li>Custom-coded site — no templates or page builders</li>
+          <li>Multilingual support (PAP / NL / ES / EN) where needed</li>
+          <li>Mobile-first, accessible, SEO-ready</li>
+          <li>Integrates directly with the maintenance package above</li>
+          <li>Deployed to Vercel — fast, secure, easy to hand off</li>
+        </ul>
+        <div class="pkg-cond">Final price scoped to your project and quoted upfront. Pairs with the maintenance package for ongoing support after launch.</div>
+        <div class="pkg-bar"></div>
+      </div>
+
+    </div>
+
+    <!-- Enhanced discounts -->
+    <div class="maint glass sr" style="margin-top:1.5rem">
+      <div>
+        <div class="maint-label">Enhanced Discounts</div>
+        <div class="maint-title">Further reductions are assessed case-by-case.</div>
+        <p class="maint-body">Public institutions, special-education (SPO) schools, smaller enrollments, and documented limited budgets may qualify for a larger reduction beyond the standard educational rate — at the owner's discretion.</p>
+      </div>
+      <a href="/legal.html" class="btn-g" style="flex-shrink:0;white-space:nowrap">View full pricing policy</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section class="sec" style="padding-top:0">
+  <div class="w">
+    <div class="ch sr">Conditions &amp; Terms</div>
+    <p class="sr" style="font-size:.9rem;color:var(--fg-muted);font-weight:300;max-width:480px;margin-bottom:2.5rem;line-height:1.8">Transparent, published terms — the same policy applies to every educational institution we work with.</p>
+    <div class="cond-table sr">
+      <div class="cond-row">
+        <div class="cond-cell"><div class="cond-key">Engagement Type</div><div class="cond-val">Maintenance retainer, project build, or both</div></div>
+        <div class="cond-cell"><div class="cond-key">Minimum Term</div><div class="cond-val">24 months for all educational engagements</div></div>
+      </div>
+      <div class="cond-row">
+        <div class="cond-cell"><div class="cond-key">Maintenance Rate</div><div class="cond-val">Flat ƒ900/mo — every standard-package service included</div></div>
+        <div class="cond-cell"><div class="cond-key">Project Pricing</div><div class="cond-val">Minimum 10% off standard rates, quoted upfront</div></div>
+      </div>
+      <div class="cond-row">
+        <div class="cond-cell"><div class="cond-key">Eligibility</div><div class="cond-val">Schools &amp; educational institutions in Aruba — public or private, SPO through university</div></div>
+        <div class="cond-cell"><div class="cond-key">Enhanced Discounts</div><div class="cond-val">Case-by-case, approved personally by the owner</div></div>
+      </div>
+      <div class="cond-row">
+        <div class="cond-cell"><div class="cond-key">Early Termination</div><div class="cond-val">May trigger a retroactive adjustment to standard pricing</div></div>
+        <div class="cond-cell"><div class="cond-key">Policy Updates</div><div class="cond-val">60 days written notice before changes affect new or renewing agreements</div></div>
+      </div>
+      <div class="cond-row">
+        <div class="cond-cell"><div class="cond-key">Response Time</div><div class="cond-val">24h on major issues, 4h on critical / site-down</div></div>
+        <div class="cond-cell"><div class="cond-key">Full Policy</div><div class="cond-val">Educational Institution Pricing Policy — see Legal &amp; Compliance</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-sec">
+  <div class="quote-glass glass sr">
+    <div class="quote-text">"The right technology shouldn't be <em>a budget line schools have to fight for.</em>"</div>
+    <div class="quote-attr">It should just work — at a price that makes sense.</div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec" style="padding-top:0">
+  <div class="w">
+    <div class="ch sr">How It Works</div>
+    <div class="proc-grid sr">
+      <div class="proc-cell"><span class="proc-n">01</span><h4>Tell us about your school</h4><p>Current site, systems, enrollment, and what you're hoping to achieve.</p></div>
+      <div class="proc-cell"><span class="proc-n">02</span><h4>We confirm your rate</h4><p>Your educational pricing — and any enhanced discount — confirmed and scoped upfront.</p></div>
+      <div class="proc-cell"><span class="proc-n">03</span><h4>We build or onboard</h4><p>A new site built from scratch, or your maintenance retainer set up and running.</p></div>
+      <div class="proc-cell"><span class="proc-n">04</span><h4>We operate</h4><p>24/7 monitoring, monthly reports, and ongoing support for the full term.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY -->
+<section class="sec" id="inquire">
+  <div class="w">
+    <div class="inq-layout">
+      <div class="inq-left sr">
+        <span class="inq-bar"></span>
+        <div class="inq-hl">Let's get your school <em>set up right.</em></div>
+        <p class="inq-body">Tell us about your institution and we'll confirm your educational rate — including any enhanced discount you may qualify for — within 24 hours.</p>
+        <div class="inq-pts">
+          <div class="inq-pt">Response within 24 hours</div>
+          <div class="inq-pt">Flat ƒ900/mo maintenance rate (down from ƒ1,369/mo)</div>
+          <div class="inq-pt">Minimum 10% off project &amp; website pricing</div>
+          <div class="inq-pt">Enhanced discounts assessed case-by-case</div>
+          <div class="inq-pt">localtechguy.aua@gmail.com</div>
+        </div>
+      </div>
+      <div class="sr d1">
+        <div id="form-fields">
+          <div class="ffrow">
+            <div class="ff"><label class="flbl">School / Institution Name *</label><input class="fi" id="iq-school" type="text" placeholder="e.g. Colegio Arubano" /></div>
+            <div class="ff"><label class="flbl">Contact Name *</label><input class="fi" id="iq-name" type="text" placeholder="Jane Smith" /></div>
+          </div>
+          <div class="ffrow">
+            <div class="ff"><label class="flbl">Email *</label><input class="fi" id="iq-email" type="email" placeholder="you@example.com" /></div>
+            <div class="ff"><label class="flbl">Phone</label><input class="fi" id="iq-phone" type="tel" placeholder="+297 xxx xxxx" /></div>
+          </div>
+          <div class="ffrow">
+            <div class="ff"><label class="flbl">Type of Institution</label>
+              <select class="fs" id="iq-type">
+                <option value="">— Select one —</option>
+                <option>Public</option>
+                <option>Private</option>
+              </select>
+            </div>
+            <div class="ff"><label class="flbl">School Level</label>
+              <select class="fs" id="iq-level">
+                <option value="">— Select one —</option>
+                <option>SPO</option>
+                <option>MAVO</option>
+                <option>HAVO</option>
+                <option>VWO</option>
+                <option>University / Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="ffrow">
+            <div class="ff"><label class="flbl">Approx. Enrollment</label>
+              <select class="fs" id="iq-enrollment">
+                <option value="">— Select one —</option>
+                <option>Under 300 students</option>
+                <option>300 – 800 students</option>
+                <option>Over 800 students</option>
+                <option>Not sure</option>
+              </select>
+            </div>
+            <div class="ff"><label class="flbl">What do you need? *</label>
+              <select class="fs" id="iq-service">
+                <option value="">— Select one —</option>
+                <option>Full Maintenance Package (ƒ900/mo)</option>
+                <option>Website / Project Build</option>
+                <option>Both — Maintenance &amp; Project</option>
+                <option>Not sure — I need advice</option>
+              </select>
+            </div>
+          </div>
+          <div class="ff"><label class="flbl">Tell us about your school and what you need *</label><textarea class="ft" id="iq-desc" placeholder="What's your current website/systems situation, and what are you hoping to achieve?"></textarea></div>
+          <button class="fsubmit" id="iq-submit" onclick="submitInquiry()">Send Inquiry</button>
+        </div>
+        <div class="fsuccess" id="form-success">
+          <h3>We've received your <em>inquiry.</em></h3>
+          <p>We'll review your request and follow up within 24 hours with your confirmed educational rate.</p>
+          <p style="margin-top:1rem;color:rgb(var(--fg-rgb) / .3);font-size:.8rem">localtechguy.aua@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="glass-flat">
+  <div class="ft-in">
+    <div class="ft-left">
+      <a href="/verified.html" class="ft-badge" title="Scan or click to verify this build">
+        <img src="/verified-badge.png" alt="Verified build QR code" width="42" height="42" />
+        <div class="ft-badge-text"><strong>Verified Build</strong><span>Scan to confirm</span></div>
+      </a>
+      <div class="ft-brand">Your Local Tech Guy &middot; Oranjestad, Aruba</div>
+    </div>
+    <div class="ft-links">
+      <a href="tel:+2975639903">(297) 563-9903</a>
+      <a href="mailto:localtechguy.aua@gmail.com">localtechguy.aua@gmail.com</a>
+      <a href="/digital.html">Web &amp; Automation</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-service.html">Terms of Service</a>
+      <a href="/sla.html">SLA</a>
+      <span style="color:var(--fg-dim)">&copy; <span id="year"></span></span>
+      <span style="color:var(--fg-dim)" title="Site build version">v2026.06.11</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+(function(){ const s=localStorage.getItem('theme'); if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark'); })();
+function toggleTheme(){ const d=document.documentElement.classList.toggle('dark'); localStorage.setItem('theme',d?'dark':'light'); }
+(function(){const c=document.getElementById('particles'),n=window.innerWidth<600?14:28,syms=['{}','</>','01','10','//','#!','[ ]','&&','||','!=','>>','ssh','0x','git','npm','sys','if()','int','hex','eth0','>_','...',';','::'],cs=getComputedStyle(document.documentElement),cols=['--particle-1','--particle-2','--particle-3'].map(v=>cs.getPropertyValue(v).trim());for(let i=0;i<n;i++){const p=document.createElement('div');p.className='p';p.textContent=syms[Math.floor(Math.random()*syms.length)];const col=cols[Math.floor(Math.random()*cols.length)];const alpha=(Math.random()*.22+.06).toFixed(2);const sz=Math.floor(Math.random()*7+8);p.style.cssText=`left:${Math.random()*100}%;font-size:${sz}px;color:rgb(${col} / ${alpha});animation-duration:${Math.random()*22+14}s;animation-delay:-${Math.random()*28}s;`;c.appendChild(p);}})();
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');io.unobserve(x.target);}});},{threshold:.07}); document.querySelectorAll('.sr').forEach(el=>io.observe(el));
+document.querySelectorAll('.wr').forEach(el=>{ el.innerHTML=el.innerHTML.split(/(\s+)/).map(w=>w.trim()?`<span class="word"><span>${w}</span></span>`:w).join(''); }); const wrIO=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.querySelectorAll('.word span').forEach((s,i)=>setTimeout(()=>s.style.transform='translateY(0)',i*55));wrIO.unobserve(el.target);}});},{threshold:.2}); document.querySelectorAll('.wr').forEach(el=>wrIO.observe(el));
+const AWG_RATE = 1.79; // fixed peg, USD to AWG
+document.querySelectorAll('.cur-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ const cur=btn.dataset.cur; document.querySelectorAll('.cur-btn').forEach(b=>b.classList.toggle('active',b.dataset.cur===cur)); document.querySelectorAll('.cur-amt').forEach(el=>{ const awg=parseFloat(el.dataset.awg); el.textContent = cur==='USD' ? '$'+Math.round(awg/AWG_RATE).toLocaleString('en-US') : 'ƒ'+awg.toLocaleString('en-US'); }); }); });
+function submitInquiry(){ const school=document.getElementById('iq-school').value.trim(), n=document.getElementById('iq-name').value.trim(), e=document.getElementById('iq-email').value.trim(), s=document.getElementById('iq-service').value, d=document.getElementById('iq-desc').value.trim(); if(!school||!n||!e||!s||!d){ alert('Please fill in all required fields.'); return; } const btn=document.getElementById('iq-submit'); btn.disabled=true; btn.textContent='Sending…'; fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:'ce014a91-b5e4-46d0-9781-527fbdc1d92f',subject:'Education Inquiry: '+school+' — '+s,from_name:n,school:school,email:e,phone:document.getElementById('iq-phone').value.trim()||'Not provided',institution_type:document.getElementById('iq-type').value||'Not specified',school_level:document.getElementById('iq-level').value||'Not specified',enrollment:document.getElementById('iq-enrollment').value||'Not specified',service:s,message:d})}).catch(()=>{}); document.getElementById('form-fields').style.display='none'; document.getElementById('form-success').classList.add('show'); }
+</script>
+</body>
+</html>
