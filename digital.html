@@ -15,6 +15,7 @@
       --accent-light: #1f4d28;
       --accent2: #44b4d4;
       --accent3: #f0b429;
+      --accent4: #e0556e;
       --fg-rgb: 10 28 18;
       --fg: rgb(var(--fg-rgb) / .92);
       --fg-muted: rgb(var(--fg-rgb) / .58);
@@ -113,6 +114,8 @@
     @media(max-width:1060px){ .path-grid { grid-template-columns: 1fr 1fr; max-width: 760px; } }
     @media(max-width:700px){ .path-grid { grid-template-columns: 1fr; } }
 
+    .addon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; max-width: 760px; margin: 0 auto; }
+
     .stack-sec { position: relative; z-index: 1; padding: 0 2rem 7rem; }
     .stack-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2.75rem 3.25rem; max-width: 880px; margin: 0 auto; padding: 2.75rem 2rem; border-radius: 20px; background: #181a18; border-top-color: rgba(255,255,255,.07); border-bottom-color: rgba(255,255,255,.05); box-shadow: 0 20px 60px rgba(0,0,0,.12); }
     .stack-item { display: flex; flex-direction: column; align-items: center; gap: .65rem; }
@@ -127,17 +130,20 @@
     .path-card.biz:hover { box-shadow: inset 0 1px 0 rgb(var(--fg-rgb) / .32), 0 36px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(126,212,68,.2); }
     .path-card.free:hover { box-shadow: inset 0 1px 0 rgb(var(--fg-rgb) / .32), 0 36px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(68,180,212,.2); }
     .path-card.edu:hover { box-shadow: inset 0 1px 0 rgb(var(--fg-rgb) / .32), 0 36px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(240,180,41,.2); }
+    .path-card.addon:hover { box-shadow: inset 0 1px 0 rgb(var(--fg-rgb) / .32), 0 36px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(224,85,110,.2); }
 
     .pc-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
     .pc-icon svg { width: 22px; height: 22px; }
     .path-card.biz .pc-icon { background: rgba(126,212,68,.1); border: 1px solid rgba(126,212,68,.22); color: var(--accent); }
     .path-card.free .pc-icon { background: rgba(68,180,212,.1); border: 1px solid rgba(68,180,212,.22); color: var(--accent2); }
     .path-card.edu .pc-icon { background: rgba(240,180,41,.1); border: 1px solid rgba(240,180,41,.22); color: var(--accent3); }
+    .path-card.addon .pc-icon { background: rgba(224,85,110,.1); border: 1px solid rgba(224,85,110,.22); color: var(--accent4); }
 
     .pc-tag { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .75rem; }
     .path-card.biz .pc-tag { color: var(--accent); }
     .path-card.free .pc-tag { color: var(--accent2); }
     .path-card.edu .pc-tag { color: var(--accent3); }
+    .path-card.addon .pc-tag { color: var(--accent4); }
 
     .pc-title { font-family: var(--font-d); font-size: 1.45rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; margin-bottom: .75rem; }
     .pc-sub { font-size: .84rem; color: var(--fg-muted); font-weight: 300; line-height: 1.78; margin-bottom: 2rem; }
@@ -148,11 +154,13 @@
     .path-card.biz .pc-perks li::before { background: var(--accent); }
     .path-card.free .pc-perks li::before { background: var(--accent2); }
     .path-card.edu .pc-perks li::before { background: var(--accent3); }
+    .path-card.addon .pc-perks li::before { background: var(--accent4); }
 
     .pc-cta { display: inline-flex; align-items: center; gap: .5rem; font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-top: auto; }
     .path-card.biz .pc-cta { color: var(--accent); }
     .path-card.free .pc-cta { color: var(--accent2); }
     .path-card.edu .pc-cta { color: var(--accent3); }
+    .path-card.addon .pc-cta { color: var(--accent4); }
     .pc-cta svg { width: 13px; height: 13px; transition: transform .25s; }
     .path-card:hover .pc-cta svg { transform: translateX(4px); }
 
@@ -160,6 +168,7 @@
     .path-card.biz .pc-bar { background: linear-gradient(90deg, transparent, var(--accent), transparent); }
     .path-card.free .pc-bar { background: linear-gradient(90deg, transparent, var(--accent2), transparent); }
     .path-card.edu .pc-bar { background: linear-gradient(90deg, transparent, var(--accent3), transparent); }
+    .path-card.addon .pc-bar { background: linear-gradient(90deg, transparent, var(--accent4), transparent); }
     .path-card:hover .pc-bar { transform: scaleX(1); }
 
     footer { position: relative; z-index: 1; padding: 2.5rem 2rem; }
@@ -298,6 +307,37 @@
         <li>Enhanced discounts available — assessed case by case</li>
       </ul>
       <span class="pc-cta">Explore education plans
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+      </span>
+      <div class="pc-bar"></div>
+    </a>
+
+  </div>
+</section>
+
+<section class="path-sec" id="addons" style="padding-top:0">
+  <div class="path-head sr">
+    <p class="path-overline">Strengthen Your Stack</p>
+    <h2>Add-on services.</h2>
+    <p>Optional layers that plug into any plan above — built to grow as your needs do.</p>
+  </div>
+  <div class="addon-grid">
+
+    <a href="honeypot.html" class="path-card glass addon sr d1">
+      <div class="pc-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div class="pc-tag">Security &amp; Threat Intelligence</div>
+      <div class="pc-title">Turn every attack on your site into protection for the whole network.</div>
+      <p class="pc-sub">Passive honeypots deployed on your infrastructure quietly detect bots and malicious traffic, feeding a shared threat intelligence network that strengthens IP blocklists and email blacklists for every participating client.</p>
+      <ul class="pc-perks">
+        <li>Hidden form fields &amp; trap endpoints — invisible to real visitors</li>
+        <li>Zero active probing or retaliation — purely passive</li>
+        <li>Anonymized data shared across the threat intelligence network</li>
+        <li>Email blacklist enrichment via VerifyIQ</li>
+        <li>Monthly threat reports — opt out of sharing anytime</li>
+      </ul>
+      <span class="pc-cta">Explore honeypot &amp; threat intel
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
       </span>
       <div class="pc-bar"></div>
