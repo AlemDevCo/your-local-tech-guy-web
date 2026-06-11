@@ -74,7 +74,15 @@
     .theme-btn svg { width: 16px; height: 16px; }
     .icon-sun { display: block; } .icon-moon { display: none; }
     html.dark .icon-sun { display: none; } html.dark .icon-moon { display: block; }
-    @media(max-width:640px){ .nl { display: none; } }
+    .nav-hamburger { display: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--glass-border); background: rgb(var(--fg-rgb) / .08); cursor: pointer; align-items: center; justify-content: center; color: var(--fg-muted); transition: background .2s, color .2s; flex-shrink: 0; }
+    .nav-hamburger:hover { background: rgb(var(--fg-rgb) / .16); color: var(--fg); }
+    .nav-hamburger svg { width: 16px; height: 16px; }
+    .nav-mobile-drawer { display: none; position: fixed; top: 5rem; left: 50%; transform: translateX(-50%); width: min(400px, calc(100% - 3rem)); z-index: 199; border-radius: var(--r); overflow: hidden; }
+    .nav-mobile-drawer.open { display: block; }
+    .nav-mobile-drawer a { display: block; padding: .9rem 1.5rem; font-size: .85rem; font-weight: 500; color: var(--fg-muted); border-bottom: 1px solid var(--glass-border); transition: color .2s, background .2s; }
+    .nav-mobile-drawer a:last-child { border-bottom: none; }
+    .nav-mobile-drawer a:hover, .nav-mobile-drawer a.active { color: var(--fg); background: rgb(var(--fg-rgb) / .05); }
+    @media(max-width:640px){ .nl { display: none; } .nav-hamburger { display: flex; } }
 
     .sr { opacity: 0; transform: translateY(40px) scale(.97); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
     .sr.v { opacity: 1; transform: none; }
@@ -249,8 +257,18 @@
       <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
     </button>
     <a href="#inquire" class="ncta">Get a Quote</a>
+    <button class="nav-hamburger" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <svg id="iconMenu" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="iconClose" style="display:none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
   </div>
 </nav>
+<div class="nav-mobile-drawer glass" id="navMobile">
+  <a href="/" class="nav-mobile-link">Computer Repair</a>
+  <a href="digital.html" class="nav-mobile-link">Web &amp; Automation</a>
+  <a href="#inquire" class="nav-mobile-link active">Threat Intelligence</a>
+  <a href="/legal.html" class="nav-mobile-link">Legal</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -548,6 +566,7 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 (function(){ const s=localStorage.getItem('theme'); if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark'); })();
 function toggleTheme(){ const d=document.documentElement.classList.toggle('dark'); localStorage.setItem('theme',d?'dark':'light'); }
+(function(){ const toggle=document.getElementById('navToggle'), mobile=document.getElementById('navMobile'), iMenu=document.getElementById('iconMenu'), iClose=document.getElementById('iconClose'); toggle.addEventListener('click',()=>{ const open=mobile.classList.toggle('open'); toggle.setAttribute('aria-expanded',open); iMenu.style.display=open?'none':'block'; iClose.style.display=open?'block':'none'; }); document.querySelectorAll('.nav-mobile-link').forEach(l=>l.addEventListener('click',()=>{ mobile.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); iMenu.style.display='block'; iClose.style.display='none'; })); })();
 (function(){const c=document.getElementById('particles'),n=window.innerWidth<600?14:28,syms=['{}','</>','01','10','//','#!','[ ]','&&','||','!=','>>','ssh','0x','git','npm','sys','if()','int','hex','eth0','>_','...',';','::'],cs=getComputedStyle(document.documentElement),cols=['--particle-1','--particle-2','--particle-3'].map(v=>cs.getPropertyValue(v).trim());for(let i=0;i<n;i++){const p=document.createElement('div');p.className='p';p.textContent=syms[Math.floor(Math.random()*syms.length)];const col=cols[Math.floor(Math.random()*cols.length)];const alpha=(Math.random()*.22+.06).toFixed(2);const sz=Math.floor(Math.random()*7+8);p.style.cssText=`left:${Math.random()*100}%;font-size:${sz}px;color:rgb(${col} / ${alpha});animation-duration:${Math.random()*22+14}s;animation-delay:-${Math.random()*28}s;`;c.appendChild(p);}})();
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');io.unobserve(x.target);}});},{threshold:.07}); document.querySelectorAll('.sr').forEach(el=>io.observe(el));
 document.querySelectorAll('.wr').forEach(el=>{ el.innerHTML=el.innerHTML.split(/(\s+)/).map(w=>w.trim()?`<span class="word"><span>${w}</span></span>`:w).join(''); }); const wrIO=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.querySelectorAll('.word span').forEach((s,i)=>setTimeout(()=>s.style.transform='translateY(0)',i*55));wrIO.unobserve(el.target);}});},{threshold:.2}); document.querySelectorAll('.wr').forEach(el=>wrIO.observe(el));
