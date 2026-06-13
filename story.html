@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story — Your Local Tech Guy | Aruba</title>
+  <meta name="description" content="Why Your Local Tech Guy chose the honey badger as its mascot — and what that means for how we build and operate in Aruba." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://yourlocaltechguyaua.com/story.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #7ed444;
+      --accent-light: #1f4d28;
+      --fg-rgb: 10 28 18;
+      --fg: rgb(var(--fg-rgb) / .92);
+      --fg-muted: rgb(var(--fg-rgb) / .58);
+      --fg-dim: rgb(var(--fg-rgb) / .32);
+      --glass: rgba(255,255,255,.88);
+      --glass-border: rgb(var(--fg-rgb) / .10);
+      --glass-top: rgba(255,255,255,.92);
+      --glass-shadow: rgb(var(--fg-rgb) / .10);
+      --r: 22px;
+      --font: 'Inter', system-ui, sans-serif;
+      --font-d: 'Space Grotesk', system-ui, sans-serif;
+      --bg-top: #ffffff;
+      --bg-bottom: #ffffff;
+      --bg-overlay-c: rgba(0,0,0,0);
+      --particle-1: 31 77 40;
+      --particle-2: 45 80 22;
+      --particle-3: 10 28 18;
+    }
+    html.dark {
+      --accent-light: var(--accent);
+      --particle-1: 126 212 68;
+      --particle-2: 68 180 212;
+      --particle-3: 160 220 80;
+      --fg-rgb: 255 255 255;
+      --fg: rgb(var(--fg-rgb) / .95);
+      --fg-muted: rgb(var(--fg-rgb) / .45);
+      --fg-dim: rgb(var(--fg-rgb) / .16);
+      --glass: rgba(6,6,6,.62);
+      --glass-border: rgb(var(--fg-rgb) / .09);
+      --glass-top: rgb(var(--fg-rgb) / .13);
+      --glass-shadow: rgba(0,0,0,.70);
+      --bg-top: #020910;
+      --bg-bottom: #020910;
+      --bg-overlay-c: rgba(2,6,14,.22);
+    }
+    html { scroll-behavior: smooth; background: var(--bg-bottom); transition: background .6s; }
+    body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: hidden; min-height: 100vh; background: transparent; transition: color .6s; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── BACKGROUND ── */
+    .bg-wrap { position: fixed; inset: 0; z-index: -2; background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 35%, var(--bg-bottom) 100%); transition: background .6s; }
+    .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 0%, var(--bg-overlay-c) 100%); transition: background .6s; }
+    .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .p { position: absolute; font-family: 'JetBrains Mono','Courier New',monospace; pointer-events: none; animation: pfloat linear infinite; -webkit-user-select: none; user-select: none; line-height: 1; }
+    @keyframes pfloat { 0%{transform:translateY(110vh);opacity:0} 8%{opacity:1} 92%{opacity:.8} 100%{transform:translateY(-10vh) translateX(25px);opacity:0} }
+
+    /* ── GLASS ── */
+    .glass { background: var(--glass); -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(1.06); backdrop-filter: blur(36px) saturate(200%) brightness(1.06); border-radius: var(--r); border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), inset 0 -1px 0 rgba(0,0,0,.12), 0 20px 80px var(--glass-shadow), 0 1px 0 rgb(var(--fg-rgb) / .04); transition: background .5s, border-color .5s, box-shadow .5s; }
+    .glass-flat { background: var(--glass); -webkit-backdrop-filter: blur(36px) saturate(200%); backdrop-filter: blur(36px) saturate(200%); border-top: 1px solid var(--glass-border); border-bottom: 1px solid rgb(var(--fg-rgb) / .06); transition: background .5s, border-color .5s; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; width: min(1020px, calc(100% - 3rem)); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .55rem 1rem; background: rgb(var(--fg-rgb) / .08); -webkit-backdrop-filter: blur(36px) saturate(180%); backdrop-filter: blur(36px) saturate(180%); border-radius: 50px; border: 1px solid var(--glass-border); box-shadow: inset 0 1px 0 var(--glass-top), 0 8px 32px rgba(0,0,0,.25); transition: background .5s, border-color .5s; }
+    .nlogo img { height: 40px; width: auto; border-radius: 8px; display: block; }
+    .nl { display: flex; flex-wrap: nowrap; overflow: hidden; }
+    .nl a { font-size: .73rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--fg-muted); padding: .45rem .75rem; border-radius: 30px; transition: background .2s, color .2s; white-space: nowrap; }
+    .nl a:hover, .nl a.active { background: rgb(var(--fg-rgb) / .1); color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
+    .ncta { font-size: .72rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: .5rem 1.2rem; background: var(--accent); color: #080808; border-radius: 30px; transition: filter .2s, transform .15s; white-space: nowrap; }
+    .ncta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .theme-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--glass-border); background: rgb(var(--fg-rgb) / .08); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--fg-muted); transition: background .2s, color .2s; flex-shrink: 0; }
+    .theme-btn:hover { background: rgb(var(--fg-rgb) / .16); color: var(--fg); }
+    .theme-btn svg { width: 15px; height: 15px; }
+    .icon-sun { display: block; } .icon-moon { display: none; }
+    html.dark .icon-sun { display: none; } html.dark .icon-moon { display: block; }
+    .nav-hamburger { display: none; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--glass-border); background: rgb(var(--fg-rgb) / .08); cursor: pointer; align-items: center; justify-content: center; color: var(--fg-muted); transition: background .2s, color .2s; flex-shrink: 0; }
+    .nav-hamburger:hover { background: rgb(var(--fg-rgb) / .16); color: var(--fg); }
+    .nav-hamburger svg { width: 15px; height: 15px; }
+    .nav-mobile-drawer { display: none; position: fixed; top: 5rem; left: 50%; transform: translateX(-50%); width: min(400px, calc(100% - 3rem)); z-index: 199; border-radius: var(--r); overflow: hidden; }
+    .nav-mobile-drawer.open { display: block; }
+    .nav-mobile-drawer a { display: block; padding: .9rem 1.5rem; font-size: .85rem; font-weight: 500; color: var(--fg-muted); border-bottom: 1px solid var(--glass-border); transition: color .2s, background .2s; }
+    .nav-mobile-drawer a:last-child { border-bottom: none; }
+    .nav-mobile-drawer a:hover, .nav-mobile-drawer a.active { color: var(--fg); background: rgb(var(--fg-rgb) / .05); }
+    @media(max-width:700px){ .nl { display: none; } .nav-hamburger { display: flex; } }
+
+    /* ── REVEAL ── */
+    .sr { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .sr.v { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+
+    .wr .word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .18em; margin-bottom: -.18em; }
+    .wr .word span { display: inline-block; transform: translateY(110%); transition: transform .7s cubic-bezier(.16,1,.3,1); }
+
+    /* ── HERO ── */
+    .hero { position: relative; z-index: 1; min-height: 64vh; display: flex; align-items: center; justify-content: center; padding: 9rem 2rem 3rem; text-align: center; }
+    .hero-glass { max-width: 760px; padding: 4rem 3.5rem; }
+    @media(max-width:600px){ .hero-glass { padding: 2.5rem 1.75rem; } }
+    .eyebrow { display: inline-flex; align-items: center; gap: .65rem; margin-bottom: 2.25rem; font-size: .65rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-light); }
+    html.dark .eyebrow { color: var(--accent); }
+    .eyebrow::before, .eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); opacity: .6; }
+    .hero h1 { font-family: var(--font-d); font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 700; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: .95rem; font-weight: 300; line-height: 1.9; color: var(--fg-muted); max-width: 480px; margin: 0 auto; }
+
+    /* ── STORY ── */
+    .story-sec { position: relative; z-index: 1; padding: 0 2rem 6rem; }
+    .story-card { max-width: 760px; margin: 0 auto; padding: 3.5rem 3.5rem; }
+    @media(max-width:600px){ .story-card { padding: 2.5rem 1.75rem; } }
+    .story-kicker { display: flex; align-items: center; gap: .75rem; margin-bottom: 2.5rem; }
+    .story-kicker-line { width: 28px; height: 1px; background: var(--accent); opacity: .6; }
+    .story-kicker-text { font-size: .65rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-light); }
+    html.dark .story-kicker-text { color: var(--accent); }
+    .story-body { font-size: 1rem; line-height: 1.95; color: var(--fg-muted); font-weight: 300; }
+    .story-body p { margin-bottom: 1.6rem; }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-body .beat { color: var(--fg); font-weight: 600; }
+    .story-body .final { color: var(--fg); font-weight: 700; border-top: 1px solid var(--glass-border); padding-top: 2rem; margin-top: .5rem; font-size: 1.15rem; line-height: 1.7; }
+
+    /* ── CTA ── */
+    .cta-sec { position: relative; z-index: 1; padding: 0 2rem 8rem; text-align: center; }
+    .cta-glass { max-width: 640px; margin: 0 auto; padding: 3.5rem 3rem; }
+    @media(max-width:600px){ .cta-glass { padding: 2.5rem 1.75rem; } }
+    .cta-sec h2 { font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.2; margin-bottom: 1rem; }
+    .cta-sec h2 em { font-style: normal; color: var(--accent); }
+    .cta-sec p { font-size: .9rem; color: var(--fg-muted); font-weight: 300; line-height: 1.8; max-width: 480px; margin: 0 auto 2.25rem; }
+    .cta-buttons { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .btn-ghost { font-size: .73rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: .55rem 1.4rem; border: 1px solid var(--glass-border); border-radius: 30px; color: var(--fg-muted); transition: color .2s, border-color .2s; }
+    .btn-ghost:hover { color: var(--fg); border-color: rgb(var(--fg-rgb) / .25); }
+
+    /* ── FOOTER ── */
+    footer { position: relative; z-index: 1; padding: 2.5rem 2rem; }
+    .ft-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .ft-brand { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); }
+    .ft-left { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+    .ft-badge { display: flex; align-items: center; gap: .65rem; }
+    .ft-badge img { width: 42px; height: 42px; border-radius: 8px; flex-shrink: 0; }
+    .ft-badge-text { display: flex; flex-direction: column; gap: 1px; }
+    .ft-badge-text strong { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); transition: color .2s; }
+    .ft-badge-text span { font-size: .65rem; color: var(--fg-dim); }
+    .ft-badge:hover .ft-badge-text strong { color: var(--accent-light); }
+    html.dark .ft-badge:hover .ft-badge-text strong { color: var(--accent); }
+    .ft-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .ft-links a { font-size: .74rem; color: var(--fg-dim); transition: color .2s; }
+    .ft-links a:hover { color: var(--fg); }
+  </style>
+</head>
+<body>
+<div class="bg-wrap" id="bg"></div>
+<div class="bg-overlay"></div>
+<div class="particles" id="particles"></div>
+
+<nav>
+  <a href="/" class="nlogo"><img src="logo.png" alt="Your Local Tech Guy" /></a>
+  <div class="nl">
+    <a href="/">Computer Repair</a>
+    <a href="/digital.html">Web &amp; Automation</a>
+    <a href="/story.html" class="active">Our Story</a>
+    <a href="/#contact">Contact</a>
+    <a href="/legal.html">Legal</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <svg class="icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+    <a href="/#contact" class="ncta">Get a Quote</a>
+    <button class="nav-hamburger" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <svg id="iconMenu" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="iconClose" style="display:none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile-drawer glass" id="navMobile">
+  <a href="/" class="nav-mobile-link">Computer Repair</a>
+  <a href="/digital.html" class="nav-mobile-link">Web &amp; Automation</a>
+  <a href="/story.html" class="nav-mobile-link active">Our Story</a>
+  <a href="/#contact" class="nav-mobile-link">Contact</a>
+  <a href="/legal.html" class="nav-mobile-link">Legal</a>
+</div>
+
+<section class="hero">
+  <div class="hero-glass glass sr">
+    <div class="eyebrow">Oranjestad, Aruba &middot; Our Story</div>
+    <h1 class="wr">Meet the animal that chose <em>not</em> to lose.</h1>
+    <p class="hero-sub">Every company has a logo. Few have a reason for it. Ours has teeth.</p>
+  </div>
+</section>
+
+<section class="story-sec">
+  <div class="story-card glass sr">
+    <div class="story-kicker">
+      <div class="story-kicker-line"></div>
+      <span class="story-kicker-text">Why the Honey Badger</span>
+    </div>
+    <div class="story-body">
+      <p>There is an animal called the honey badger.</p>
+      <p>It is not the largest. Not the fastest. Not the most feared on sight. But it holds a distinction that no other animal on earth can claim — <span class="beat">it simply does not stop.</span></p>
+      <p>It has been documented taking on lions, leopards, and venomous cobras. Not because it is reckless. Because it has decided that the obstacle in front of it is not a reason to turn around.</p>
+      <p>We chose it because we recognised ourselves in it.</p>
+      <p>We are a small company on a Caribbean island, building infrastructure, software, and security products that were never supposed to exist here. Every day we compete against companies with larger teams, larger budgets, and decades of head start.</p>
+      <p>We don't resent that. We find it motivating.</p>
+      <p class="final">The honey badger doesn't win because the odds are in its favour.<br />It wins because it has already decided that losing is not an option.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <div class="cta-glass glass sr">
+    <h2>The work speaks for itself. When you're ready, <em>so are we.</em></h2>
+    <p>Whether you need managed infrastructure, a custom website, or a technology partner who treats your business with the same seriousness as their own — we should talk.</p>
+    <div class="cta-buttons">
+      <a href="/#contact" class="ncta">Get in Touch</a>
+      <a href="/digital.html" class="btn-ghost">View Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="glass-flat">
+  <div class="ft-in">
+    <div class="ft-left">
+      <a href="/verified.html" class="ft-badge" title="Scan or click to verify this build">
+        <img src="/verified-badge.png" alt="Verified build QR code" width="42" height="42" />
+        <div class="ft-badge-text"><strong>Verified Build</strong><span>Scan to confirm</span></div>
+      </a>
+      <div class="ft-brand">Your Local Tech Guy &middot; Oranjestad, Aruba</div>
+    </div>
+    <div class="ft-links">
+      <a href="tel:+2975639903">(297) 563-9903</a>
+      <a href="mailto:localtechguy.aua@gmail.com">localtechguy.aua@gmail.com</a>
+      <a href="/digital.html">Web &amp; Automation</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-service.html">Terms of Service</a>
+      <a href="/sla.html">SLA</a>
+      <span style="color:var(--fg-dim)">&copy; <span id="year"></span></span>
+      <span style="color:var(--fg-dim)" title="Site build version">v2026.06.11</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+(function(){ const s=localStorage.getItem('theme'); if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark'); })();
+function toggleTheme(){ const d=document.documentElement.classList.toggle('dark'); localStorage.setItem('theme',d?'dark':'light'); }
+(function(){ const toggle=document.getElementById('navToggle'), mobile=document.getElementById('navMobile'), iMenu=document.getElementById('iconMenu'), iClose=document.getElementById('iconClose'); toggle.addEventListener('click',()=>{ const open=mobile.classList.toggle('open'); toggle.setAttribute('aria-expanded',open); iMenu.style.display=open?'none':'block'; iClose.style.display=open?'block':'none'; }); document.querySelectorAll('.nav-mobile-link').forEach(l=>l.addEventListener('click',()=>{ mobile.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); iMenu.style.display='block'; iClose.style.display='none'; })); })();
+(function(){const c=document.getElementById('particles'),n=window.innerWidth<600?14:28,syms=['{}','</>','01','10','//','#!','[ ]','&&','||','!=','>>','ssh','0x','git','npm','sys','if()','int','hex','eth0','>_','...',';','::'],cs=getComputedStyle(document.documentElement),cols=['--particle-1','--particle-2','--particle-3'].map(v=>cs.getPropertyValue(v).trim());for(let i=0;i<n;i++){const p=document.createElement('div');p.className='p';p.textContent=syms[Math.floor(Math.random()*syms.length)];const col=cols[Math.floor(Math.random()*cols.length)];const alpha=(Math.random()*.22+.06).toFixed(2);const sz=Math.floor(Math.random()*7+8);p.style.cssText=`left:${Math.random()*100}%;font-size:${sz}px;color:rgb(${col} / ${alpha});animation-duration:${Math.random()*22+14}s;animation-delay:-${Math.random()*28}s;`;c.appendChild(p);}})();
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');io.unobserve(x.target);}});},{threshold:.07}); document.querySelectorAll('.sr').forEach(el=>io.observe(el));
+document.querySelectorAll('.wr').forEach(el=>{ el.innerHTML=el.innerHTML.split(/(\s+)/).map(w=>w.trim()?`<span class="word"><span>${w}</span></span>`:w).join(''); }); const wrIO=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.querySelectorAll('.word span').forEach((s,i)=>setTimeout(()=>s.style.transform='translateY(0)',i*55));wrIO.unobserve(el.target);}});},{threshold:.2}); document.querySelectorAll('.wr').forEach(el=>wrIO.observe(el));
+</script>
+<script src="http://100.122.141.30:3001/api/traffic/tracker.js?id=290b1a73-a3f8-4952-986f-5ab893bde0e6"></script>
+</body>
+</html>
