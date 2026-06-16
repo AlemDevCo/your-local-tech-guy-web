@@ -49,13 +49,13 @@
       --bg-bottom: #020910;
       --bg-overlay-c: rgba(2,6,14,.22);
     }
-    html { scroll-behavior: smooth; background: var(--bg-bottom); transition: background .6s; }
-    body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: hidden; min-height: 100vh; background: transparent; transition: color .6s; }
+    html { scroll-behavior: smooth; background: var(--bg-bottom); transition: background .6s; overflow-x: clip; }
+    body { font-family: var(--font); -webkit-font-smoothing: antialiased; color: var(--fg); overflow-x: clip; min-height: 100vh; background: transparent; transition: color .6s; }
     a { text-decoration: none; color: inherit; }
 
     .bg-wrap { position: fixed; inset: 0; z-index: -2; background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 35%, var(--bg-bottom) 100%); transition: background .6s; }
     .bg-overlay { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 0%, var(--bg-overlay-c) 100%); transition: background .6s; }
-    .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: clip; }
     .p { position: absolute; font-family: 'JetBrains Mono','Courier New',monospace; pointer-events: none; animation: pfloat linear infinite; -webkit-user-select: none; user-select: none; line-height: 1; }
     @keyframes pfloat { 0%{transform:translateY(110vh);opacity:0} 8%{opacity:1} 92%{opacity:.8} 100%{transform:translateY(-10vh) translateX(25px);opacity:0} }
 
